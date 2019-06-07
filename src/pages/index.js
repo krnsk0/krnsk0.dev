@@ -1,3 +1,20 @@
 import React from "react"
+import Layout from "../components/layout"
 
-export default () => <div>Hello world!</div>
+const globalStyles = {
+  boxSizing: "border-box",
+}
+
+export default () => (
+  <div style={globalStyles}>
+    <Layout>
+      <div>page content</div>
+      <div>page content</div>
+      <div>page content</div>
+      <div>page content</div>
+      <div>page content</div>
+      <div>page content</div>
+      <div>page content</div>
+    </Layout>
+  </div>
+)
