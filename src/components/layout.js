@@ -12,7 +12,9 @@ const pageContentStyleWrapper = {
   borderRadius: "3px",
   boxShadow: "2px 2px black",
   padding: "5px",
-  marginTop: "10px",
+  marginTop: "5px",
+  marginLeft: "5px",
+  marginRight: "5px",
 }
 
 export default ({ children }) => (
