@@ -1,6 +1,6 @@
 import React from "react"
-import { Link } from "gatsby"
-import { FaGithub, FaLinkedin } from "react-icons/fa"
+import TopbarNavLink from "./topbarNavLink"
+import IconLinks from "./iconLinks"
 
 const topbarContainerStyle = {
   border: "2px solid black",
@@ -24,18 +24,6 @@ const titleTextStyle = {
   fontWeight: "bold",
 }
 
-const iconContainerStyle = {
-  display: "flex",
-  justifyContent: "flex-start",
-}
-
-const iconStyle = {
-  fontSize: "1.4em",
-  marginLeft: "5px",
-  marginRight: "5px",
-  marginTop: "5px",
-}
-
 const linkContainerStyle = {
   display: "flex",
   flexDirection: "column",
@@ -45,45 +33,14 @@ const linkContainerStyle = {
   marginRight: "10px",
 }
 
-const navLinkStyle = {
-  textAlign: "right",
-}
-
-const iconLinkStyle = {
-  color: "black",
-}
-
-const TopbarNavLink = ({ to, children }) => (
-  <div style={navLinkStyle}>
-    <Link to={to}>{children}</Link>
-  </div>
-)
-
 export default () => (
   <div style={topbarContainerStyle}>
     <div style={titleContainerStyle}>
       <h2 style={titleTextStyle}>KRNSK0</h2>
-      <div style={iconContainerStyle}>
-        <a
-          href="https://github.com/krnsk0"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={iconLinkStyle}
-        >
-          <FaGithub style={iconStyle} />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/krnsk0/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={iconLinkStyle}
-        >
-          <FaLinkedin style={iconStyle} />
-        </a>
-      </div>
+      <IconLinks />
     </div>
     <div style={linkContainerStyle}>
-      <TopbarNavLink to="/about/">about</TopbarNavLink>
+      <TopbarNavLink to="/">about</TopbarNavLink>
       <TopbarNavLink to="/portfolio/">portfolio</TopbarNavLink>
       <TopbarNavLink to="/resume/">resume</TopbarNavLink>
       <TopbarNavLink to="/contact/">contact</TopbarNavLink>
