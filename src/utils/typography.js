@@ -1,5 +1,4 @@
 import Typography from "typography"
-console.log("read typography")
 
 const typography = new Typography({
   baseFontSize: "18px",

@@ -21,6 +21,9 @@
     "typography": "^0.16.19"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-loader": "^2.1.2",
+    "gatsby-plugin-eslint": "^2.0.5",
     "prettier": "^1.17.1"
   }
 }
