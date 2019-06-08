@@ -1,0 +1,14 @@
+
+add links to gh and ln
+add picture
+make responsive
+add footer
+use emotion or another css in js framework?
+
+add about page
+add resume
+add portfolio
+add contact form
+
+
+'built with' section

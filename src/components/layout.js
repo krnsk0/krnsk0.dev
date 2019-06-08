@@ -8,7 +8,9 @@ const globalStyle = {
 }
 
 const pageContentStyleWrapper = {
-  border: "1px solid black",
+  border: "2px solid black",
+  borderRadius: "3px",
+  boxShadow: "2px 2px black",
   padding: "5px",
   marginTop: "10px",
 }

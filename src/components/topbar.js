@@ -2,14 +2,22 @@ import React from "react"
 import { Link } from "gatsby"
 
 const containerStyle = {
-  border: "1px solid black",
+  border: "2px solid black",
+  borderRadius: "3px",
+  boxShadow: "2px 2px black",
   display: "flex",
   flexDirection: "row",
   padding: "5px",
 }
 
-const titleStyle = {
+const titleBoxStyle = {
   flex: 2,
+}
+
+const titleTextStyle = {
+  margin: "5px",
+  padding: "5px",
+  textAlign: "center",
 }
 
 const linkStyle = {
@@ -24,7 +32,9 @@ const TopbarLink = ({ to, children }) => (
 
 export default () => (
   <div style={containerStyle}>
-    <div style={titleStyle}>krnsk0</div>
+    <div style={titleBoxStyle}>
+      <h2 style={titleTextStyle}>KRNSK0</h2>
+    </div>
     <TopbarLink to="/about/">about</TopbarLink>
     <TopbarLink to="/portfolio/">portfolio</TopbarLink>
     <TopbarLink to="/resume/">resume</TopbarLink>

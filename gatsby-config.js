@@ -4,6 +4,18 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+console.log("read config")
+
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: `krnsk0.dev`,
+  },
+  plugins: [
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
+  ],
 }
