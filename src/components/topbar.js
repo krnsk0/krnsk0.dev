@@ -18,8 +18,7 @@ const titleContainerStyle = {}
 
 const titleTextStyle = {
   margin: "5px",
-  padding: "5px",
-  textAlign: "center",
+  textAlign: "left",
   fontSize: "40px",
   textShadow: "4px 4px 0px #B5B5B5, 8px 8px 0px #DBDBDB",
   fontWeight: "bold",
@@ -27,13 +26,14 @@ const titleTextStyle = {
 
 const iconContainerStyle = {
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "flex-start",
 }
 
 const iconStyle = {
   fontSize: "1.4em",
   marginLeft: "5px",
   marginRight: "5px",
+  marginTop: "5px",
 }
 
 const linkContainerStyle = {
@@ -67,6 +67,7 @@ export default () => (
         <a
           href="https://github.com/krnsk0"
           target="_blank"
+          rel="noopener noreferrer"
           style={iconLinkStyle}
         >
           <FaGithub style={iconStyle} />
@@ -74,6 +75,7 @@ export default () => (
         <a
           href="https://www.linkedin.com/in/krnsk0/"
           target="_blank"
+          rel="noopener noreferrer"
           style={iconLinkStyle}
         >
           <FaLinkedin style={iconStyle} />
