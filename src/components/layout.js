@@ -1,7 +1,11 @@
 import React from "react"
 import Topbar from "./topbar"
 
-const topLevelStyle = { margin: `3rem auto`, maxWidth: 600 }
+const globalStyle = {
+  margin: `3rem auto`,
+  maxWidth: 600,
+  boxSizing: "border-box",
+}
 
 const pageContentStyleWrapper = {
   border: "1px solid black",
@@ -10,7 +14,7 @@ const pageContentStyleWrapper = {
 }
 
 export default ({ children }) => (
-  <div style={topLevelStyle}>
+  <div style={globalStyle}>
     <Topbar />
     <div style={pageContentStyleWrapper}>{children}</div>
   </div>
