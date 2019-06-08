@@ -9,12 +9,6 @@ export default () => (
   <div style={globalStyles}>
     <Layout>
       <div>page content</div>
-      <div>page content</div>
-      <div>page content</div>
-      <div>page content</div>
-      <div>page content</div>
-      <div>page content</div>
-      <div>page content</div>
     </Layout>
   </div>
 )
