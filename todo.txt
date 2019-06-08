@@ -1,5 +1,4 @@
-
-add links to gh and ln
+on hover behavior
 add picture
 make responsive
 add footer
@@ -12,4 +11,3 @@ add contact form
 
 
 'built with' section
-fix linter
