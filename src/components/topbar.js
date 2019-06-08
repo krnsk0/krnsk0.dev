@@ -18,6 +18,9 @@ const titleTextStyle = {
   margin: "5px",
   padding: "5px",
   textAlign: "center",
+  fontSize: "40px",
+  textShadow: "0px 5px 0px #B5B5B5, 0px 10px 0px #DBDBDB",
+  fontWeight: "bold",
 }
 
 const linkStyle = {
