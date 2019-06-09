@@ -2,6 +2,7 @@ import React from "react"
 import TopbarNavLink from "./topbarNavLink"
 import IconLinks from "./iconLinks"
 import styled from "styled-components"
+import { Link } from "gatsby"
 
 const TopbarContainer = styled.div`
   border: 2px solid black;
@@ -39,7 +40,9 @@ const LinkContainer = styled.div`
 export default () => (
   <TopbarContainer>
     <div>
-      <TitleText>KRNSK0</TitleText>
+      <Link to="/" style={{ color: "inherit", textDecoration: "inherit" }}>
+        <TitleText>KRNSK0</TitleText>
+      </Link>
       <IconLinks />
     </div>
     <LinkContainer>
