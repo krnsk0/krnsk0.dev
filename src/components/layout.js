@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 const GlobalStyleDiv = styled.div`
   margin: 3rem auto;
-  max-width: 600;
+  max-width: 600px;
   box-sizing: border-box;
 `
 
