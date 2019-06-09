@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Sort Buddy",
+    "description": "An educational tool for visualizing sorting algorithms commonly taught in introductory CS courses. Uses Redux to implement “time travel” through application states, allowing the user to step forwards and backwards through the sorting algorithms. UI styled by hand using plain CSS.",
+    "dateString": "April 2019",
+    "deployedSiteUrl": "https://krnsk0.github.io/sort_buddy/",
+    "repoUrl": "https://github.com/krnsk0/sort_buddy",
+    "image": "sort_buddy_screenshot.png"
+  },
+  {
+    "title": "Pixalive",
+    "description": "A multi-user real-time editor for animated sprites and pixel art based on Socket IO and React. Built in two weeks with a four-person team using only functional components (to learn the Hooks syntax). Implements a hand-rolled state management system. Went through several rounds of profiling to identify and remove rendering & performance bottlenecks. Exports animated GIFs.",
+    "dateString": "May 2019",
+    "deployedSiteUrl": "https://pixalive.herokuapp.com/",
+    "repoUrl": "https://github.com/pixalive/pixalive",
+    "image": ""
+  }
+]

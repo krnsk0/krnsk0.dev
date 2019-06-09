@@ -1,7 +1,7 @@
-// eslint-disable-next-line no-undef
+/* eslint-disable no-undef */
 module.exports = {
   siteMetadata: {
-    title: "www.krnsk0.dev",
+    title: "krnsk0.dev",
     canonicalUrl: "https://www.krnsk0.dev",
   },
   plugins: [
@@ -11,8 +11,16 @@ module.exports = {
         pathToConfigModule: "src/utils/typography",
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data/`,
+      },
+    },
     "gatsby-plugin-eslint",
     "gatsby-plugin-styled-components",
-    `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-react-helmet",
+    "gatsby-transformer-json",
   ],
 }
