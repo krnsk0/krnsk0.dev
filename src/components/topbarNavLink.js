@@ -1,9 +1,10 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
+import styled from "styled-components"
 
-const navLinkStyle = {
-  textAlign: "right",
-}
+const NavLinkContainer = styled.div`
+  text-align: right;
+`
 
 export default ({ to, children }) => {
   const [active, setActive] = useState(false)
@@ -16,11 +17,11 @@ export default ({ to, children }) => {
   }
 
   return (
-    <div style={navLinkStyle}>
+    <NavLinkContainer>
       {active && <span>➤ </span>}
       <Link to={to} getProps={isActive}>
         {children}
       </Link>
-    </div>
+    </NavLinkContainer>
   )
 }

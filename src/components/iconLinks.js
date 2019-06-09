@@ -1,39 +1,38 @@
 import React from "react"
 import { FaGithub, FaLinkedin } from "react-icons/fa"
+import styled from "styled-components"
 
-const iconContainerStyle = {
-  display: "flex",
-  justifyContent: "flex-start",
-}
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
 
-const iconStyle = {
-  fontSize: "1.4em",
-  marginLeft: "5px",
-  marginRight: "5px",
-  marginTop: "5px",
-}
+const IconSVG = styled.div`
+  font-size: 1.4em;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+`
 
-const iconLinkStyle = {
-  color: "black",
-}
+const IconLink = styled.a`
+  color: black;
+`
 
 export default () => (
-  <div style={iconContainerStyle}>
-    <a
+  <IconContainer>
+    <IconLink
       href="https://github.com/krnsk0"
       target="_blank"
       rel="noopener noreferrer"
-      style={iconLinkStyle}
     >
-      <FaGithub style={iconStyle} />
-    </a>
-    <a
+      <IconSVG as={FaGithub} />
+    </IconLink>
+    <IconLink
       href="https://www.linkedin.com/in/krnsk0/"
       target="_blank"
       rel="noopener noreferrer"
-      style={iconLinkStyle}
     >
-      <FaLinkedin style={iconStyle} />
-    </a>
-  </div>
+      <IconSVG as={FaLinkedin} />
+    </IconLink>
+  </IconContainer>
 )
