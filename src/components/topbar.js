@@ -17,10 +17,14 @@ const TopbarContainer = styled.div`
 
 const TitleText = styled.h1`
   margin: 5px;
+  color: black;
   text-align: left;
   font-size: 40px;
   text-shadow: 4px 4px 0px #b5b5b5, 8px 8px 0px #dbdbdb;
   font-weight: bold;
+  &:hover {
+    text-shadow: 4px 4px 0px DeepSkyBlue, 8px 8px 0px LightSkyBlue;
+  }
 `
 
 const LinkContainer = styled.div`

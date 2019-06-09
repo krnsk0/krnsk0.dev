@@ -16,6 +16,9 @@ const IconSVG = styled.div`
 
 const IconLink = styled.a`
   color: black;
+  &:hover {
+    color: DeepSkyBlue;
+  }
 `
 
 export default () => (

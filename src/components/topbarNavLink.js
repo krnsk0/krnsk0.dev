@@ -6,6 +6,13 @@ const NavLinkContainer = styled.div`
   text-align: right;
 `
 
+const StyledLink = styled(props => <Link {...props} />)`
+  color: black;
+  &:hover {
+    color: DeepSkyBlue;
+  }
+`
+
 export default ({ to, children }) => {
   const [active, setActive] = useState(false)
 
@@ -19,9 +26,9 @@ export default ({ to, children }) => {
   return (
     <NavLinkContainer>
       {active && <span>➤ </span>}
-      <Link to={to} getProps={isActive}>
+      <StyledLink to={to} getProps={isActive}>
         {children}
-      </Link>
+      </StyledLink>
     </NavLinkContainer>
   )
 }
