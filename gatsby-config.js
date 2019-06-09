@@ -1,12 +1,8 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
+// eslint-disable-next-line no-undef
 module.exports = {
   siteMetadata: {
-    title: "krnsk0.dev",
+    title: "www.krnsk0.dev",
+    canonicalUrl: "https://www.krnsk0.dev",
   },
   plugins: [
     {
@@ -17,5 +13,6 @@ module.exports = {
     },
     "gatsby-plugin-eslint",
     "gatsby-plugin-styled-components",
+    `gatsby-plugin-react-helmet`,
   ],
 }
