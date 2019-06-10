@@ -1,4 +1,5 @@
 ---
+priority: 90
 title: "Snek IO"
 dateString: "May 2019"
 deployedSiteUrl: "https://snekio.herokuapp.com/"

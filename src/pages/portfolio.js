@@ -10,12 +10,7 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa"
 const ProjectContainer = styled.div`
   display: flex;
   flex-direction: row;
-  @media (max-width: 700px) {
-    flex-direction: column;
-  }
   & img {
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
     border: 2px solid black;
     border-radius: 3px;
     box-shadow: 2px 2px black;
@@ -23,6 +18,15 @@ const ProjectContainer = styled.div`
   &:hover img {
     -webkit-filter: none;
     filter: none;
+  }
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+  @media (hover: hover) {
+    & img {
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
   }
 `
 const ImageContainer = styled.div`
@@ -155,11 +159,12 @@ export default props => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: { fields: [frontmatter___priority], order: DESC }) {
       edges {
         node {
           id
           frontmatter {
+            priority
             title
             dateString
             deployedSiteUrl
@@ -167,7 +172,7 @@ export const query = graphql`
             image {
               publicURL
               childImageSharp {
-                fluid(maxWidth: 980) {
+                fluid(maxWidth: 700) {
                   ...GatsbyImageSharpFluid
                 }
               }

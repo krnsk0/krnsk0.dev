@@ -1,4 +1,5 @@
 ---
+priority: 100
 title: "Edmazon"
 dateString: "April 2019"
 deployedSiteUrl: "https://edmazon.herokuapp.com/products/categories/1/offset/0"
