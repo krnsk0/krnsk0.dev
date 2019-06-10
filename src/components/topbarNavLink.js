@@ -25,7 +25,7 @@ export default ({ to, children }) => {
 
   return (
     <NavLinkContainer>
-      {active && <span>➤ </span>}
+      {active && <span>➜ </span>}
       <StyledLink to={to} getProps={isActive}>
         {children}
       </StyledLink>

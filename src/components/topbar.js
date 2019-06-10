@@ -46,9 +46,9 @@ export default () => (
       <IconLinks />
     </div>
     <LinkContainer>
-      <TopbarNavLink to="/">about</TopbarNavLink>
-      <TopbarNavLink to="/portfolio/">portfolio</TopbarNavLink>
-      <TopbarNavLink to="/contact/">contact</TopbarNavLink>
+      <TopbarNavLink to="/">About</TopbarNavLink>
+      <TopbarNavLink to="/portfolio/">Portfolio</TopbarNavLink>
+      <TopbarNavLink to="/contact/">Contact</TopbarNavLink>
     </LinkContainer>
   </TopbarContainer>
 )
