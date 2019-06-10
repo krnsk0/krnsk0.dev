@@ -1,9 +1,9 @@
 ---
 title: "Snek IO"
-dateString: "April 2019"
-deployedSiteUrl: "https://krnsk0.github.io/sort_buddy/"
-repoUrl: "https://github.com/krnsk0/sort_buddy"
-image: "./sort_buddy_screenshot.png"
+dateString: "May 2019"
+deployedSiteUrl: "https://snekio.herokuapp.com/"
+repoUrl: "https://github.com/krnsk0/snekio"
+image: "./snek_io_screenshot.png"
 builtWith: ["Socket IO", "HTML Canvas"]
-description: "An educational tool for visualizing sorting algorithms commonly taught in introductory CS courses."
+description: "A multiplayer browser game built for a four-day hackathon using Socket IO. "
 ---

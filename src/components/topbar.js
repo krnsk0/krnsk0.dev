@@ -31,7 +31,7 @@ const TitleText = styled.h1`
 const LinkContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-content: flex-end;
   width: 100%;
   margin-right: 10px;
@@ -48,7 +48,6 @@ export default () => (
     <LinkContainer>
       <TopbarNavLink to="/">about</TopbarNavLink>
       <TopbarNavLink to="/portfolio/">portfolio</TopbarNavLink>
-      <TopbarNavLink to="/resume/">resume</TopbarNavLink>
       <TopbarNavLink to="/contact/">contact</TopbarNavLink>
     </LinkContainer>
   </TopbarContainer>

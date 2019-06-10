@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { graphql } from "gatsby"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import Img from "gatsby-image"
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa"
 
 const ProjectContainer = styled.div`
   display: flex;
@@ -12,6 +13,9 @@ const ProjectContainer = styled.div`
   & img {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
+    border: 2px solid black;
+    border-radius: 3px;
+    box-shadow: 2px 2px black;
   }
   &:hover img {
     -webkit-filter: none;
@@ -25,17 +29,41 @@ const ImageContainer = styled.div`
 
 const ProjectDetails = styled.div`
   display: flex;
+  margin-left: 5px;
+  margin-right: 10px;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   flex: 2;
 `
 
-const ProjectTitle = styled.div`
+const ProjectTitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const ProjectTitle = styled.span`
   margin-left: 5px;
   color: black;
   text-align: left;
   font-size: 24px;
   font-weight: bold;
+  &:hover {
+    color: DeepSkyBlue;
+  }
+`
+
+const IconLink = styled.a`
+  color: black;
+  &:hover {
+    color: DeepSkyBlue;
+  }
+`
+
+const IconSVG = styled.div`
+  font-size: 1.3em;
+  margin-left: 12px;
+  margin-top: 4px;
 `
 
 const ProjectDescription = styled.div`
@@ -47,6 +75,7 @@ const ProjectDescription = styled.div`
 
 const BuiltWithContainer = styled.div`
   margin-left: 5px;
+  margin-top: 5px;
   display: flex;
   flex-wrap: wrap;
 `
@@ -72,18 +101,38 @@ export default props => {
           description,
           image,
           builtWith,
+          repoUrl,
+          deployedSiteUrl,
         } = project.node.frontmatter
 
         return (
           <PageContentStyleWrapper key={title}>
             <ProjectContainer>
-              {index % 2 ? (
-                <ImageContainer>
-                  <Img fluid={image.childImageSharp.fluid} />
-                </ImageContainer>
-              ) : null}
+              <ImageContainer>
+                <Img fluid={image.childImageSharp.fluid} />
+              </ImageContainer>
               <ProjectDetails>
-                <ProjectTitle>{title}</ProjectTitle>
+                <ProjectTitleContainer>
+                  <ProjectTitle>{title}</ProjectTitle>
+                  <div>
+                    <IconLink
+                      href={deployedSiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <IconSVG as={FaExternalLinkAlt} />
+                    </IconLink>
+                    <IconLink
+                      href={repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <IconSVG as={FaGithub} />
+                    </IconLink>
+                  </div>
+                </ProjectTitleContainer>
+
+                <ProjectDescription>{description}</ProjectDescription>
                 <BuiltWithContainer>
                   {builtWith.map(techName => {
                     return (
@@ -91,13 +140,7 @@ export default props => {
                     )
                   })}
                 </BuiltWithContainer>
-                <ProjectDescription>{description}</ProjectDescription>
               </ProjectDetails>
-              {!(index % 2) ? (
-                <ImageContainer>
-                  <Img fluid={image.childImageSharp.fluid} />
-                </ImageContainer>
-              ) : null}
             </ProjectContainer>
           </PageContentStyleWrapper>
         )
