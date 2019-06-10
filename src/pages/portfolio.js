@@ -4,18 +4,21 @@ import Layout from "../components/layout"
 import styled from "styled-components"
 import { graphql } from "gatsby"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
-
-const ProjectImage = styled.div``
+import Img from "gatsby-image"
 
 const ProjectContainer = styled.div`
   display: flex;
   flex-direction: row;
+`
+const ImageContainer = styled.div`
+  flex: 1;
 `
 
 const ProjectDetails = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  flex: 2;
 `
 
 const ProjectTitle = styled.div`
@@ -48,7 +51,9 @@ export default props => {
                 <ProjectTitle>{title}</ProjectTitle>
                 <ProjectDescription>{description}</ProjectDescription>
               </ProjectDetails>
-              <ProjectImage>{image}</ProjectImage>
+              <ImageContainer>
+                <Img fluid={image.childImageSharp.fluid} />
+              </ImageContainer>
             </ProjectContainer>
           </PageContentStyleWrapper>
         )
@@ -68,7 +73,14 @@ export const query = graphql`
             dateString
             deployedSiteUrl
             repoUrl
-            image
+            image {
+              publicURL
+              childImageSharp {
+                fluid(maxWidth: 980) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             description
           }
         }

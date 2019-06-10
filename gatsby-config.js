@@ -18,9 +18,24 @@ module.exports = {
         path: `${__dirname}/src/data/projects/`,
       },
     },
-    "gatsby-transformer-remark",
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 970,
+            },
+          },
+        ],
+      },
+    },
     "gatsby-plugin-eslint",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
+    "gatsby-remark-copy-linked-files",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
   ],
 }
