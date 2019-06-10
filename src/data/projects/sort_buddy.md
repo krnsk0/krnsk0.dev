@@ -1,5 +1,5 @@
 ---
-priority: 150
+priority: 600
 title: "Sort Buddy"
 dateString: "April 2019"
 deployedSiteUrl: "https://krnsk0.github.io/sort_buddy/"

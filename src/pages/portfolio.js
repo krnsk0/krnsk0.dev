@@ -15,18 +15,8 @@ const ProjectContainer = styled.div`
     border-radius: 3px;
     box-shadow: 2px 2px black;
   }
-  &:hover img {
-    -webkit-filter: none;
-    filter: none;
-  }
   @media (max-width: 700px) {
     flex-direction: column;
-  }
-  @media (hover: hover) {
-    & img {
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-    }
   }
 `
 const ImageContainer = styled.div`

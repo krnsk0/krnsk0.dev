@@ -11,6 +11,7 @@ const PageContentWrapper = styled.div`
   margin-right: 5px;
 `
 
-export default ({ children }) => (
-  <PageContentWrapper>{children}</PageContentWrapper>
-)
+export default props => {
+  const { children } = props
+  return <PageContentWrapper>{children}</PageContentWrapper>
+}
