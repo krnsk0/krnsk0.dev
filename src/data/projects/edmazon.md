@@ -1,7 +1,7 @@
 ---
 title: "Edmazon"
 dateString: "April 2019"
-deployedSiteUrl: "https://edmazon.herokuapp.com/"
+deployedSiteUrl: "https://edmazon.herokuapp.com/products/categories/1/offset/0"
 repoUrl: "https://github.com/gs-team-edwin/edmazon"
 image: "./edmazon_screenshot.png"
 builtWith: ["Node.js", "Express", "React", "Redux", "Sequelize", "PostgresSQL"]

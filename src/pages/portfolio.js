@@ -34,6 +34,7 @@ const ProjectDetails = styled.div`
   display: flex;
   margin-left: 5px;
   margin-right: 10px;
+  margin-bottom: 4px;
   flex-direction: column;
   justify-content: space-between;
   flex: 2;
