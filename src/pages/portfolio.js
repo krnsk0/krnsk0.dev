@@ -88,6 +88,10 @@ const BuiltWithItem = styled.span`
   margin-bottom: 3px;
 `
 
+const LinkWrapper = styled.a`
+  text-decoration: none;
+`
+
 export default props => {
   const projects = props.data.allMarkdownRemark.edges
 
@@ -107,11 +111,23 @@ export default props => {
           <PageContentStyleWrapper key={title}>
             <ProjectContainer>
               <ImageContainer>
-                <Img fluid={image.childImageSharp.fluid} />
+                <LinkWrapper
+                  href={deployedSiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Img fluid={image.childImageSharp.fluid} />
+                </LinkWrapper>
               </ImageContainer>
               <ProjectDetails>
                 <ProjectTitleContainer>
-                  <ProjectTitle>{title}</ProjectTitle>
+                  <LinkWrapper
+                    href={deployedSiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ProjectTitle>{title}</ProjectTitle>
+                  </LinkWrapper>
                   <div>
                     <IconLink
                       href={deployedSiteUrl}
