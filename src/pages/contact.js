@@ -1,15 +1,22 @@
 import React from "react"
 import Layout from "../components/layout"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
+import styled from "styled-components"
+
+const FormTitle = styled.h2`
+  color: black;
+`
 
 export default () => (
   <Layout>
     <PageContentStyleWrapper>
+      <FormTitle>Let{`'`}s talk.</FormTitle>
       <form
         name="contact"
         method="post"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
+        action="/success"
       >
         <div>
           <label htmlFor="name">Name</label>
