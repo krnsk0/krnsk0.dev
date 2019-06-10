@@ -9,8 +9,17 @@ import Img from "gatsby-image"
 const ProjectContainer = styled.div`
   display: flex;
   flex-direction: row;
+  & img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+  &:hover img {
+    -webkit-filter: none;
+    filter: none;
+  }
 `
 const ImageContainer = styled.div`
+  margin: 5px;
   flex: 1;
 `
 
