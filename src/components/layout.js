@@ -4,9 +4,14 @@ import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
 
+const GlobalContainerDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`
+
 const GlobalStyleDiv = styled.div`
-  margin: 3rem auto;
-  max-width: 600px;
+  width: 700px;
   box-sizing: border-box;
 `
 
@@ -31,10 +36,12 @@ export default ({ children }) => {
         <title>{data.site.siteMetadata.title}</title>
         <link rel="canonical" href={data.site.siteMetadata.canonicalUrl} />
       </Helmet>
-      <GlobalStyleDiv>
-        <Topbar />
-        {children}
-      </GlobalStyleDiv>
+      <GlobalContainerDiv>
+        <GlobalStyleDiv>
+          <Topbar />
+          {children}
+        </GlobalStyleDiv>
+      </GlobalContainerDiv>
     </div>
   )
 }

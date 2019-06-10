@@ -10,6 +10,9 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa"
 const ProjectContainer = styled.div`
   display: flex;
   flex-direction: row;
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
   & img {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
