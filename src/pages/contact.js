@@ -4,7 +4,7 @@ import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import styled from "styled-components"
 
 const FormTitle = styled.h2`
-  color: black;
+  color: #313131;
 `
 
 export default () => (

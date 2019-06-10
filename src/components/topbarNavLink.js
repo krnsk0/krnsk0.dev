@@ -7,7 +7,7 @@ const NavLinkContainer = styled.div`
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
-  color: black;
+  color: #313131;
   &:hover {
     color: DeepSkyBlue;
   }

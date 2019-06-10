@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 
 const LinkWrapper = styled.span`
-  color: black;
+  color: #313131;
 `
 
 export default () => (

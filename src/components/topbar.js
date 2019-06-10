@@ -5,9 +5,9 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 
 const TopbarContainer = styled.div`
-  border: 2px solid black;
+  border: 2px solid #313131;
   border-radius: 3px;
-  box-shadow: 2px 2px black;
+  box-shadow: 2px 2px #414141;
   display: flex;
   flex-direction: row;
   padding: 5px;
@@ -18,7 +18,7 @@ const TopbarContainer = styled.div`
 
 const TitleText = styled.h1`
   margin: 5px;
-  color: black;
+  color: #313131;
   text-align: left;
   font-size: 40px;
   text-shadow: 4px 4px 0px #b5b5b5, 8px 8px 0px #dbdbdb;

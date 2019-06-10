@@ -15,7 +15,7 @@ const IconSVG = styled.div`
 `
 
 const IconLink = styled.a`
-  color: black;
+  color: #313131;
   &:hover {
     color: DeepSkyBlue;
   }

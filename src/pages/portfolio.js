@@ -11,9 +11,9 @@ const ProjectContainer = styled.div`
   display: flex;
   flex-direction: row;
   & img {
-    border: 2px solid black;
+    border: 2px solid #313131;
     border-radius: 3px;
-    box-shadow: 2px 2px black;
+    box-shadow: 2px 2px #414141;
   }
   @media (max-width: 700px) {
     flex-direction: column;
@@ -42,7 +42,7 @@ const ProjectTitleContainer = styled.div`
 
 const ProjectTitle = styled.span`
   margin-left: 5px;
-  color: black;
+  color: #313131;
   text-align: left;
   font-size: 24px;
   font-weight: bold;
@@ -52,7 +52,7 @@ const ProjectTitle = styled.span`
 `
 
 const IconLink = styled.a`
-  color: black;
+  color: #313131;
   &:hover {
     color: DeepSkyBlue;
   }
@@ -66,7 +66,7 @@ const IconSVG = styled.div`
 
 const ProjectDescription = styled.div`
   margin-left: 5px;
-  color: black;
+  color: #313131;
   text-align: left;
   font-size: 15px;
 `
@@ -80,7 +80,7 @@ const BuiltWithContainer = styled.div`
 
 const BuiltWithItem = styled.span`
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #313131;
   font-size: 13px;
   border-radius: 2px;
   padding: 0px 3px 0px 3px;
