@@ -14,13 +14,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `data`,
-        path: `${__dirname}/src/data/`,
+        name: `projects`,
+        path: `${__dirname}/src/data/projects/`,
       },
     },
+    "gatsby-transformer-remark",
     "gatsby-plugin-eslint",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
-    "gatsby-transformer-json",
   ],
 }

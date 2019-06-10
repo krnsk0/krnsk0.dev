@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react"
 import Layout from "../components/layout"
 import styled from "styled-components"
@@ -33,21 +34,21 @@ const ProjectDescription = styled.div`
 `
 
 export default props => {
-  const projects = props.data.allProjectsJson.edges
+  const projects = props.data.allMarkdownRemark.edges
 
   return (
     <Layout>
       {projects.map(project => {
+        const { title, description, image } = project.node.frontmatter
+
         return (
-          <PageContentStyleWrapper key={project.node.title}>
+          <PageContentStyleWrapper key={title}>
             <ProjectContainer>
               <ProjectDetails>
-                <ProjectTitle>{project.node.title}</ProjectTitle>
-                <ProjectDescription>
-                  {project.node.description}
-                </ProjectDescription>
+                <ProjectTitle>{title}</ProjectTitle>
+                <ProjectDescription>{description}</ProjectDescription>
               </ProjectDetails>
-              <ProjectImage>{project.node.image}</ProjectImage>
+              <ProjectImage>{image}</ProjectImage>
             </ProjectContainer>
           </PageContentStyleWrapper>
         )
@@ -58,15 +59,18 @@ export default props => {
 
 export const query = graphql`
   query {
-    allProjectsJson {
+    allMarkdownRemark {
       edges {
         node {
-          title
-          description
-          dateString
-          deployedSiteUrl
-          repoUrl
-          image
+          id
+          frontmatter {
+            title
+            dateString
+            deployedSiteUrl
+            repoUrl
+            image
+            description
+          }
         }
       }
     }
