@@ -31,7 +31,7 @@ const ProjectDetails = styled.div`
 `
 
 const ProjectTitle = styled.div`
-  margin: 5px;
+  margin-left: 5px;
   color: black;
   text-align: left;
   font-size: 24px;
@@ -39,10 +39,26 @@ const ProjectTitle = styled.div`
 `
 
 const ProjectDescription = styled.div`
-  margin: 5px;
+  margin-left: 5px;
   color: black;
   text-align: left;
   font-size: 15px;
+`
+
+const BuiltWithContainer = styled.div`
+  margin-left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+`
+
+const BuiltWithItem = styled.span`
+  background-color: white;
+  border: 1px solid black;
+  font-size: 13px;
+  border-radius: 2px;
+  padding: 0px 3px 0px 3px;
+  margin-right: 3px;
+  margin-bottom: 3px;
 `
 
 export default props => {
@@ -50,19 +66,38 @@ export default props => {
 
   return (
     <Layout>
-      {projects.map(project => {
-        const { title, description, image } = project.node.frontmatter
+      {projects.map((project, index) => {
+        const {
+          title,
+          description,
+          image,
+          builtWith,
+        } = project.node.frontmatter
 
         return (
           <PageContentStyleWrapper key={title}>
             <ProjectContainer>
+              {index % 2 ? (
+                <ImageContainer>
+                  <Img fluid={image.childImageSharp.fluid} />
+                </ImageContainer>
+              ) : null}
               <ProjectDetails>
                 <ProjectTitle>{title}</ProjectTitle>
+                <BuiltWithContainer>
+                  {builtWith.map(techName => {
+                    return (
+                      <BuiltWithItem key={techName}>{techName}</BuiltWithItem>
+                    )
+                  })}
+                </BuiltWithContainer>
                 <ProjectDescription>{description}</ProjectDescription>
               </ProjectDetails>
-              <ImageContainer>
-                <Img fluid={image.childImageSharp.fluid} />
-              </ImageContainer>
+              {!(index % 2) ? (
+                <ImageContainer>
+                  <Img fluid={image.childImageSharp.fluid} />
+                </ImageContainer>
+              ) : null}
             </ProjectContainer>
           </PageContentStyleWrapper>
         )
@@ -90,6 +125,7 @@ export const query = graphql`
                 }
               }
             }
+            builtWith
             description
           }
         }
