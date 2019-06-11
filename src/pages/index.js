@@ -4,6 +4,7 @@ import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
+import DownloadButton from "../components/downloadButton"
 
 const ProfileContainer = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ export default ({ data }) => (
         </ProfileImage>
         <ProfileDetails>profile details</ProfileDetails>
       </ProfileContainer>
+      <DownloadButton />
     </PageContentStyleWrapper>
   </Layout>
 )
