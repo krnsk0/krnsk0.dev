@@ -43,7 +43,7 @@ export default () => {
   )
 
   return (
-    <LinkWrapper href={data.file.publicURL} download>
+    <LinkWrapper href={data.file.publicURL} download="Jon_Kurinsky.pdf">
       <DownloadButton>
         Technical Résumé - PDF
         <DownloadIcon>
