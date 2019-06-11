@@ -46,15 +46,3 @@ export default () => {
     </LinkWrapper>
   )
 }
-
-export const query = graphql`
-  query {
-    file(relativePath: { eq: "profile.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 400) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`

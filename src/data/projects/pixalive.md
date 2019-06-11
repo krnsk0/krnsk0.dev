@@ -6,5 +6,5 @@ deployedSiteUrl: "https://pixalive.herokuapp.com/"
 repoUrl: "https://github.com/pixalive/pixalive"
 image: "./pixalive_screenshot.png"
 builtWith: ["Socket IO", "HTML Canvas", "React", "React Hooks"]
-description: "A multi-user, real-time, collaborative editor for animated sprites and pixel art based on Socket IO and React."
+description: "A multi-user, real-time, collaborative editor for animated sprites and pixel art based on Socket IO and React. Only uses functional components. Implements hooks-based diffing  optimize HTML canvas re-renders. Implements multi-user undo."
 ---
