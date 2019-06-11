@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
-import { MdFileDownload } from "react-icons/Md"
+import { MdFileDownload } from "react-icons/md"
 
 const DownloadButton = styled.div`
   display: flex;
@@ -12,6 +12,13 @@ const DownloadButton = styled.div`
   margin: 5px;
   padding: 10px;
   font-size: 22px;
+  &:hover {
+    border-color: DeepSkyBlue;
+    color: DeepSkyBlue;
+  }
+  &:hover * {
+    color: DeepSkyBlue;
+  }
 `
 const DownloadIcon = styled.div`
   font-size: 1.4em;
