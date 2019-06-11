@@ -2,6 +2,6 @@
 
 ## Portfolio Site
 
-Uses: Gatsby, CSS-in-JS
+Gatsby, Styled Components, React
 
-To be deployed at www.krnsk0.dev
+Deployed at: www.krnsk0.dev
