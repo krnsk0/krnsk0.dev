@@ -4,9 +4,10 @@ const typography = new Typography({
   baseFontSize: "18px",
   googleFonts: [
     { name: "Roboto Mono", styles: ["400", "700"] },
+    { name: "Roboto Slab", styles: ["400", "700"] },
     { name: "Inconsolata", styles: ["400"] },
   ],
-  headerFontFamily: ["Roboto Mono"],
+  headerFontFamily: ["Roboto Slab"],
   bodyFontFamily: ["Inconsolata"],
 })
 

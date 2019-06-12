@@ -17,6 +17,8 @@ const TopbarContainer = styled.div`
 `
 
 const TitleText = styled.h1`
+  font-family: "Roboto Mono";
+  font-weight: 700;
   margin: 5px;
   color: #313131;
   text-align: left;

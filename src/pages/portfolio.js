@@ -37,18 +37,18 @@ const ProjectDetails = styled.div`
 const ProjectTitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
 `
 
-const ProjectTitle = styled.span`
+const ProjectTitle = styled.h2`
   margin-left: 5px;
   color: #313131;
-  text-align: left;
   font-size: 24px;
   font-weight: bold;
   &:hover {
     color: DeepSkyBlue;
   }
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 `
 
 const IconLink = styled.a`
@@ -61,7 +61,6 @@ const IconLink = styled.a`
 const IconSVG = styled.div`
   font-size: 1.2em;
   margin-left: 5px;
-  margin-top: 4px;
 `
 
 const ProjectDescription = styled.div`
@@ -139,21 +138,24 @@ export default props => {
                         <IconSVG as={FaRegFileVideo} />
                       </IconLink>
                     )}
-                    <IconLink
-                      href={deployedSiteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <IconSVG as={FaLink} />
-                    </IconLink>
-
-                    <IconLink
-                      href={repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <IconSVG as={FaGithub} />
-                    </IconLink>
+                    {deployedSiteUrl && (
+                      <IconLink
+                        href={deployedSiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <IconSVG as={FaLink} />
+                      </IconLink>
+                    )}
+                    {repoUrl && (
+                      <IconLink
+                        href={repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <IconSVG as={FaGithub} />
+                      </IconLink>
+                    )}
                   </div>
                 </ProjectTitleContainer>
 
