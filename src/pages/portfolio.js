@@ -68,6 +68,7 @@ const ProjectDescription = styled.div`
   color: #313131;
   text-align: left;
   font-size: 15px;
+  letter-spacing: -0.5px;
 `
 
 const BuiltWithContainer = styled.div`

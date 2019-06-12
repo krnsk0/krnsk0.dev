@@ -4,11 +4,11 @@ const typography = new Typography({
   baseFontSize: "18px",
   googleFonts: [
     { name: "Roboto Mono", styles: ["400", "700"] },
-    { name: "Roboto Slab", styles: ["400", "700"] },
-    { name: "Inconsolata", styles: ["400"] },
+    { name: "Fira Mono", styles: ["400"] },
+    { name: "Roboto", styles: ["400", "700"] },
   ],
-  headerFontFamily: ["Roboto Slab"],
-  bodyFontFamily: ["Inconsolata"],
+  headerFontFamily: ["Roboto"],
+  bodyFontFamily: ["Fira Mono"],
 })
 
 export default typography
