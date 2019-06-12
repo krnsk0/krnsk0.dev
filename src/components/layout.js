@@ -8,11 +8,15 @@ const GlobalContainerDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  min-width: 320px;
 `
 
 const GlobalStyleDiv = styled.div`
   width: 700px;
   box-sizing: border-box;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `
 
 export default ({ children }) => {

@@ -93,12 +93,13 @@ export default ({ data }) => (
         </MainText>
 
         <MainText>
-          I enjoy the immediacy of frontend development and getting to know the
-          React ecosystem--and the problem space of writing for the browser--has
-          been a blast. But I{`'`}ve also been captivated by server architecture
-          for real-time applications; websockets and node are a potent
-          combination. So, for now, I{`'`}m comfortable with the label {`'`}
-          fullstack,{`'`} while I get to know what
+          I enjoy the immediacy and interactivity of frontend development.
+          Getting to know the React ecosystem--and the problem space of writing
+          for the browser--has been a blast. But I{`'`}ve also been captivated
+          by server architecture for real-time applications; websockets and node
+          are a potent combination. So, for now, I{`'`}m comfortable with the
+          label {`'`}
+          fullstack.{`'`}
         </MainText>
         <MainText></MainText>
       </MainTextContainer>

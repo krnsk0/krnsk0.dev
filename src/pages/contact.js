@@ -7,20 +7,21 @@ const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `
 const FormTitle = styled.h2`
   color: #313131;
   margin-top: 15px;
 `
 const FormElementWrapper = styled.div`
-  width: 450px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 5px;
 `
 const ButtonElementWrapper = styled.div`
-  width: 450px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -32,6 +33,13 @@ const Label = styled.label`
   margin: 5px;
 `
 
+const FormElement = styled.form`
+  width: 80%;
+  @media (max-width: 700px) {
+    width: 95%;
+  }
+`
+
 const Input = styled.input`
   border: 2px solid #313131;
   border-radius: 3px;
@@ -40,8 +48,7 @@ const Input = styled.input`
 `
 
 const TextArea = styled.textarea`
-  width: 450px;
-  min-width: 275px;
+  width: 100%;
   min-height: 200px;
   border: 2px solid #313131;
   border-radius: 3px;
@@ -59,7 +66,7 @@ export default () => (
     <PageContentStyleWrapper>
       <FormWrapper>
         <FormTitle>Let{`'`}s talk.</FormTitle>
-        <form
+        <FormElement
           name="contact"
           method="post"
           data-netlify="true"
@@ -89,7 +96,7 @@ export default () => (
             <Button type="reset" value="Clear" />
             <Button type="submit" value="Send Message" />
           </ButtonElementWrapper>
-        </form>
+        </FormElement>
       </FormWrapper>
     </PageContentStyleWrapper>
   </Layout>
