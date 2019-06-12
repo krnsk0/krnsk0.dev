@@ -47,8 +47,8 @@ const ProjectTitle = styled.h2`
   &:hover {
     color: DeepSkyBlue;
   }
-  margin-block-start: 0em;
-  margin-block-end: 0em;
+  margin-block-start: 3px;
+  margin-block-end: 0px;
 `
 
 const IconLink = styled.a`
@@ -85,7 +85,7 @@ const BuiltWithItem = styled.span`
   border-radius: 2px;
   padding: 0px 3px 0px 3px;
   margin-right: 3px;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
 `
 
 const LinkWrapper = styled.a`
