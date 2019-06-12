@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 module.exports = {
   siteMetadata: {
-    title: "www.krnsk0.dev",
+    title: "Jon Kurinsky - Web Developer",
     canonicalUrl: "https://www.krnsk0.dev",
   },
   plugins: [

@@ -9,9 +9,8 @@ const DownloadButton = styled.div`
   align-items: center;
   border: 2px solid black;
   border-radius: 3px;
-  margin: 5px;
   padding: 10px;
-  font-size: 22px;
+  font-size: 18.5px;
   &:hover {
     border-color: DeepSkyBlue;
     color: DeepSkyBlue;
@@ -21,14 +20,19 @@ const DownloadButton = styled.div`
   }
 `
 const DownloadIcon = styled.div`
-  font-size: 1.4em;
-  margin-top: 12px;
-  margin-left: 15px;
+  font-size: 1.6em;
+  margin-top: 11px;
+  margin-left: 5px;
+  margin-right: 15px;
 `
 
 const LinkWrapper = styled.a`
   text-decoration: none;
   color: #313131;
+`
+
+const Text = styled.div`
+  text-align: center;
 `
 
 export default () => {
@@ -45,7 +49,7 @@ export default () => {
   return (
     <LinkWrapper href={data.file.publicURL} download="Jon_Kurinsky.pdf">
       <DownloadButton>
-        Technical Résumé - PDF
+        <Text>Technical Résumé</Text>
         <DownloadIcon>
           <MdFileDownload></MdFileDownload>
         </DownloadIcon>
