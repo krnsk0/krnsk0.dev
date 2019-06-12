@@ -1,8 +1,8 @@
 import React from "react"
 import TopbarNavLink from "./topbarNavLink"
 import IconLinks from "./iconLinks"
+import PageTitle from "./pageTitle"
 import styled from "styled-components"
-import { Link } from "gatsby"
 
 const TopbarContainer = styled.div`
   border: 2px solid #313131;
@@ -14,19 +14,8 @@ const TopbarContainer = styled.div`
   margin-top: 5px;
   margin-left: 5px;
   margin-right: 5px;
-`
-
-const TitleText = styled.h1`
-  font-family: "Roboto Mono";
-  font-weight: 700;
-  margin: 5px;
-  color: #313131;
-  text-align: left;
-  font-size: 40px;
-  text-shadow: 4px 4px 0px #b5b5b5, 8px 8px 0px #dbdbdb;
-  font-weight: bold;
-  &:hover {
-    text-shadow: 4px 4px 0px DeepSkyBlue, 8px 8px 0px LightSkyBlue;
+  @media (max-width: 700px) {
+    display: none;
   }
 `
 
@@ -42,9 +31,7 @@ const LinkContainer = styled.div`
 export default () => (
   <TopbarContainer>
     <div>
-      <Link to="/" style={{ color: "inherit", textDecoration: "inherit" }}>
-        <TitleText>KRNSK0</TitleText>
-      </Link>
+      <PageTitle />
       <IconLinks />
     </div>
     <LinkContainer>
