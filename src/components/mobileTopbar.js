@@ -32,21 +32,12 @@ const TopbarContainer = styled.div`
   width: 100%;
 `
 
-const NavLinkContainer = styled.div`
-  margin-top: 4px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`
-
 export default () => (
   <TopbarOuterContainer>
     <TopbarContainer>
-      <NavLinkContainer>
-        <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
-        <MobileTopbarNavLink to="/portfolio/">Portfolio</MobileTopbarNavLink>
-        <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
-      </NavLinkContainer>
+      <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
+      <MobileTopbarNavLink to="/portfolio/">Portfolio</MobileTopbarNavLink>
+      <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
       <IconLinks />
     </TopbarContainer>
   </TopbarOuterContainer>

@@ -4,6 +4,7 @@ import styled, { css } from "styled-components"
 
 const NavLinkContainer = styled.div`
   text-align: right;
+  margin-top: 4px;
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
