@@ -24,19 +24,31 @@ const TopbarContainer = styled.div`
   margin-right: 5px;
   display: none;
   @media (max-width: 700px) {
-    display: flex;
+    display: inherit;
   }
-  justify-content: flex-end;
+`
+
+const TopBarInnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 `
 
 export default () => (
   <TopbarOuterContainer>
     <TopbarContainer>
-      <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
-      <MobileTopbarNavLink to="/portfolio/">Portfolio</MobileTopbarNavLink>
-      <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
-      <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
-      <IconLink to="https://www.linkedin.com/in/krnsk0/" icon="FaLinkedin" />
+      <TopBarInnerContainer>
+        <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
+        <MobileTopbarNavLink to="/portfolio/">Portfolio</MobileTopbarNavLink>
+        <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
+        <div>
+          <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
+          <IconLink
+            to="https://www.linkedin.com/in/krnsk0/"
+            icon="FaLinkedin"
+          />
+        </div>
+      </TopBarInnerContainer>
     </TopbarContainer>
   </TopbarOuterContainer>
 )
