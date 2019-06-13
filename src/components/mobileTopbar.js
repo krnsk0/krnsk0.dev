@@ -1,16 +1,23 @@
 import React from "react"
 import styled from "styled-components"
 import IconLinks from "./iconLinks"
-import PageTitle from "./pageTitle"
+import MobileTopbarNavLink from "./mobileTopbarNavLink"
+
+const TopbarOuterContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: fixed;
+  z-index: 100;
+`
 
 const TopbarContainer = styled.div`
   border: 2px solid #313131;
   border-radius: 3px;
   box-shadow: 2px 2px #414141;
-  position: fixed;
+
   top: 0px;
   right: 0px;
-  z-index: 100;
   flex-direction: row;
   background-color: white;
   padding: 5px;
@@ -25,9 +32,22 @@ const TopbarContainer = styled.div`
   width: 100%;
 `
 
+const NavLinkContainer = styled.div`
+  margin-top: 4px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
 export default () => (
-  <TopbarContainer>
-    <PageTitle size="27px" type="mobile" />
-    <IconLinks />
-  </TopbarContainer>
+  <TopbarOuterContainer>
+    <TopbarContainer>
+      <NavLinkContainer>
+        <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
+        <MobileTopbarNavLink to="/portfolio/">Portfolio</MobileTopbarNavLink>
+        <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
+      </NavLinkContainer>
+      <IconLinks />
+    </TopbarContainer>
+  </TopbarOuterContainer>
 )
