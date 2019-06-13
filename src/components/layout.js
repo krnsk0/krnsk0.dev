@@ -1,6 +1,6 @@
 import React from "react"
 import DesktopTopbar from "./desktopTopbar"
-import MobileTopbar from "./MobileTopbar"
+import MobileTopbar from "./mobileTopbar"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
