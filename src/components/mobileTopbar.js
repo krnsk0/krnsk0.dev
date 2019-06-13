@@ -6,7 +6,6 @@ import MobileTopbarNavLink from "./mobileTopbarNavLink"
 const TopbarOuterContainer = styled.div`
   position: fixed;
   z-index: 100;
-  border: 1px red solid;
   width: 100%;
 `
 
@@ -20,8 +19,8 @@ const TopbarContainer = styled.div`
   background-color: white;
   padding: 5px;
   margin-top: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
   display: none;
   @media (max-width: 700px) {
     display: inherit;
