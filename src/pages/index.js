@@ -80,26 +80,26 @@ export default ({ data }) => (
           <DownloadButton />
         </Float>
         <MainText>
-          After self-teaching Python to automate my job in the publishing
-          industry, I fell in love with programming.
+          {/* After self-teaching Python to automate my job in the publishing
+          industry, I fell in love with programming. */}
         </MainText>
 
         <MainText>
-          I turned to Fullstack Academy, a bootcamp program in Chicago, to help
+          {/* I turned to Fullstack Academy, a bootcamp program in Chicago, to help
           me transition from autodidact hobbyist to professional. They helped me
           become proficient in a Javascript-based stack: <Bold>Node</Bold>,{" "}
           <Bold>Express</Bold>, <Bold>React</Bold>, <Bold>Redux</Bold>,{" "}
-          <Bold>PostgresSQL</Bold>, <Bold>Sequelize</Bold>.
+          <Bold>PostgresSQL</Bold>, <Bold>Sequelize</Bold>. */}
         </MainText>
 
         <MainText>
-          I enjoy the immediacy and interactivity of frontend development.
+          {/* I enjoy the immediacy and interactivity of frontend development.
           Getting to know the React ecosystem--and the problem space of writing
           for the browser--has been a blast. But I{`'`}ve also been captivated
           by server architecture for real-time applications; websockets and node
           are a potent combination. So, for now, I{`'`}m comfortable with the
           label {`'`}
-          fullstack.{`'`}
+          fullstack.{`'`} */}
         </MainText>
         <MainText></MainText>
       </MainTextContainer>
