@@ -1,6 +1,6 @@
 import React from "react"
 import TopbarNavLink from "./topbarNavLink"
-import IconLinks from "./iconLinks"
+import IconLink from "./iconLink"
 import PageTitle from "./pageTitle"
 import styled from "styled-components"
 
@@ -28,11 +28,19 @@ const LinkContainer = styled.div`
   margin-right: 10px;
 `
 
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
+
 export default () => (
   <TopbarContainer>
     <div>
       <PageTitle />
-      <IconLinks />
+      <IconContainer>
+        <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
+        <IconLink to="https://www.linkedin.com/in/krnsk0/" icon="FaLinkedin" />
+      </IconContainer>
     </div>
     <LinkContainer>
       <TopbarNavLink to="/">About</TopbarNavLink>

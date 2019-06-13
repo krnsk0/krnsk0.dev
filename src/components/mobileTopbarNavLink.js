@@ -4,7 +4,7 @@ import styled, { css } from "styled-components"
 
 const NavLinkContainer = styled.div`
   text-align: right;
-  margin-top: 4px;
+  margin-top: 5px;
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
@@ -12,20 +12,19 @@ const StyledLink = styled(props => <Link {...props} />)`
   &:hover {
     color: DeepSkyBlue;
   }
-  font-size: 21px;
   text-decoration: none;
   padding-left: 5px;
   padding-right: 5px;
   letter-spacing: -1.5px;
   border: 1px solid #313131;
   border-radius: 3px;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 4px;
+  margin-right: 4px;
   ${props =>
     props.active &&
     css`
       background-color: #313131;
-      color: white;
+      color: deepskyblue;
     `};
 `
 
