@@ -31,7 +31,7 @@ const LinkContainer = styled.div`
 export default () => (
   <TopbarContainer>
     <div>
-      <PageTitle />
+      <PageTitle size="40px" type="desktop" />
       <IconLinks />
     </div>
     <LinkContainer>

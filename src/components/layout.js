@@ -1,5 +1,6 @@
 import React from "react"
-import Topbar from "./topbar"
+import DesktopTopbar from "./desktopTopbar"
+import MobileTopbar from "./MobileTopbar"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
@@ -16,6 +17,13 @@ const GlobalStyleDiv = styled.div`
   box-sizing: border-box;
   @media (max-width: 700px) {
     width: 100%;
+  }
+`
+
+const GlobalOffset = styled.div`
+  height: 55px;
+  @media (min-width: 700px) {
+    display: none;
   }
 `
 
@@ -42,7 +50,9 @@ export default ({ children }) => {
       </Helmet>
       <GlobalContainerDiv>
         <GlobalStyleDiv>
-          <Topbar />
+          <MobileTopbar />
+          <DesktopTopbar />
+          <GlobalOffset />
           {children}
         </GlobalStyleDiv>
       </GlobalContainerDiv>

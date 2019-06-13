@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { graphql } from "gatsby"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import Img from "gatsby-image"
-import { FaGithub, FaRegFileVideo, FaLink } from "react-icons/fa"
+import { FaGithub, FaRegFileVideo, FaExternalLinkAlt } from "react-icons/fa"
 
 const ProjectContainer = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ const ProjectDetails = styled.div`
   display: flex;
   margin-left: 5px;
   margin-right: 10px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   flex-direction: column;
   justify-content: space-between;
   flex: 2;
@@ -74,6 +74,7 @@ const ProjectDescription = styled.div`
 const BuiltWithContainer = styled.div`
   margin-left: 5px;
   margin-top: 5px;
+  margin-bottom: -3px;
   display: flex;
   flex-wrap: wrap;
 `
@@ -85,7 +86,7 @@ const BuiltWithItem = styled.span`
   border-radius: 2px;
   padding: 0px 3px 0px 3px;
   margin-right: 3px;
-  margin-bottom: 1px;
+  margin-bottom: 3px;
 `
 
 const LinkWrapper = styled.a`
@@ -145,7 +146,7 @@ export default props => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <IconSVG as={FaLink} />
+                        <IconSVG as={FaExternalLinkAlt} />
                       </IconLink>
                     )}
                     {repoUrl && (
