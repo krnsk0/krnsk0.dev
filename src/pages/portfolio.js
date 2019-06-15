@@ -113,48 +113,28 @@ export default props => {
           <PageContentStyleWrapper key={title}>
             <ProjectContainer>
               <ImageContainer>
-                <LinkWrapper
-                  href={deployedSiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <LinkWrapper href={deployedSiteUrl}>
                   <Img fluid={image.childImageSharp.fluid} />
                 </LinkWrapper>
               </ImageContainer>
               <ProjectDetails>
                 <ProjectTitleContainer>
-                  <LinkWrapper
-                    href={deployedSiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <LinkWrapper href={deployedSiteUrl}>
                     <ProjectTitle>{title}</ProjectTitle>
                   </LinkWrapper>
                   <div>
                     {videoUrl && (
-                      <IconLink
-                        href={videoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <IconLink href={videoUrl}>
                         <IconSVG as={FaRegFileVideo} />
                       </IconLink>
                     )}
                     {deployedSiteUrl && (
-                      <IconLink
-                        href={deployedSiteUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <IconLink href={deployedSiteUrl}>
                         <IconSVG as={FaExternalLinkAlt} />
                       </IconLink>
                     )}
                     {repoUrl && (
-                      <IconLink
-                        href={repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <IconLink href={repoUrl}>
                         <IconSVG as={FaGithub} />
                       </IconLink>
                     )}

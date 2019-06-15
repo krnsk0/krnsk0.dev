@@ -17,7 +17,7 @@ const IconLink = styled.a`
 `
 
 export default props => (
-  <IconLink href={props.to} target="_blank" rel="noopener noreferrer">
+  <IconLink href={props.to}>
     <IconSVG as={props.icon === "FaGithub" ? FaGithub : FaLinkedin} />
   </IconLink>
 )
