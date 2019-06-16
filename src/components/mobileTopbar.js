@@ -7,7 +7,7 @@ import MobileTopbarNavLink from "./mobileTopbarNavLink"
 import PageTitle from "./pageTitle"
 
 const TopbarOuterContainer = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 100;
   width: 100%;
 `
@@ -39,10 +39,9 @@ const TopBarBottomRow = styled.div`
   flex-wrap: wrap;
 `
 
-export default props => {
-  console.log("scroll prop", props.scroll)
+export default () => {
   return (
-    <TopbarOuterContainer style={{ top: `${props.scroll}px` }}>
+    <TopbarOuterContainer>
       <TopbarContainer>
         <TopBarTopRow>
           <PageTitle type="mobile" />
