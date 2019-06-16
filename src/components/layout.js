@@ -23,9 +23,6 @@ const GlobalStyleDiv = styled.div`
 const GlobalOffset = styled.div`
   height: 0px;
   @media (max-width: 700px) {
-    height: 55px;
-  }
-  @media (max-width: 350px) {
     height: 83px;
   }
 `

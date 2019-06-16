@@ -22,7 +22,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   margin-right: 4px;
   margin-bottom: 5px;
   ${props =>
-    props.active &&
+    props.activeFlag &&
     css`
       background-color: #313131;
       color: deepskyblue;
@@ -30,18 +30,18 @@ const StyledLink = styled(props => <Link {...props} />)`
 `
 
 export default ({ to, children }) => {
-  const [active, setActive] = useState(false)
+  const [activeFlag, setActiveFlag] = useState(false)
 
   // if this is the active link, store it
   const isActive = ({ isCurrent }) => {
     if (isCurrent) {
-      setActive(true)
+      setActiveFlag(true)
     }
   }
 
   return (
     <NavLinkContainer>
-      <StyledLink to={to} getProps={isActive} active={active}>
+      <StyledLink to={to} getProps={isActive} activeFlag={activeFlag}>
         {children}
       </StyledLink>
     </NavLinkContainer>
