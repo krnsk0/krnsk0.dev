@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
 /* eslint-disable no-undef */
+/* eslint-disable no-console */
 import React from "react"
 import styled from "styled-components"
 import IconLink from "./iconLink"
@@ -7,10 +7,9 @@ import MobileTopbarNavLink from "./mobileTopbarNavLink"
 import PageTitle from "./pageTitle"
 
 const TopbarOuterContainer = styled.div`
-  position: fixed;
+  position: absolute;
   z-index: 100;
   width: 100%;
-  border: 1px solid red;
 `
 
 const TopbarContainer = styled.div`
@@ -40,9 +39,10 @@ const TopBarBottomRow = styled.div`
   flex-wrap: wrap;
 `
 
-export default () => {
+export default props => {
+  console.log("scroll prop", props.scroll)
   return (
-    <TopbarOuterContainer>
+    <TopbarOuterContainer style={{ top: `${props.scroll}px` }}>
       <TopbarContainer>
         <TopBarTopRow>
           <PageTitle type="mobile" />

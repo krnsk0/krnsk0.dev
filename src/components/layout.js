@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
 import React from "react"
 import DesktopTopbar from "./desktopTopbar"
 import MobileTopbar from "./mobileTopbar"
@@ -41,6 +44,20 @@ export default ({ children }) => {
     `
   )
 
+  const [scroll, setScroll] = React.useState(0)
+
+  const scrollListener = () => {
+    const y = -window.scrollY
+    setScroll(y)
+  }
+
+  React.useLayoutEffect(() => {
+    window.addEventListener("scroll", scrollListener)
+    return () => {
+      window.removeEventListener("scroll", scrollListener)
+    }
+  }, [])
+
   return (
     <div>
       <Helmet>
@@ -50,7 +67,7 @@ export default ({ children }) => {
       </Helmet>
       <GlobalContainerDiv>
         <GlobalStyleDiv>
-          <MobileTopbar />
+          <MobileTopbar scroll={scroll} />
           <DesktopTopbar />
           <GlobalOffset />
           {children}
