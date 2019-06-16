@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { Link } from "gatsby"
 
 const TitleText = styled.h1`
@@ -8,12 +8,22 @@ const TitleText = styled.h1`
   margin: 5px;
   color: #313131;
   text-align: left;
-  font-size: 40px;
+  font-size: ${props => (props.type === "desktop" ? "40px" : "25px")};
   font-weight: bold;
-  text-shadow: 4px 4px 0px #b5b5b5, 8px 8px 0px #dbdbdb;
-  &:hover {
-    text-shadow: 4px 4px 0px DeepSkyBlue, 8px 8px 0px LightSkyBlue;
-  }
+  ${props =>
+    props.type === "desktop"
+      ? css`
+          text-shadow: 4px 4px 0px #b5b5b5, 8px 8px 0px #dbdbdb;
+          &:hover {
+            text-shadow: 4px 4px 0px DeepSkyBlue, 8px 8px 0px LightSkyBlue;
+          }
+        `
+      : css`
+          text-shadow: 3px 3px 0px #b5b5b5, 6px 6px 0px #dbdbdb;
+          &:hover {
+            text-shadow: 3px 3px 0px DeepSkyBlue, 6px 6px 0px LightSkyBlue;
+          }
+        `}
 `
 
 export default () => (

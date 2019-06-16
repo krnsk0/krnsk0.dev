@@ -36,7 +36,7 @@ const IconContainer = styled.div`
 export default () => (
   <TopbarContainer>
     <div>
-      <PageTitle />
+      <PageTitle type="desktop" />
       <IconContainer>
         <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
         <IconLink to="https://www.linkedin.com/in/krnsk0/" icon="FaLinkedin" />

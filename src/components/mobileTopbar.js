@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import IconLink from "./iconLink"
 import MobileTopbarNavLink from "./mobileTopbarNavLink"
+import PageTitle from "./pageTitle"
 
 const TopbarOuterContainer = styled.div`
   position: fixed;
@@ -27,19 +28,23 @@ const TopbarContainer = styled.div`
   }
 `
 
-const TopBarInnerContainer = styled.div`
+const TopBarBottomRow = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+`
+
+const TopBarTopRow = styled.div`
+  display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 `
 
 export default () => (
   <TopbarOuterContainer>
     <TopbarContainer>
-      <TopBarInnerContainer>
-        <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
-        <MobileTopbarNavLink to="/portfolio/">Portfolio</MobileTopbarNavLink>
-        <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
+      <TopBarTopRow>
+        <PageTitle type="mobile" />
         <div>
           <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
           <IconLink
@@ -47,7 +52,12 @@ export default () => (
             icon="FaLinkedin"
           />
         </div>
-      </TopBarInnerContainer>
+      </TopBarTopRow>
+      <TopBarBottomRow>
+        <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
+        <MobileTopbarNavLink to="/portfolio/">Portfolio</MobileTopbarNavLink>
+        <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
+      </TopBarBottomRow>
     </TopbarContainer>
   </TopbarOuterContainer>
 )
