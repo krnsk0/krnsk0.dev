@@ -8,6 +8,7 @@ const FormWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-left: -10px;
 `
 const FormTitle = styled.h2`
   color: #313131;
@@ -31,6 +32,7 @@ const Label = styled.label`
   font-size: 20px;
   color: #313131;
   margin: 5px;
+  letter-spacing: -1.2px;
 `
 
 const FormElement = styled.form`
@@ -43,7 +45,7 @@ const FormElement = styled.form`
 const Input = styled.input`
   border: 2px solid #313131;
   border-radius: 3px;
-  width: 225px;
+  width: 215px;
   padding: 5px;
 `
 
@@ -59,6 +61,7 @@ const Button = styled.input`
   border: 2px solid #313131;
   border-radius: 3px;
   background: none;
+  letter-spacing: -1.1px;
 `
 
 export default () => (
