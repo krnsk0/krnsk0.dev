@@ -22,7 +22,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   margin-right: 4px;
   margin-bottom: 5px;
   ${props =>
-    props.activeFlag &&
+    props.selected &&
     css`
       background-color: #313131;
       color: deepskyblue;
@@ -41,7 +41,7 @@ export default ({ to, children }) => {
 
   return (
     <NavLinkContainer>
-      <StyledLink to={to} getProps={isActive} activeFlag={activeFlag}>
+      <StyledLink to={to} getProps={isActive} selected={activeFlag}>
         {children}
       </StyledLink>
     </NavLinkContainer>
