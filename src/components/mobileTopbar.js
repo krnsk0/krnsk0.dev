@@ -16,16 +16,18 @@ const TopbarContainer = styled.div`
   flex-direction: row;
   background-color: white;
   padding: 5px;
+  padding-bottom: 10px;
   margin: 0px auto;
   display: none;
   @media (max-width: 700px) {
     display: inherit;
   }
+  border-bottom: 2px solid black;
 `
 
 const TopBarTopRow = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 `
 
@@ -35,13 +37,8 @@ const TopBarBottomRow = styled.div`
   flex-wrap: wrap;
 `
 
-const Gradient = styled.div`
-  height: 20px;
-  background-image: linear-gradient(
-    to top,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 1)
-  );
+const Spacer = styled.div`
+  width: 70px;
 `
 
 export default () => {
@@ -50,6 +47,7 @@ export default () => {
       <TopbarContainer>
         <TopBarTopRow>
           <PageTitle type="mobile" />
+          <Spacer />
           <div>
             <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
             <IconLink
@@ -64,7 +62,6 @@ export default () => {
           <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
         </TopBarBottomRow>
       </TopbarContainer>
-      <Gradient />
     </TopbarOuterContainer>
   )
 }

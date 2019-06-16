@@ -8,6 +8,7 @@ const NavLinkContainer = styled.div`
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
+  font-size: 17px;
   color: #313131;
   &:hover {
     color: DeepSkyBlue;
@@ -15,7 +16,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   text-decoration: none;
   padding-left: 5px;
   padding-right: 5px;
-  letter-spacing: -1.5px;
+  letter-spacing: -1.2px;
   border: 1px solid #313131;
   border-radius: 3px;
   margin-left: 4px;
