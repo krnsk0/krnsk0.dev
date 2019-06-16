@@ -40,54 +40,26 @@ const TopBarBottomRow = styled.div`
   flex-wrap: wrap;
 `
 
-class MobileTopbar extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      scrollY: 0,
-    }
-    this.scrollListener = this.scrollListener.bind(this)
-  }
-
-  scrollListener() {
-    const scroll = -window.scrollY
-    this.setState({ scrollY: scroll })
-  }
-
-  componentDidMount() {
-    window.addEventListener("scroll", this.scrollListener)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.scrollListener)
-  }
-
-  render() {
-    console.log(this.state.scrollY)
-    return (
-      <TopbarOuterContainer style={{ top: `${this.state.scrollY}px` }}>
-        <TopbarContainer>
-          <TopBarTopRow>
-            <PageTitle type="mobile" />
-            <div>
-              <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
-              <IconLink
-                to="https://www.linkedin.com/in/krnsk0/"
-                icon="FaLinkedin"
-              />
-            </div>
-          </TopBarTopRow>
-          <TopBarBottomRow>
-            <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
-            <MobileTopbarNavLink to="/portfolio/">
-              Portfolio
-            </MobileTopbarNavLink>
-            <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
-          </TopBarBottomRow>
-        </TopbarContainer>
-      </TopbarOuterContainer>
-    )
-  }
+export default () => {
+  return (
+    <TopbarOuterContainer>
+      <TopbarContainer>
+        <TopBarTopRow>
+          <PageTitle type="mobile" />
+          <div>
+            <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
+            <IconLink
+              to="https://www.linkedin.com/in/krnsk0/"
+              icon="FaLinkedin"
+            />
+          </div>
+        </TopBarTopRow>
+        <TopBarBottomRow>
+          <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
+          <MobileTopbarNavLink to="/portfolio/">Portfolio</MobileTopbarNavLink>
+          <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
+        </TopBarBottomRow>
+      </TopbarContainer>
+    </TopbarOuterContainer>
+  )
 }
-
-export default MobileTopbar
