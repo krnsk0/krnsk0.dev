@@ -15,11 +15,17 @@ const ProfileImage = styled.div`
   border-radius: 3px;
   margin-right: 10px;
   margin-bottom: 10px;
-  width: 20vw;
+  width: 200px;
+  @media (max-width: 700px) {
+    width: 25vw;
+  }
   float: left;
 `
 const BigTextParagraph = styled.h1`
-  font-size: calc(20px + 1vw);
+  font-size: 26px;
+  @media (max-width: 700px) {
+    font-size: calc(16px + 0.8vw);
+  }
   color: #717171;
   margin-bottom: 15px;
   letter-spacing: -0.8px;
