@@ -20,6 +20,7 @@ const TopbarContainer = styled.div`
 `
 
 const LinkContainer = styled.div`
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
