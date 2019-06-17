@@ -9,6 +9,7 @@ import { Link } from "gatsby"
 
 const FlexContainer = styled.div`
   display: flex;
+  flex-direction: row;
 `
 
 const Left = styled.div`
@@ -28,8 +29,8 @@ const ProfileImage = styled.div`
 `
 
 const BigTextParagraph = styled.h1`
-  font-size: 24px;
-  line-height: 25px;
+  font-size: 28px;
+  line-height: 28px;
   color: #717171;
   margin-bottom: 15px;
   letter-spacing: -0.5px;
@@ -45,7 +46,7 @@ const MainText = styled.div`
   letter-spacing: -0.6px;
   margin-bottom: 15px;
   color: #717171;
-  font-weight: 500;
+  font-weight: 400;
 `
 
 const StyledGatsbyLink = styled(props => <Link {...props} />)`
@@ -80,10 +81,10 @@ export default ({ data }) => (
             developer relocating to <Dark>Philadelphia</Dark> or{" "}
             <Dark>Denver</Dark>.
           </BigTextParagraph>
-          <BigTextParagraph>
-            I{`'`}m a builder of things and a solver of problems. I believe in
+          <MainText>
+            I{`'`}m a builder of tools and a solver of problems. I believe in
             writing human-friendly, elegant code.
-          </BigTextParagraph>
+          </MainText>
 
           <MainText>
             After self-teaching Python to automate my job in the publishing
