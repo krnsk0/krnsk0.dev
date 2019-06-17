@@ -27,8 +27,8 @@ const TitleText = styled.h1`
         `}
 `
 
-export default () => (
+export default props => (
   <Link to="/" style={{ color: "inherit", textDecoration: "inherit" }}>
-    <TitleText>KRNSK0</TitleText>
+    <TitleText type={props.type}>KRNSK0</TitleText>
   </Link>
 )
