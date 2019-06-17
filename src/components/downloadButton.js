@@ -5,12 +5,13 @@ import { MdFileDownload } from "react-icons/md"
 
 const DownloadButton = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   border: 2px solid black;
   border-radius: 3px;
   padding: 10px;
-  font-size: 18.5px;
+  font-size: 100%;
   &:hover {
     border-color: DeepSkyBlue;
     color: DeepSkyBlue;
@@ -18,12 +19,12 @@ const DownloadButton = styled.div`
   &:hover * {
     color: DeepSkyBlue;
   }
+  margin-right: 10px;
 `
 const DownloadIcon = styled.div`
+  margin-top: 5px;
+  margin-bottom: -15px;
   font-size: 1.6em;
-  margin-top: 11px;
-  margin-left: 5px;
-  margin-right: 15px;
 `
 
 const LinkWrapper = styled.a`
