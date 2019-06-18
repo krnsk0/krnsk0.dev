@@ -57,5 +57,11 @@ module.exports = {
       },
     },
     "gatsby-plugin-catch-links",
+    {
+      resolve: "gatsby-plugin-html-attributes",
+      options: {
+        lang: "en",
+      },
+    },
   ],
 }
