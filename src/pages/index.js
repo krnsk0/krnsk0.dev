@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 import React from "react"
 import Layout from "../components/layout"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
@@ -65,64 +67,74 @@ const StyledLink = styled.a`
   text-decoration: none;
 `
 
-export default ({ data }) => (
-  <Layout>
-    <PageContentStyleWrapper>
-      <FlexContainer>
-        <Left>
-          <ProfileImage>
-            <Img fluid={data.file.childImageSharp.fluid} />
-          </ProfileImage>
-          <DownloadButton />
-        </Left>
-        <Right>
-          <BigTextParagraph>
-            I{`'`}m <Dark>Jon Kurinsky</Dark>, a Chicago-based software
-            developer relocating to <Dark>Philadelphia</Dark>.
-          </BigTextParagraph>
-          <MainText>
-            I{`'`}m a builder of tools and a solver of problems. I believe in
-            writing human-friendly, elegant, declarative code.
-          </MainText>
+export default ({ data }) => {
+  const about = data.allMarkdownRemark.edges[0].node
+  const title = about.frontmatter.title
+  console.log("title: ", title)
+  const body = about.html
+  console.log("body: ", body)
 
-          <MainText>
-            After self-teaching Python to automate my job in the publishing
-            industry, I fell in love with programming.
-          </MainText>
-          <MainText>
-            I turned to Fullstack Academy, a bootcamp program in Chicago, to
-            help me transition from hobbyist to professional. They helped me
-            become proficient in a Javascript-based stack: <Dark>Node</Dark>,{" "}
-            <Dark>Express</Dark>, <Dark>React</Dark>, <Dark>Redux</Dark>,{" "}
-            <Dark>PostgresSQL</Dark>, and <Dark>Sequelize</Dark>.
-          </MainText>
-          <MainText>
-            I enjoy the immediacy and interactivity of frontend development.
-            Getting to know the React ecosystem and the challenges involved in
-            writing clean, maintainable, and performant code for the browser has
-            been a blast.
-          </MainText>
-          <MainText>
-            But I{`'`}ve also been captivated by the problem space of scalable,
-            performant server architecture, especially for real-time
-            applications. So, for now, I{`'`}m comfortable with the label {`'`}
-            fullstack.{`'`}
-          </MainText>
-          <MainText>
-            Interested in working together? Check out my{" "}
-            <StyledGatsbyLink to="/portfolio/">portfolio</StyledGatsbyLink>, my{" "}
-            <StyledLink href="https://github.com/krnsk0">Github</StyledLink>, or
-            connect with me on{" "}
-            <StyledLink href="https://www.linkedin.com/in/krnsk0/">
-              LinkedIn
-            </StyledLink>
-            .
-          </MainText>
-        </Right>
-      </FlexContainer>
-    </PageContentStyleWrapper>
-  </Layout>
-)
+  return (
+    <Layout>
+      <PageContentStyleWrapper>
+        <FlexContainer>
+          <Left>
+            <ProfileImage>
+              <Img fluid={data.file.childImageSharp.fluid} />
+            </ProfileImage>
+            <DownloadButton />
+          </Left>
+          <Right>
+            <BigTextParagraph>
+              I{`'`}m <Dark>Jon Kurinsky</Dark>, a Chicago-based software
+              developer relocating to <Dark>Philadelphia</Dark>.
+            </BigTextParagraph>
+            <MainText>
+              I{`'`}m a builder of tools and a solver of problems. I believe in
+              writing human-friendly, elegant, declarative code.
+            </MainText>
+
+            <MainText>
+              After self-teaching Python to automate my job in the publishing
+              industry, I fell in love with programming.
+            </MainText>
+            <MainText>
+              I turned to Fullstack Academy, a bootcamp program in Chicago, to
+              help me transition from hobbyist to professional. They helped me
+              become proficient in a Javascript-based stack: <Dark>Node</Dark>,{" "}
+              <Dark>Express</Dark>, <Dark>React</Dark>, <Dark>Redux</Dark>,{" "}
+              <Dark>PostgresSQL</Dark>, and <Dark>Sequelize</Dark>.
+            </MainText>
+            <MainText>
+              I enjoy the immediacy and interactivity of frontend development.
+              Getting to know the React ecosystem and the challenges involved in
+              writing clean, maintainable, and performant code for the browser
+              has been a blast.
+            </MainText>
+            <MainText>
+              But I{`'`}ve also been captivated by the problem space of
+              scalable, performant server architecture, especially for real-time
+              applications. So, for now, I{`'`}m comfortable with the label{" "}
+              {`'`}
+              fullstack.{`'`}
+            </MainText>
+            <MainText>
+              Interested in working together? Check out my{" "}
+              <StyledGatsbyLink to="/portfolio/">portfolio</StyledGatsbyLink>,
+              my{" "}
+              <StyledLink href="https://github.com/krnsk0">Github</StyledLink>,
+              or connect with me on{" "}
+              <StyledLink href="https://www.linkedin.com/in/krnsk0/">
+                LinkedIn
+              </StyledLink>
+              .
+            </MainText>
+          </Right>
+        </FlexContainer>
+      </PageContentStyleWrapper>
+    </Layout>
+  )
+}
 
 export const query = graphql`
   query {
@@ -130,6 +142,17 @@ export const query = graphql`
       childImageSharp {
         fluid(maxWidth: 400) {
           ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    allMarkdownRemark(filter: { frontmatter: { type: { eq: "about" } } }) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+          }
+          html
         }
       }
     }
