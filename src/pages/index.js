@@ -53,16 +53,20 @@ const TitleText = styled.h1`
   }
   color: #717171;
   margin-bottom: 8px;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
+  /* Check for touchscreen to fix mobile webkit bug */
+  @media (hover: none) {
+    letter-spacing: -3px;
+  }
   & b {
     color: #313131;
   }
 `
 
 const MainText = styled.div`
-  font-size: 19px;
+  font-size: 20px;
   line-height: 21px;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   color: #717171;
   font-weight: 400;
   & b {
