@@ -7,7 +7,7 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
 import DownloadButton from "../components/downloadButton"
-import { Link } from "gatsby"
+// import { Link } from "gatsby"
 
 const FlexContainer = styled.div`
   display: flex;
@@ -30,47 +30,42 @@ const ProfileImage = styled.div`
   }
 `
 
-const BigTextParagraph = styled.h1`
+const TitleText = styled.h1`
   font-size: 28px;
   line-height: 30px;
   color: #717171;
   margin-bottom: 15px;
   letter-spacing: -0.5px;
-`
-
-const Dark = styled.span`
-  color: #313131;
+  & b {
+    color: #313131;
+  }
 `
 
 const MainText = styled.div`
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.6px;
-  margin-bottom: 15px;
   color: #717171;
   font-weight: 400;
-`
-
-const StyledGatsbyLink = styled(props => <Link {...props} />)`
-  color: #313131;
-  &:hover {
-    color: DeepSkyBlue;
+  & b {
+    color: #313131;
+    font-weight: 400;
   }
-  text-decoration: none;
-`
-
-const StyledLink = styled.a`
-  color: #313131;
-  &:hover {
-    color: DeepSkyBlue;
+  & p {
+    margin-bottom: 15px;
   }
-  text-decoration: none;
+  & a {
+    color: #313131;
+    &:hover {
+      color: DeepSkyBlue;
+    }
+    text-decoration: none;
+  }
 `
 
 export default ({ data }) => {
   const about = data.allMarkdownRemark.edges[0].node
   const title = about.frontmatter.title
-  console.log("title: ", title)
   const body = about.html
   console.log("body: ", body)
 
@@ -85,50 +80,8 @@ export default ({ data }) => {
             <DownloadButton />
           </Left>
           <Right>
-            <BigTextParagraph>
-              I{`'`}m <Dark>Jon Kurinsky</Dark>, a Chicago-based software
-              developer relocating to <Dark>Philadelphia</Dark>.
-            </BigTextParagraph>
-            <MainText>
-              I{`'`}m a builder of tools and a solver of problems. I believe in
-              writing human-friendly, elegant, declarative code.
-            </MainText>
-
-            <MainText>
-              After self-teaching Python to automate my job in the publishing
-              industry, I fell in love with programming.
-            </MainText>
-            <MainText>
-              I turned to Fullstack Academy, a bootcamp program in Chicago, to
-              help me transition from hobbyist to professional. They helped me
-              become proficient in a Javascript-based stack: <Dark>Node</Dark>,{" "}
-              <Dark>Express</Dark>, <Dark>React</Dark>, <Dark>Redux</Dark>,{" "}
-              <Dark>PostgresSQL</Dark>, and <Dark>Sequelize</Dark>.
-            </MainText>
-            <MainText>
-              I enjoy the immediacy and interactivity of frontend development.
-              Getting to know the React ecosystem and the challenges involved in
-              writing clean, maintainable, and performant code for the browser
-              has been a blast.
-            </MainText>
-            <MainText>
-              But I{`'`}ve also been captivated by the problem space of
-              scalable, performant server architecture, especially for real-time
-              applications. So, for now, I{`'`}m comfortable with the label{" "}
-              {`'`}
-              fullstack.{`'`}
-            </MainText>
-            <MainText>
-              Interested in working together? Check out my{" "}
-              <StyledGatsbyLink to="/portfolio/">portfolio</StyledGatsbyLink>,
-              my{" "}
-              <StyledLink href="https://github.com/krnsk0">Github</StyledLink>,
-              or connect with me on{" "}
-              <StyledLink href="https://www.linkedin.com/in/krnsk0/">
-                LinkedIn
-              </StyledLink>
-              .
-            </MainText>
+            <TitleText dangerouslySetInnerHTML={{ __html: title }}></TitleText>
+            <MainText dangerouslySetInnerHTML={{ __html: body }}></MainText>
           </Right>
         </FlexContainer>
       </PageContentStyleWrapper>
