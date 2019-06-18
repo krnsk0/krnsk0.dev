@@ -8,25 +8,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Roboto Mono`,
-            variants: [`400`, `700`],
-          },
-          {
-            family: `IBM Plex Sans`,
-            variants: [`400`, `500`],
-          },
-          {
-            family: `IBM Plex Mono`,
-            variants: [`400`],
-          },
-        ],
-      },
-    },
-    {
       resolve: "gatsby-plugin-typography",
       options: {
         pathToConfigModule: "src/utils/typography",
