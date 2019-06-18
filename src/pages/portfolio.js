@@ -49,7 +49,7 @@ const ProjectTitle = styled.h2`
   }
   margin-block-start: 3px;
   margin-block-end: 0px;
-  letter-spacing: -0.7px;
+  letter-spacing: -1px;
 `
 
 const IconLink = styled.a`
@@ -69,7 +69,6 @@ const ProjectDescription = styled.div`
   color: #313131;
   text-align: left;
   font-size: 15px;
-  letter-spacing: -0.3px;
 `
 
 const BuiltWithContainer = styled.div`

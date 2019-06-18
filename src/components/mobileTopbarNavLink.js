@@ -17,7 +17,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   text-decoration: none;
   padding-left: 5px;
   padding-right: 5px;
-  letter-spacing: -1.2px;
+  letter-spacing: -1px;
   border: 1px solid #313131;
   border-radius: 3px;
   margin-left: 4px;
