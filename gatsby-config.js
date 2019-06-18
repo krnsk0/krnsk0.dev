@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 module.exports = {
   siteMetadata: {
-    title: "Jon Kurinsky - Web Developer",
+    title: "Jon Kurinsky - Fullstack Web Developer",
     canonicalUrl: "https://www.krnsk0.dev",
+    description:
+      "I'm a builder of tools and a solver of problems. I believe in writing human-friendly, declarative code...",
   },
   plugins: [
     {
