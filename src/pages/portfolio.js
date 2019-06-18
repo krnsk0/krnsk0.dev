@@ -49,6 +49,7 @@ const ProjectTitle = styled.h2`
   }
   margin-block-start: 3px;
   margin-block-end: 0px;
+  letter-spacing: -0.7px;
 `
 
 const IconLink = styled.a`
@@ -160,7 +161,10 @@ export default props => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___priority], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___priority], order: DESC }
+      filter: { frontmatter: { type: { eq: "project" } } }
+    ) {
       edges {
         node {
           id

@@ -11,6 +11,7 @@ const StyledLink = styled(props => <Link {...props} />)`
   &:hover {
     color: DeepSkyBlue;
   }
+  letter-spacing: -0.9px;
 `
 
 export default ({ to, children }) => {
