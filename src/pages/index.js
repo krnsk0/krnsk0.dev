@@ -53,7 +53,7 @@ const TitleText = styled.h1`
   }
   color: #717171;
   margin-bottom: 8px;
-  letter-spacing: -5px;
+  letter-spacing: -2px;
   & b {
     color: #313131;
   }
@@ -62,7 +62,7 @@ const TitleText = styled.h1`
 const MainText = styled.div`
   font-size: 19px;
   line-height: 21px;
-  letter-spacing: -5px;
+  letter-spacing: -1px;
   color: #717171;
   font-weight: 400;
   & b {
