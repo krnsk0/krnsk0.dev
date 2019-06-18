@@ -68,7 +68,7 @@ export default () => (
   <Layout>
     <PageContentStyleWrapper>
       <FormWrapper>
-        <FormTitle>Let{`'`}s talk.</FormTitle>
+        <FormTitle>Want to work together? Let{`'`}s talk.</FormTitle>
         <FormElement
           name="contact"
           method="post"
