@@ -1,4 +1,5 @@
 ---
+type: "project"
 priority: 110
 title: "Snek IO"
 dateString: "May 2019"

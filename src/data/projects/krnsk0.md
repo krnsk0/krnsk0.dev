@@ -1,4 +1,5 @@
 ---
+type: "project"
 priority: 0
 title: "krnsk0.dev"
 dateString: "June 2019"

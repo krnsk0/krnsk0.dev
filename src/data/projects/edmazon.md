@@ -1,4 +1,5 @@
 ---
+type: "project"
 priority: 100
 title: "Edmazon"
 dateString: "April 2019"

@@ -1,4 +1,5 @@
 ---
+type: "project"
 priority: 600
 title: "Sort Buddy"
 dateString: "April 2019"

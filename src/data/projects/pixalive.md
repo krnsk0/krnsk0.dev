@@ -1,4 +1,5 @@
 ---
+type: "project"
 priority: 200
 title: "Pixalive"
 dateString: "May 2019"
