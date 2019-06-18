@@ -83,7 +83,7 @@ export default ({ data }) => (
           </BigTextParagraph>
           <MainText>
             I{`'`}m a builder of tools and a solver of problems. I believe in
-            writing human-friendly, elegant code.
+            writing human-friendly, elegant, declarative code.
           </MainText>
 
           <MainText>
