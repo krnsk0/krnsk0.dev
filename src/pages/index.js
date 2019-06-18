@@ -65,7 +65,7 @@ const TitleText = styled.h1`
 
 const MainText = styled.div`
   font-size: 20px;
-  line-height: 21px;
+  line-height: 24px;
   letter-spacing: -0.5px;
   color: #717171;
   font-weight: 400;
