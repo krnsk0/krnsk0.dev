@@ -8,5 +8,5 @@ repoUrl: "https://github.com/gs-team-edwin/edmazon"
 videoUrl: ""
 image: "./edmazon_screenshot.png"
 builtWith: ["Node.js", "Express", "React", "Redux", "Sequelize", "PostgresSQL"]
-description: "A full-featured RESTful e-commerce store built as a bootcamp learning project for the NERDS stack. Desktop only."
+description: "A full-featured RESTful e-commerce store built as a bootcamp learning project for the NERDS stack. Desktop only. My contributions: database design using Sequelize ORM, design for the application-wide Redux store, many interactive UI components in React, design for session-based API route security, and all of the styling and design work (in plain CSS)"
 ---
