@@ -25,7 +25,10 @@ const DownloadButton = styled.div`
 const DownloadIcon = styled.div`
   margin-top: 5px;
   margin-bottom: -15px;
-  font-size: 1.6em;
+  font-size: 30px;
+  @media (max-width: 700px) {
+    font-size: calc(12px + 3.1vw);
+  }
 `
 
 const LinkWrapper = styled.a`
@@ -35,6 +38,10 @@ const LinkWrapper = styled.a`
 
 const Text = styled.div`
   text-align: center;
+  @media (max-width: 700px) {
+    font-size: calc(6px + 3.1vw);
+    line-height: calc(8px + 3.3vw);
+  }
 `
 
 export default () => {

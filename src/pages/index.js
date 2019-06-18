@@ -48,11 +48,11 @@ const TitleText = styled.h1`
   font-size: 25px;
   line-height: 29px;
   @media (max-width: 700px) {
-    font-size: calc(2px + 3.6vw);
-    line-height: calc(5px + 3.3vw);
+    font-size: calc(14px + 3.4vw);
+    line-height: calc(12.2px + 4.35vw);
   }
   color: #717171;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   letter-spacing: -0.9px;
   & b {
     color: #313131;
