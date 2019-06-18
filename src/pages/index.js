@@ -99,14 +99,14 @@ export default ({ data }) => (
           </MainText>
           <MainText>
             I enjoy the immediacy and interactivity of frontend development.
-            Getting to know the React ecosystem and the challenges of writing
-            clean, maintainable, and performant code for the browser has been a
-            blast.
+            Getting to know the React ecosystem and the challenges involved in
+            writing clean, maintainable, and performant code for the browser has
+            been a blast.
           </MainText>
           <MainText>
-            But I{`'`}ve also been captivated by the challenges of scalable
-            server architecture for for real-time applications. So, for now, I
-            {`'`}m comfortable with the label {`'`}
+            But I{`'`}ve also been captivated by the problems involved in
+            building scalable and performant servers, especially for real-time
+            applications. So, for now, I{`'`}m comfortable with the label {`'`}
             fullstack.{`'`}
           </MainText>
           <MainText>
