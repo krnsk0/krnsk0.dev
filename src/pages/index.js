@@ -18,11 +18,11 @@ const FlexContainer = styled.div`
 `
 
 const Left = styled.div`
-  flex: 25%;
+  flex: 20%;
 `
 
 const Right = styled.div`
-  flex: 75%;
+  flex: 80%;
 `
 
 const MobileContainer = styled.div`
@@ -34,6 +34,7 @@ const MobileContainer = styled.div`
 
 const FloatContainer = styled.div`
   float: left;
+  width: 33%;
 `
 
 const ProfileImage = styled.div`
@@ -44,23 +45,24 @@ const ProfileImage = styled.div`
 `
 
 const TitleText = styled.h1`
-  font-size: 28px;
+  font-size: 25px;
+  line-height: 29px;
   @media (max-width: 700px) {
-    font-size: calc(2px + 4vw);
+    font-size: calc(2px + 3.6vw);
+    line-height: calc(5px + 3.3vw);
   }
-  line-height: 30px;
   color: #717171;
   margin-bottom: 15px;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.9px;
   & b {
     color: #313131;
   }
 `
 
 const MainText = styled.div`
-  font-size: 20px;
-  line-height: 22px;
-  letter-spacing: -0.6px;
+  font-size: 19px;
+  line-height: 21px;
+  letter-spacing: -0.5px;
   color: #717171;
   font-weight: 400;
   & b {
@@ -68,7 +70,7 @@ const MainText = styled.div`
     font-weight: 400;
   }
   & p {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
   }
   & a {
     color: #313131;

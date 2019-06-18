@@ -20,7 +20,7 @@ const DownloadButton = styled.div`
     color: DeepSkyBlue;
   }
   margin-right: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `
 const DownloadIcon = styled.div`
   margin-top: 5px;
