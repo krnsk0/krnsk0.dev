@@ -67,7 +67,6 @@ export default ({ data }) => {
   const about = data.allMarkdownRemark.edges[0].node
   const title = about.frontmatter.title
   const body = about.html
-  console.log("body: ", body)
 
   return (
     <Layout>
