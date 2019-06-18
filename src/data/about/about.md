@@ -9,5 +9,5 @@ title: "I'm <b>Jon Kurinsky</b>, a Chicago-based software developer relocating t
 </p>
 <p>I enjoy the immediacy and interactivity of frontend development. Getting to know the React ecosystem and the challenges involved in writing clean, maintainable, and performant code for the browser has been a blast.
 </p>
-<p>But I've also been captivated by the problem space of scalable, performant server architecture, especially for real-time applications. So, for now, I'm comfortable with the label 'fullstack.'</p>
+<p>But I've also been captivated by the problem space of scalable, performant server architecture, especially for real-time applications, and I'm hoping to expand my exposure to  backend development.</p>
 <p>Interested in working together? Check out my <a href="/portfolio/">portfolio</a>, my <a href="https://github.com/krnsk0">Github</a>, or connect with me on <a href="https://www.linkedin.com/in/krnsk0/">LinkedIn</a>.</p>
