@@ -104,8 +104,8 @@ export default ({ data }) => (
             been a blast.
           </MainText>
           <MainText>
-            But I{`'`}ve also been captivated by the problems involved in
-            building scalable and performant servers, especially for real-time
+            But I{`'`}ve also been captivated by the problem space of scalable,
+            performant server architecture, especially for real-time
             applications. So, for now, I{`'`}m comfortable with the label {`'`}
             fullstack.{`'`}
           </MainText>
