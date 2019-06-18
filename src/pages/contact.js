@@ -13,6 +13,7 @@ const FormWrapper = styled.div`
 const FormTitle = styled.h2`
   color: #313131;
   margin-top: 15px;
+  font-size: 22px;
 `
 const FormElementWrapper = styled.div`
   width: 100%;
