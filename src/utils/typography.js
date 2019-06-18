@@ -1,8 +1,8 @@
 import Typography from "typography"
 
 const pageTitleFont = "Roboto Mono"
-const bodyFont = "IBM Plex Mono"
-const headerFont = "Roboto"
+const bodyFont = "IBM Plex Sans"
+const headerFont = "IBM Plex Mono"
 
 const typography = new Typography({
   baseFontSize: "18px",

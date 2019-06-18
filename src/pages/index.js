@@ -30,7 +30,7 @@ const ProfileImage = styled.div`
 
 const BigTextParagraph = styled.h1`
   font-size: 28px;
-  line-height: 28px;
+  line-height: 30px;
   color: #717171;
   margin-bottom: 15px;
   letter-spacing: -0.5px;
@@ -78,8 +78,7 @@ export default ({ data }) => (
         <Right>
           <BigTextParagraph>
             I{`'`}m <Dark>Jon Kurinsky</Dark>, a Chicago-based software
-            developer relocating to <Dark>Philadelphia</Dark> or{" "}
-            <Dark>Denver</Dark>.
+            developer relocating to <Dark>Philadelphia</Dark>.
           </BigTextParagraph>
           <MainText>
             I{`'`}m a builder of tools and a solver of problems. I believe in
@@ -110,7 +109,7 @@ export default ({ data }) => (
             fullstack.{`'`}
           </MainText>
           <MainText>
-            Interested in working with me? Check out my{" "}
+            Interested in working together? Check out my{" "}
             <StyledGatsbyLink to="/portfolio/">portfolio</StyledGatsbyLink>, my{" "}
             <StyledLink href="https://github.com/krnsk0">Github</StyledLink>, or
             connect with me on{" "}

@@ -8,6 +8,7 @@ const NavLinkContainer = styled.div`
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
+  font-family: "IBM Plex Mono";
   font-size: 17px;
   color: #313131;
   &:hover {
