@@ -62,7 +62,7 @@ const Button = styled.input`
   border: 2px solid #313131;
   border-radius: 3px;
   background: none;
-  letter-spacing: -1.1px;
+  letter-spacing: -1px;
 `
 
 export default () => (
