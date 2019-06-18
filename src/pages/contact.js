@@ -14,6 +14,9 @@ const FormTitle = styled.h2`
   color: #313131;
   margin-top: 15px;
   font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 const FormElementWrapper = styled.div`
   width: 100%;
@@ -69,7 +72,10 @@ export default () => (
   <Layout>
     <PageContentStyleWrapper>
       <FormWrapper>
-        <FormTitle>Want to work together? Let{`'`}s talk.</FormTitle>
+        <FormTitle>
+          <div>Want to work together?</div>
+          <div>Let{`'`}s talk.</div>
+        </FormTitle>
         <FormElement
           name="contact"
           method="post"
