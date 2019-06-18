@@ -12,6 +12,9 @@ import DownloadButton from "../components/downloadButton"
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
+  @media (max-width: 700px) {
+    display: none;
+  }
 `
 
 const Left = styled.div`
@@ -21,17 +24,30 @@ const Left = styled.div`
 const Right = styled.div`
   flex: 75%;
 `
+
+const MobileContainer = styled.div`
+  display: none;
+  @media (max-width: 700px) {
+    display: inherit;
+  }
+`
+
+const FloatContainer = styled.div`
+  float: left;
+`
+
 const ProfileImage = styled.div`
   border: 2px solid #313131;
   border-radius: 3px;
   margin-right: 10px;
   margin-bottom: 10px;
-  @media (max-width: 700px) {
-  }
 `
 
 const TitleText = styled.h1`
   font-size: 28px;
+  @media (max-width: 700px) {
+    font-size: calc(2px + 4vw);
+  }
   line-height: 30px;
   color: #717171;
   margin-bottom: 15px;
@@ -43,7 +59,7 @@ const TitleText = styled.h1`
 
 const MainText = styled.div`
   font-size: 20px;
-  line-height: 24px;
+  line-height: 22px;
   letter-spacing: -0.6px;
   color: #717171;
   font-weight: 400;
@@ -83,6 +99,16 @@ export default ({ data }) => {
             <MainText dangerouslySetInnerHTML={{ __html: body }}></MainText>
           </Right>
         </FlexContainer>
+        <MobileContainer>
+          <FloatContainer>
+            <ProfileImage>
+              <Img fluid={data.file.childImageSharp.fluid} />
+            </ProfileImage>
+            <DownloadButton />
+          </FloatContainer>
+          <TitleText dangerouslySetInnerHTML={{ __html: title }}></TitleText>
+          <MainText dangerouslySetInnerHTML={{ __html: body }}></MainText>
+        </MobileContainer>
       </PageContentStyleWrapper>
     </Layout>
   )

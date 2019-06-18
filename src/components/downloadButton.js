@@ -5,7 +5,7 @@ import { MdFileDownload } from "react-icons/md"
 
 const DownloadButton = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 2px solid black;
@@ -20,6 +20,7 @@ const DownloadButton = styled.div`
     color: DeepSkyBlue;
   }
   margin-right: 10px;
+  margin-bottom: 10px;
 `
 const DownloadIcon = styled.div`
   margin-top: 5px;
