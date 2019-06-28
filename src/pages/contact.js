@@ -8,7 +8,6 @@ const FormWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: -10px;
 `
 const FormTitle = styled.h2`
   color: #313131;
