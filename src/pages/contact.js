@@ -13,7 +13,7 @@ const FormWrapper = styled.div`
 const FormTitle = styled.h2`
   color: #313131;
   margin-top: 15px;
-  font-size: 22px;
+  font-size: calc(16px + 1.2vw);
   display: flex;
   flex-direction: column;
   align-items: center;
