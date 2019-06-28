@@ -46,7 +46,7 @@ export default () => (
     </div>
     <LinkContainer>
       <TopbarNavLink to="/">About</TopbarNavLink>
-      <TopbarNavLink to="/portfolio/">Portfolio</TopbarNavLink>
+      <TopbarNavLink to="/projects/">Projects</TopbarNavLink>
       <TopbarNavLink to="/contact/">Contact</TopbarNavLink>
     </LinkContainer>
   </TopbarContainer>
