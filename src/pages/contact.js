@@ -58,6 +58,7 @@ const TextArea = styled.textarea`
   border: 2px solid #313131;
   border-radius: 3px;
   padding: 5px;
+  resize: vertical;
 `
 
 const Button = styled.input`
