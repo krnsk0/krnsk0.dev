@@ -48,7 +48,7 @@ export default () => {
   const data = useStaticQuery(
     graphql`
       query {
-        file(relativePath: { eq: "Jon_Kurinsky.pdf" }) {
+        file(relativePath: { eq: "Jonathan_Kurinsky.pdf" }) {
           publicURL
         }
       }
