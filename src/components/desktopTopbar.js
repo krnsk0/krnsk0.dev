@@ -11,7 +11,7 @@ const TopbarContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding: 5px;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
   @media (max-width: 700px) {
