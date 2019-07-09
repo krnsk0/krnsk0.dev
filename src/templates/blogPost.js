@@ -28,7 +28,16 @@ const PostContainer = styled.div`
   padding: 10px;
 `
 
-const PostWrapper = styled.div``
+const PostWrapper = styled.div`
+  /* this rule targets only inline code in the rendered md */
+  & p > code {
+    font-family: "IBM Plex Mono";
+    background-color: rgb(230, 230, 235);
+    border-radius: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+`
 
 export default ({ data }) => {
   const post = data.markdownRemark
