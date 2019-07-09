@@ -39,7 +39,7 @@ const TopBarBottomRow = styled.div`
 `
 
 const Spacer = styled.div`
-  width: 70px;
+  width: 120px;
 `
 
 export default () => {
@@ -60,6 +60,7 @@ export default () => {
         <TopBarBottomRow>
           <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
           <MobileTopbarNavLink to="/projects/">Projects</MobileTopbarNavLink>
+          <MobileTopbarNavLink to="/writing/">Writing</MobileTopbarNavLink>
           <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
         </TopBarBottomRow>
       </TopbarContainer>

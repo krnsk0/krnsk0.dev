@@ -15,13 +15,14 @@ const StyledLink = styled(props => <Link {...props} />)`
     color: DeepSkyBlue;
   }
   text-decoration: none;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 1px;
   letter-spacing: -1px;
   border: 1px solid #313131;
   border-radius: 3px;
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
   margin-bottom: 5px;
   ${props =>
     props.selected &&
