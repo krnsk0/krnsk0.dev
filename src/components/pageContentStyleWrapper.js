@@ -9,6 +9,7 @@ const PageContentWrapper = styled.div`
   margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
+  background-color: white;
 `
 
 export default props => {

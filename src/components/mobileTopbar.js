@@ -10,6 +10,7 @@ const TopbarOuterContainer = styled.div`
   position: fixed;
   z-index: 100;
   width: 100%;
+  background-color: white;
 `
 
 const TopbarContainer = styled.div`

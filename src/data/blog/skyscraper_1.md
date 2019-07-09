@@ -1,13 +1,11 @@
 ---
 type: "blog_post"
+host: "local"
 title: "Cracking the Skyscraper Puzzle: Part 1"
 date: "1562601270291"
-tags: ["Javascript"]
 description: "A blog post about stuff"
-url: "/writing/skyscraper-1"
+slug_or_url: "skyscraper-puzzle-1"
 ---
-
-# Cracking the Skyscraper Puzzle: Part 1
 
 A relative of Sudoku and other [Latin-Square](https://en.wikipedia.org/wiki/Latin_square)-derived puzzles, the [skyscraper](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers/rules) puzzle asks the player to place buildings of varying & unique heights on a grid in a way that satisfies clues given on the grid's edges. These "edge clues" tell the player how many buildings are visible from the standpoint of a given clue's placement along the board's edge.
 

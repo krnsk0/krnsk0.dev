@@ -17,6 +17,7 @@ const TopbarContainer = styled.div`
   @media (max-width: 700px) {
     display: none;
   }
+  background-color: white;
 `
 
 const LinkContainer = styled.div`

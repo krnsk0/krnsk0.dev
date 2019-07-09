@@ -53,7 +53,7 @@ const PostDescription = styled.div`
   font-size: 15px;
 `
 
-const TagsContainer = TagsContainer.div`
+const TagsContainer = styled.div`
   margin-left: 5px;
   margin-top: 5px;
   margin-bottom: -3px;
@@ -81,14 +81,20 @@ export default props => {
   return (
     <Layout>
       {projects.map((project, index) => {
-        const { title, date, tags, description, url } = project.node.frontmatter
+        const {
+          title,
+          date,
+          host,
+          description,
+          slug_or_url,
+        } = project.node.frontmatter
 
         return (
           <PageContentStyleWrapper key={title}>
             <PostContainer>
               <PostDetails>
                 <PostTitleContainer>
-                  <LinkWrapper href={url}>
+                  <LinkWrapper href={`/writing/${slug_or_url}`}>
                     <PostTitle>{title}</PostTitle>
                   </LinkWrapper>
                 </PostTitleContainer>
@@ -106,7 +112,7 @@ export default props => {
 export const query = graphql`
   query {
     allMarkdownRemark(
-      sort: { fields: [frontmatter___priority], order: DESC }
+      sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { type: { eq: "blog_post" } } }
     ) {
       edges {
@@ -114,10 +120,10 @@ export const query = graphql`
           id
           frontmatter {
             title
+            host
             date
-            tags
             description
-            url
+            slug_or_url
           }
         }
       }
