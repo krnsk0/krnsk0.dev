@@ -51,7 +51,7 @@ module.exports = {
               inlineCodeMarker: null,
               aliases: { js: "javascript" },
               showLineNumbers: false,
-              noInlineHighlight: false,
+              noInlineHighlight: true,
               languageExtensions: [],
             },
           },
