@@ -6,10 +6,10 @@ const TitleText = styled.h1`
   font-family: "Roboto Mono";
   font-weight: 700;
   margin: 5px;
-  margin-top: ${props => (props.type === "desktop" ? "5px" : "2px")};
+  margin-top: ${props => (props.type === "desktop" ? "0px" : "2px")};
   color: #313131;
   text-align: left;
-  font-size: ${props => (props.type === "desktop" ? "40px" : "28px")};
+  font-size: ${props => (props.type === "desktop" ? "45px" : "28px")};
   font-weight: bold;
   ${props =>
     props.type === "desktop"

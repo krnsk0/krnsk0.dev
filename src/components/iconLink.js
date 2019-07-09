@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa"
 import styled from "styled-components"
 
 const IconSVG = styled.div`
-  font-size: 1.4em;
+  font-size: 1.5em;
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;

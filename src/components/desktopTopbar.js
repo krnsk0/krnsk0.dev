@@ -22,7 +22,8 @@ const TopbarContainer = styled.div`
 
 const LinkContainer = styled.div`
   font-family: "IBM Plex Mono";
-  font-size: 20px;
+  font-size: 19.5px;
+  line-height: 1.3em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,18 +37,25 @@ const IconContainer = styled.div`
   justify-content: flex-start;
 `
 
+const LeftSideContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 export default () => (
   <TopbarContainer>
-    <div>
+    <LeftSideContainer>
       <PageTitle type="desktop" />
       <IconContainer>
         <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
         <IconLink to="https://www.linkedin.com/in/krnsk0/" icon="FaLinkedin" />
       </IconContainer>
-    </div>
+    </LeftSideContainer>
     <LinkContainer>
       <TopbarNavLink to="/">About</TopbarNavLink>
       <TopbarNavLink to="/projects/">Projects</TopbarNavLink>
+      <TopbarNavLink to="/writing/">Writing</TopbarNavLink>
       <TopbarNavLink to="/contact/">Contact</TopbarNavLink>
     </LinkContainer>
   </TopbarContainer>
