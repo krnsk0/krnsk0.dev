@@ -39,7 +39,7 @@ const TopBarBottomRow = styled.div`
 `
 
 const Spacer = styled.div`
-  width: 120px;
+  width: 65px;
 `
 
 export default () => {
@@ -50,11 +50,22 @@ export default () => {
           <PageTitle type="mobile" />
           <Spacer />
           <div>
-            <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
+            <IconLink
+              to="https://github.com/krnsk0"
+              icon="github"
+              type="mobile"
+            />
             <IconLink
               to="https://www.linkedin.com/in/krnsk0/"
-              icon="FaLinkedin"
+              icon="linkedin"
+              type="mobile"
             />
+            <IconLink
+              to="https://medium.com/@krnsk0"
+              icon="medium"
+              type="mobile"
+            />
+            <IconLink to="https://dev.to/krnsk0" icon="dev" type="mobile" />
           </div>
         </TopBarTopRow>
         <TopBarBottomRow>
