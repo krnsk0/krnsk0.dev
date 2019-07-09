@@ -1,79 +1,75 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import React from "react"
 import Layout from "../components/layout"
 import styled from "styled-components"
 import { graphql } from "gatsby"
+import { FaMediumM, FaDev } from "react-icons/fa"
+
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 
 const PostContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  & img {
-    border: 2px solid #313131;
-    border-radius: 3px;
-    box-shadow: 2px 2px #414141;
-  }
-  @media (max-width: 700px) {
-    flex-direction: column;
-  }
-`
-
-const PostDetails = styled.div`
-  display: flex;
   margin-left: 5px;
   margin-right: 10px;
   margin-bottom: 6px;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 2;
-`
-
-const PostTitleContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
 `
 
 const PostTitle = styled.h2`
   margin-left: 5px;
-  color: #313131;
   font-size: 24px;
   font-weight: bold;
-  &:hover {
-    color: DeepSkyBlue;
-  }
   margin-block-start: 3px;
   margin-block-end: 0px;
   letter-spacing: -1px;
 `
+const DateDisplay = styled.div`
+  font-size: 0.8em;
+  color: #717171;
+  margin-left: 5px;
+  margin-top: 4px;
+`
 
 const PostDescription = styled.div`
+  margin-top: 2px;
   margin-left: 5px;
   color: #313131;
   text-align: left;
   font-size: 15px;
 `
 
-const TagsContainer = styled.div`
-  margin-left: 5px;
-  margin-top: 5px;
-  margin-bottom: -3px;
-  display: flex;
-  flex-wrap: wrap;
-`
-
-const Tag = styled.span`
-  background-color: white;
-  border: 1px solid #313131;
-  font-size: 13px;
-  border-radius: 2px;
-  padding: 0px 3px 0px 3px;
-  margin-right: 3px;
-  margin-bottom: 3px;
-`
-
-const LinkWrapper = styled.a`
+const TitleLinkWrapper = styled.a`
   text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  color: #313131;
+  &:hover {
+    color: DeepSkyBlue;
+  }
 `
+
+const IconSVG = styled.div`
+  font-size: 1.4em;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 5px;
+`
+
+const iconHash = {
+  medium: FaMediumM,
+  dev: FaDev,
+}
+
+const formatTimestampToDate = timestamp => {
+  const date = new Date(Number(timestamp))
+  console.log("date: ", date)
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  })
+}
 
 export default props => {
   const projects = props.data.allMarkdownRemark.edges
@@ -86,21 +82,21 @@ export default props => {
           date,
           host,
           description,
-          slug_or_url,
+          slug,
+          offsite_link,
         } = project.node.frontmatter
 
         return (
           <PageContentStyleWrapper key={title}>
             <PostContainer>
-              <PostDetails>
-                <PostTitleContainer>
-                  <LinkWrapper href={`/writing/${slug_or_url}`}>
-                    <PostTitle>{title}</PostTitle>
-                  </LinkWrapper>
-                </PostTitleContainer>
-                <PostDescription>{description}</PostDescription>
-                <TagsContainer></TagsContainer>
-              </PostDetails>
+              <TitleLinkWrapper
+                href={host === "local" ? `/writing/${slug}` : offsite_link}
+              >
+                {host !== "local" && <IconSVG as={iconHash[host]} />}
+                <PostTitle>{title}</PostTitle>
+              </TitleLinkWrapper>
+              <DateDisplay>{formatTimestampToDate(date)}</DateDisplay>
+              <PostDescription>{description}</PostDescription>
             </PostContainer>
           </PageContentStyleWrapper>
         )
@@ -113,7 +109,7 @@ export const query = graphql`
   query {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { type: { eq: "blog_post" } } }
+      filter: { frontmatter: { type: { eq: "post" } } }
     ) {
       edges {
         node {
@@ -123,7 +119,8 @@ export const query = graphql`
             host
             date
             description
-            slug_or_url
+            slug
+            offsite_link
           }
         }
       }
