@@ -16,7 +16,7 @@ const GlobalContainerDiv = styled.div`
 `
 
 const GlobalStyleDiv = styled.div`
-  width: 700px;
+  width: 800px;
   box-sizing: border-box;
   @media (max-width: 700px) {
     width: 100%;

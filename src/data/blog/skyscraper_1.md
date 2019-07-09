@@ -151,15 +151,15 @@ Let's plan on our top-level function accepting clues in the form of an array whi
 <table style="margin: 5px auto; font-family: monospace; text-align: center;">
   <tbody>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;"></td>
-      <td style="border: 0px; width: 1em;">1</td>
       <td style="border: 0px; width: 1em;"></td>
+      <td style="border: 0px; width: 1em;">1</td>
+      <td style="border: 0px; width: 1em;">&nbsp</td>
       <td style="border: 0px; width: 1em;"></td>
       <td style="border: 0px; width: 1em;">2</td>
       <td style="border: 0px; width: 1em;"></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;"></td>
+      <td style="border: 0px; width: 1em;">&nbsp</td>
       <td style="border: 1px solid; width: 1em;"></td>
       <td style="border: 1px solid; width: 1em;"></td>
       <td style="border: 1px solid; width: 1em;"></td>
@@ -167,7 +167,7 @@ Let's plan on our top-level function accepting clues in the form of an array whi
       <td style="border: 0px; width: 1em;"></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;"></td>
+      <td style="border: 0px; width: 1em;"></td>
       <td style="border: 1px solid; width: 1em;"></td>
       <td style="border: 1px solid; width: 1em;"></td>
       <td style="border: 1px solid; width: 1em;"></td>
@@ -175,7 +175,7 @@ Let's plan on our top-level function accepting clues in the form of an array whi
       <td style="border: 0px; width: 1em;">3</td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;">3</td>
+      <td style="border: 0px; width: 1em;">3</td>
       <td style="border: 1px solid; width: 1em;"></td>
       <td style="border: 1px solid; width: 1em;"></td>
       <td style="border: 1px solid; width: 1em;"></td>
@@ -183,7 +183,7 @@ Let's plan on our top-level function accepting clues in the form of an array whi
       <td style="border: 0px; width: 1em;"></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;">2</td>
+      <td style="border: 0px; width: 1em;">2</td>
       <td style="border: 1px solid; width: 1em;"></td>
       <td style="border: 1px solid; width: 1em;"></td>
       <td style="border: 1px solid; width: 1em;"></td>
@@ -191,7 +191,7 @@ Let's plan on our top-level function accepting clues in the form of an array whi
       <td style="border: 0px; width: 1em;"></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;"></td>
+      <td style="border: 0px; width: 1em;"></td>
       <td style="border: 0px; width: 1em;"></td>
       <td style="border: 0px; width: 1em;"></td>
       <td style="border: 0px; width: 1em;">2</td>

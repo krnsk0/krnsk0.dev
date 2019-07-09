@@ -45,6 +45,15 @@ const PostWrapper = styled.div`
     margin-bottom: 15px;
     margin-top: 40px;
   }
+  a {
+    color: #313131;
+    &:hover {
+      color: DeepSkyBlue;
+    }
+  }
+  table {
+    width: 33%;
+  }
 `
 
 export default ({ data }) => {
