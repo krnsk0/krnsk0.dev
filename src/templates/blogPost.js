@@ -16,7 +16,7 @@ const PostTitle = styled.h1`
   }
   color: #313131;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
   letter-spacing: -1px;
   /* Check for touchscreen to fix mobile webkit bug */
   @media (hover: none) {
@@ -36,6 +36,14 @@ const PostWrapper = styled.div`
     border-radius: 3px;
     padding-left: 3px;
     padding-right: 3px;
+  }
+  p {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  h2 {
+    margin-bottom: 15px;
+    margin-top: 40px;
   }
 `
 

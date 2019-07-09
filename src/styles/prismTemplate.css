@@ -6,19 +6,18 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-  font-size: 0.9em;
+  font-size: 0.93em;
+  letter-spacing: -0.02em;
   border-radius: 4px;
   color: #ccc;
   background: none;
   font-family: "IBM Plex Mono";
-  letter-spacing: -0.01px;
-  font-size: 1em;
   text-align: left;
   white-space: pre-wrap;
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
-  line-height: 1.5;
+  line-height: 1.4;
 
   -moz-tab-size: 4;
   -o-tab-size: 4;
