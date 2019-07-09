@@ -1,9 +1,11 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 import React from "react"
-import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaMediumM, FaDev } from "react-icons/fa"
 import styled from "styled-components"
 
 const IconSVG = styled.div`
-  font-size: 1.4em;
+  font-size: ${props => (props.type === "desktop" ? "1.6em" : "1.4em")};
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
@@ -16,8 +18,18 @@ const IconLink = styled.a`
   }
 `
 
-export default props => (
-  <IconLink href={props.to}>
-    <IconSVG as={props.icon === "FaGithub" ? FaGithub : FaLinkedin} />
-  </IconLink>
-)
+const iconHash = {
+  medium: FaMediumM,
+  github: FaGithub,
+  linkedin: FaLinkedin,
+  dev: FaDev,
+}
+
+export default props => {
+  console.log(props)
+  return (
+    <IconLink href={props.to}>
+      <IconSVG as={iconHash[props.icon]} type={props.type} />
+    </IconLink>
+  )
+}

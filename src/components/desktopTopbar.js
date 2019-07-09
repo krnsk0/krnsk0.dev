@@ -48,8 +48,18 @@ export default () => (
     <LeftSideContainer>
       <PageTitle type="desktop" />
       <IconContainer>
-        <IconLink to="https://github.com/krnsk0" icon="FaGithub" />
-        <IconLink to="https://www.linkedin.com/in/krnsk0/" icon="FaLinkedin" />
+        <IconLink to="https://github.com/krnsk0" icon="github" type="desktop" />
+        <IconLink
+          to="https://www.linkedin.com/in/krnsk0/"
+          icon="linkedin"
+          type="desktop"
+        />
+        <IconLink
+          to="https://medium.com/@krnsk0"
+          icon="medium"
+          type="desktop"
+        />
+        <IconLink to="https://dev.to/krnsk0" icon="dev" type="desktop" />
       </IconContainer>
     </LeftSideContainer>
     <LinkContainer>
