@@ -4,6 +4,7 @@ host: "local"
 title: "Cracking the Skyscraper Puzzle: Part 1"
 date: "1562691692269"
 description: "A blog post about stuff"
+word_count: 3500
 slug: "skyscraper-puzzle-1"
 offsite_link: ""
 ---

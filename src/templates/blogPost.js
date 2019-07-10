@@ -5,6 +5,11 @@ import Layout from "../components/layout"
 import styled from "styled-components"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import { graphql } from "gatsby"
+import {
+  formatTimestampToDate,
+  formatNumberWithCommas,
+  wordCountToMinutes,
+} from "../utils/utilityFns"
 
 const PostTitle = styled.h1`
   font-size: 30px;
@@ -16,7 +21,7 @@ const PostTitle = styled.h1`
   }
   color: #313131;
   margin-top: 15px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   letter-spacing: -1px;
   /* Check for touchscreen to fix mobile webkit bug */
   @media (hover: none) {
@@ -24,8 +29,16 @@ const PostTitle = styled.h1`
   }
 `
 
+const InfoLine = styled.div`
+  text-align: center;
+  font-size: 0.8em;
+  color: #717171;
+  margin-left: 5px;
+  margin-top: 4px;
+`
+
 const PostContainer = styled.div`
-  padding: 10px;
+  padding: 20px;
 `
 
 const PostWrapper = styled.div`
@@ -42,8 +55,8 @@ const PostWrapper = styled.div`
     margin-top: 15px;
   }
   h2 {
-    margin-bottom: 15px;
-    margin-top: 40px;
+    margin-bottom: 25px;
+    margin-top: 30px;
   }
   a {
     color: #313131;
@@ -62,6 +75,17 @@ export default ({ data }) => {
     <Layout>
       <PageContentStyleWrapper>
         <PostTitle>{post.frontmatter.title}</PostTitle>
+        <InfoLine>
+          <span>{formatTimestampToDate(post.frontmatter.date)}</span>
+          <span>
+            {" "}
+            • {formatNumberWithCommas(post.frontmatter.word_count)} words
+          </span>
+          <span>
+            {" "}
+            • {wordCountToMinutes(post.frontmatter.word_count)} minutes
+          </span>
+        </InfoLine>
         <PostContainer>
           <PostWrapper
             dangerouslySetInnerHTML={{ __html: post.html }}
@@ -78,6 +102,7 @@ export const query = graphql`
       frontmatter {
         title
         date
+        word_count
         description
       }
     }

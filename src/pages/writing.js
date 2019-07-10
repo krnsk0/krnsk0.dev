@@ -6,6 +6,11 @@ import Layout from "../components/layout"
 import styled from "styled-components"
 import { graphql } from "gatsby"
 import { FaMediumM, FaDev } from "react-icons/fa"
+import {
+  formatTimestampToDate,
+  formatNumberWithCommas,
+  wordCountToMinutes,
+} from "../utils/utilityFns"
 
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 
@@ -23,7 +28,8 @@ const PostTitle = styled.h2`
   margin-block-end: 0px;
   letter-spacing: -1px;
 `
-const DateDisplay = styled.div`
+
+const InfoLine = styled.div`
   font-size: 0.8em;
   color: #717171;
   margin-left: 5px;
@@ -61,16 +67,6 @@ const iconHash = {
   dev: FaDev,
 }
 
-const formatTimestampToDate = timestamp => {
-  const date = new Date(Number(timestamp))
-  console.log("date: ", date)
-  return date.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  })
-}
-
 export default props => {
   const projects = props.data.allMarkdownRemark.edges
 
@@ -82,6 +78,7 @@ export default props => {
           date,
           host,
           description,
+          word_count,
           slug,
           offsite_link,
         } = project.node.frontmatter
@@ -95,7 +92,11 @@ export default props => {
                 {host !== "local" && <IconSVG as={iconHash[host]} />}
                 <PostTitle>{title}</PostTitle>
               </TitleLinkWrapper>
-              <DateDisplay>{formatTimestampToDate(date)}</DateDisplay>
+              <InfoLine>
+                <span>{formatTimestampToDate(date)}</span>
+                <span> • {formatNumberWithCommas(word_count)} words</span>
+                <span> • {wordCountToMinutes(word_count)} minutes</span>
+              </InfoLine>
               <PostDescription>{description}</PostDescription>
             </PostContainer>
           </PageContentStyleWrapper>
@@ -119,6 +120,7 @@ export const query = graphql`
             host
             date
             description
+            word_count
             slug
             offsite_link
           }
