@@ -44,11 +44,16 @@ The code we build up won't be able to model everything a sophisticated organic n
 In a board of size N, a clue with value N allows us to resolve an entire row or column:
 
 <style>
-td {border: none; padding: 0px; text-align: center; display: inline-block; margin: 1px; width: 1.5em; height: 1.5em;}
+td {border: none; padding: 0px; text-align: center; display: inline-block; margin: 1px; }
+.small td { width: 1.5em; height: 1.5em;}
+.large td { width: 3em; height: 3em; padding-top: 0.75em;}
 .md_table {margin: 5px auto; font-family: "IBM Plex Mono", monospace; text-align: center; width: 50%; border-collapse: separate;}
 .border {border: 1px solid #313131;}
+.dark {background-color: rgb(230, 230, 235);}
+.green {color: darkgreen;}
+.red {color: red;}
 </style>
-<table class="md_table">
+<table class="md_table small">
   <tbody>
     <tr>
       <td class="">5</td>
@@ -63,7 +68,7 @@ td {border: none; padding: 0px; text-align: center; display: inline-block; margi
 
 A 1 clue allows us to resolve only the adjacent cell:
 
-<table class="md_table">
+<table class="md_table small">
   <tbody>
     <tr>
       <td class="">1</td>
@@ -78,11 +83,7 @@ A 1 clue allows us to resolve only the adjacent cell:
 
 While clues between 1 and N don't let us resolve cells, they do allow us to rule out some values. For example, on a 5x5 board, a 4 clue allows us to rule out 5, 4, and 3 for the adjacent cell: a 5 would block all other buildings, making only one visible where we need four; a 4 would allow for only one taller where we need three; and a 3 would allow for only two taller where we need three. For the second cell in, a 4 clue lets us rule out 5 and 4: a 5 would mean a maximum of two buildings are visible, and while 4 would mean a maximum of three are visible. Finally, for the third cell in, a 4 clue lets us rule out a building with a height of 5.
 
-<style>
-.green {color: darkgreen;}
-.red {color: red;}
-</style>
-<table class="md_table">
+<table class="md_table small">
   <tbody>
     <tr>
       <td>5</td>
@@ -159,7 +160,7 @@ const boardFactory = N => {
 
 Let's plan on our top-level function accepting clues in the form of an array which starts from the top left and goes clockwise around the board. If we're given an array with length 16--say, `[1, 0, 0, 2, 3, 0, 0, 0, 0, 2, 0, 0, 0, 2, 3, 0]`-- we'll know we have a 4x4 board that initially looks like this:
 
-<table class="md_table">
+<table class="md_table small">
   <tbody>
     <tr>
       <td></td>
@@ -344,10 +345,7 @@ What do we have so far? We can take an empty board and cross off values for some
 
 If we were to write code to pretty-print the state for our 4x4 example, we'd get something like this:
 
-<style>
-td {border: none; padding: 0px; text-align: center; display: inline-block; margin: 1px; width: 3em; height: 3em; padding-top: 0.75em;}
-</style>
-<table class="md_table">
+<table class="md_table large">
   <tbody>
     <tr>
       <td></td>
@@ -402,10 +400,7 @@ td {border: none; padding: 0px; text-align: center; display: inline-block; margi
 
 Our second form of inference, constraint propagation, starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know our upper left corner above is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and first column:
 
-<style>
-.dark {background-color: rgb(230, 230, 235);}
-</style>
-<table class="md_table">
+<table class="md_table large">
   <tbody>
     <tr>
       <td class="border dark">4</td>
@@ -547,7 +542,7 @@ Process of elimination allows the player to resolve a cell to a value when that 
 
 For instance, in the example we've been working with, the absence of a 4 in all cells of column three except the third allows us to resolve that cell to 4:
 
-<table class="md_table">
+<table class="md_table large">
   <tbody>
     <tr>
       <td class="border">4</td>
