@@ -44,11 +44,11 @@ The code we build up won't be able to model everything a sophisticated organic n
 In a board of size N, a clue with value N allows us to resolve an entire row or column:
 
 <style>
-th {border-bottom: none;}
-.table {margin: 5px auto; font-family: "IBM Plex Mono", monospace; text-align: center; width: 33%;}
+td {border: none; padding: 0px; text-align: center; display: inline-block; margin: 1px; width: 1.5em; height: 1.5em;}
+.md_table {margin: 5px auto; font-family: "IBM Plex Mono", monospace; text-align: center; width: 50%; border-collapse: separate;}
 .border {border: 1px solid #313131;}
 </style>
-<table class="table">
+<table class="md_table">
   <tbody>
     <tr>
       <td class="">5</td>
@@ -63,77 +63,81 @@ th {border-bottom: none;}
 
 A 1 clue allows us to resolve only the adjacent cell:
 
-<table style="margin: 5px auto; font-family: monospace; text-align: center;">
+<table class="md_table">
   <tbody>
     <tr>
-      <td style="border: 0px; width: 1em;">1</td>
-      <td style="border: 1px solid; width: 1em;">5</td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
+      <td class="">1</td>
+      <td class="border">5</td>
+      <td class="border"> </td>
+      <td class="border"> </td>
+      <td class="border"> </td>
+      <td class="border"> </td>
     </tr>
   </tbody>
 </table>
 
 While clues between 1 and N don't let us resolve cells, they do allow us to rule out some values. For example, on a 5x5 board, a 4 clue allows us to rule out 5, 4, and 3 for the adjacent cell: a 5 would block all other buildings, making only one visible where we need four; a 4 would allow for only one taller where we need three; and a 3 would allow for only two taller where we need three. For the second cell in, a 4 clue lets us rule out 5 and 4: a 5 would mean a maximum of two buildings are visible, and while 4 would mean a maximum of three are visible. Finally, for the third cell in, a 4 clue lets us rule out a building with a height of 5.
 
-<table style="margin: 5px auto; font-family: monospace; text-align: center;">
+<style>
+.green {color: darkgreen;}
+.red {color: red;}
+</style>
+<table class="md_table">
   <tbody>
     <tr>
-      <td style="border: 0px; width: 1em;">5</td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
+      <td>5</td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em; color: red;">5</td>
-      <td style="border: 0px; width: 1em; color: red;">5</td>
-      <td style="border: 0px; width: 1em; color: red;">5</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">5</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">5</td>
+      <td></td>
+      <td class="red">5</td>
+      <td class="red">5</td>
+      <td class="red">5</td>
+      <td class="green">5</td>
+      <td class="green">5</td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em; color: red;">4</td>
-      <td style="border: 0px; width: 1em; color: red;">4</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">4</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">4</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">4</td>
+      <td></td>
+      <td class="red">4</td>
+      <td class="red">4</td>
+      <td class="green">4</td>
+      <td class="green">4</td>
+      <td class="green">4</td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em; color: red;">3</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">3</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">3</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">3</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">3</td>
+      <td></td>
+      <td class="red">3</td>
+      <td class="green">3</td>
+      <td class="green">3</td>
+      <td class="green">3</td>
+      <td class="green">3</td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">2</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">2</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">2</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">2</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">2</td>
+      <td></td>
+      <td class="green">2</td>
+      <td class="green">2</td>
+      <td class="green">2</td>
+      <td class="green">2</td>
+      <td class="green">2</td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">1</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">1</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">1</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">1</td>
-      <td style="border: 0px; width: 1em; color: lightgreen;">1</td>
+      <td></td>
+      <td class="green">1</td>
+      <td class="green">1</td>
+      <td class="green">1</td>
+      <td class="green">1</td>
+      <td class="green">1</td>
     </tr>
   </tbody>
 </table>
 
 In general, this rule can be expressed as follows. On an `N * N` board, for clues `c` where `1 < c < N`, where `d` is the distance from the edge counting from zero, we can cross off all values from `N - c + 2 + d` up to `N`, inclusive.
 
-Given the above example, let's calculate what to cross off for the second cell over from our 5 clue. We're 1 cell from the edge, which is `d`; we know `c` is 5; and, we're on a 5x5 board, so `N` is 5. `N - c + 2 + d`, then, is 3. So we can cross off all values from 3 to 5, inclusive, for this cell. Call this the **edge constraint rule**. I won't walk through how it can be derived or proven-- but trust me that it works.
+Given the above example, let's determine what to cross off for the _second_ cell over from our 5 clue. We're 1 cell from the edge, which is `d`; we know `c` is 5; and, we're on a 5x5 board, so `N` is 5. `N - c + 2 + d`, then, is 3. So we can cross off all values from 3 to 5, inclusive, for this cell. Call this the **edge constraint rule**. I won't walk through how it can be derived, but trust me that it works.
 
 ## First Steps
 
@@ -155,57 +159,56 @@ const boardFactory = N => {
 
 Let's plan on our top-level function accepting clues in the form of an array which starts from the top left and goes clockwise around the board. If we're given an array with length 16--say, `[1, 0, 0, 2, 3, 0, 0, 0, 0, 2, 0, 0, 0, 2, 3, 0]`-- we'll know we have a 4x4 board that initially looks like this:
 
-<table style="margin: 5px auto; font-family: monospace; text-align: center;">
+<table class="md_table">
   <tbody>
     <tr>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;">1</td>
-      <td style="border: 0px; width: 1em;">&nbsp</td>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;">2</td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td></td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;">&nbsp</td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;">3</td>
+      <td></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td>3</td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;">3</td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td>3</td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;">2</td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 1px solid; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td>2</td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;">2</td>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
     </tr>
-
   </tbody>
 </table>
 
@@ -341,86 +344,92 @@ What do we have so far? We can take an empty board and cross off values for some
 
 If we were to write code to pretty-print the state for our 4x4 example, we'd get something like this:
 
-<table style="margin: 5px auto; font-family: monospace; text-align: center;">
+<style>
+td {border: none; padding: 0px; text-align: center; display: inline-block; margin: 1px; width: 3em; height: 3em; padding-top: 0.75em;}
+</style>
+<table class="md_table">
   <tbody>
     <tr>
-      <td style="border: 0px; width: 1em; height: 2em;"></td>
-      <td style="border: 0px; width: 1em;">1</td>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;">2</td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td></td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;"></td>
-      <td style="border: 1px solid; width: 1em;">4</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td></td>
+      <td class="border">4</td>
+      <td class="border">1234</td>
+      <td class="border">1234</td>
+      <td class="border">123</td>
+      <td></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;"></td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">12</td>
-      <td style="border: 0px; width: 1em;">3</td>
+      <td></td>
+      <td class="border">1234</td>
+      <td class="border">1234</td>
+      <td class="border">123</td>
+      <td class="border">12</td>
+      <td>3</td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;">3</td>
-      <td style="border: 1px solid; width: 1em;">12</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td>3</td>
+      <td class="border">12</td>
+      <td class="border">123</td>
+      <td class="border">1234</td>
+      <td class="border">1234</td>
+      <td></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;">2</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td>2</td>
+      <td class="border">123</td>
+      <td class="border">1234</td>
+      <td class="border">123</td>
+      <td class="border">1234</td>
+      <td></td>
     </tr>
     <tr>
-      <td style="border: 0px; width: 1em; height: 1.5em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;">2</td>
-      <td style="border: 0px; width: 1em;"></td>
-      <td style="border: 0px; width: 1em;"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 
 Our second form of inference, constraint propagation, starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know our upper left corner above is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and first column:
 
-<table style="margin: 5px auto; font-family: monospace; text-align: center;">
+<style>
+.dark {background-color: rgb(230, 230, 235);}
+</style>
+<table class="md_table">
   <tbody>
     <tr>
-      <td style="border: 1px solid; width: 1em;">4</td>
-      <td style="border: 1px solid; width: 1em;">123<span style="color: red;">4</span></td>
-      <td style="border: 1px solid; width: 1em;">123<span style="color: red;">4</span></td>
-      <td style="border: 1px solid; width: 1em;">123</td>
+      <td class="border dark">4</td>
+      <td class="border dark">123<span class="red">4</span></td>
+      <td class="border dark">123<span class="red">4</span></td>
+      <td class="border dark">123</td>
     </tr>
     <tr>
-      <td style="border: 1px solid; width: 1em;">123<span style="color: red;">4</span></td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">12</td>
+      <td class="border dark">123<span class="red">4</span></td>
+      <td class="border">1234</td>
+      <td class="border">123</td>
+      <td class="border">12</td>
     </tr>
     <tr>
-      <td style="border: 1px solid; width: 1em;">12</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
+      <td class="border dark">12</td>
+      <td class="border">123</td>
+      <td class="border">1234</td>
+      <td class="border">1234</td>
     </tr>
     <tr>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
+      <td class="border dark">123</td>
+      <td class="border">1234</td>
+      <td class="border">123</td>
+      <td class="border">1234</td>
     </tr>
   </tbody>
 </table>
@@ -538,31 +547,31 @@ Process of elimination allows the player to resolve a cell to a value when that 
 
 For instance, in the example we've been working with, the absence of a 4 in all cells of column three except the third allows us to resolve that cell to 4:
 
-<table style="margin: 5px auto; font-family: monospace; text-align: center;">
+<table class="md_table">
   <tbody>
     <tr>
-      <td style="border: 1px solid; width: 1em;">4</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em; background-color: grey;">123</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td class="border dark">123</td>
+      <td class="border">123</td>
     </tr>
     <tr>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em; background-color: grey;">123</td>
-      <td style="border: 1px solid; width: 1em;">12</td>
+      <td class="border">123</td>
+      <td class="border">1234</td>
+      <td class="border dark">123</td>
+      <td class="border">12</td>
     </tr>
     <tr>
-      <td style="border: 1px solid; width: 1em;">12</td>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em; background-color: grey;">123<span style="border: 1px solid; padding: 2px">4</span></td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
+      <td class="border">12</td>
+      <td class="border">123</td>
+      <td class="border dark">123<span class="border">4</span></td>
+      <td class="border">1234</td>
     </tr>
     <tr>
-      <td style="border: 1px solid; width: 1em;">123</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
-      <td style="border: 1px solid; width: 1em;background-color: grey;">123</td>
-      <td style="border: 1px solid; width: 1em;">1234</td>
+      <td class="border">123</td>
+      <td class="border">1234</td>
+      <td class="border dark">123</td>
+      <td class="border">1234</td>
     </tr>
   </tbody>
 </table>
