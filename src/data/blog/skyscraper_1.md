@@ -1,10 +1,10 @@
 ---
 type: "post"
 host: "local"
-title: "Cracking the Skyscraper Puzzle: Part 1"
-date: "1562691692269"
-description: "A blog post about stuff"
-word_count: 3500
+title: "Solving Every Skyscraper Puzzle: Part One"
+date: "1561870800000"
+description: "Solving all possible valid skyscraper puzzles with constraint propagation and backtracking search, part 1. Covers approach, inferential techniques, and architecture."
+word_count: 0
 slug: "skyscraper-puzzle-1"
 offsite_link: ""
 ---
@@ -43,15 +43,20 @@ The code we build up won't be able to model everything a sophisticated organic n
 
 In a board of size N, a clue with value N allows us to resolve an entire row or column:
 
-<table style="margin: 5px auto; font-family: monospace; text-align: center;">
+<style>
+th {border-bottom: none;}
+.table {margin: 5px auto; font-family: "IBM Plex Mono", monospace; text-align: center; width: 33%;}
+.border {border: 1px solid #313131;}
+</style>
+<table class="table">
   <tbody>
     <tr>
-      <td style="border: 0px; width: 1em;">5</td>
-      <td style="border: 1px solid; width: 1em;">1</td>
-      <td style="border: 1px solid; width: 1em;">2</td>
-      <td style="border: 1px solid; width: 1em;">3</td>
-      <td style="border: 1px solid; width: 1em;">4</td>
-      <td style="border: 1px solid; width: 1em;">5</td>
+      <td class="">5</td>
+      <td class="border">1</td>
+      <td class="border">2</td>
+      <td class="border">3</td>
+      <td class="border">4</td>
+      <td class="border">5</td>
     </tr>
   </tbody>
 </table>

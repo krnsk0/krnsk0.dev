@@ -38,7 +38,8 @@ const InfoLine = styled.div`
 `
 
 const PostContainer = styled.div`
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 
 const PostWrapper = styled.div`
@@ -64,9 +65,6 @@ const PostWrapper = styled.div`
       color: DeepSkyBlue;
     }
   }
-  table {
-    width: 33%;
-  }
 `
 
 export default ({ data }) => {
@@ -74,19 +72,20 @@ export default ({ data }) => {
   return (
     <Layout>
       <PageContentStyleWrapper>
-        <PostTitle>{post.frontmatter.title}</PostTitle>
-        <InfoLine>
-          <span>{formatTimestampToDate(post.frontmatter.date)}</span>
-          <span>
-            {" "}
-            • {formatNumberWithCommas(post.frontmatter.word_count)} words
-          </span>
-          <span>
-            {" "}
-            • {wordCountToMinutes(post.frontmatter.word_count)} minutes
-          </span>
-        </InfoLine>
         <PostContainer>
+          <PostTitle>{post.frontmatter.title}</PostTitle>
+          <InfoLine>
+            <span>{formatTimestampToDate(post.frontmatter.date)}</span>
+            <span>
+              {" "}
+              • {formatNumberWithCommas(post.frontmatter.word_count)} words
+            </span>
+            <span>
+              {" "}
+              • {wordCountToMinutes(post.frontmatter.word_count)} minutes
+            </span>
+          </InfoLine>
+
           <PostWrapper
             dangerouslySetInnerHTML={{ __html: post.html }}
           ></PostWrapper>
