@@ -514,10 +514,13 @@ const constrainAndEnqueue = (state, cellIndex, deleteValue, resolveValue) => {
   const constrain = (idxToConstrain, valueToDelete) => {
     const cell = state.board[idxToConstrain]
     let mutated = cell.delete(valueToDelete) // `mutated` is a boolean
+
+    if (cell.size === 0) {
+      throw new Error(`cell ${idxToConstrain} is empty`)
+    }
+
     if (mutated && cell.size === 1) {
       state.queue.push(idxToConstrain)
-    } else if (cell.size === 0) {
-      throw new Error(`cell ${idxToConstrain} is empty`)
     }
   }
 
@@ -625,7 +628,7 @@ const countValueInCells = (state, cellIndices, valueToCount) => {
 }
 ```
 
-Whenever `countValueInCells` returns 1, we'll need to get the index of the cell where the value appears; here's one more helper:
+Whenever `countValueInCells` returns 1, we'll need to get the index of the cell where the value appears. Here's one more helper:
 
 ```js
 const findCellIndexWithValue = (state, cellIndices, valueToFind) => {
@@ -636,41 +639,26 @@ const findCellIndexWithValue = (state, cellIndices, valueToFind) => {
 Finally, let's wire everything up:
 
 ```js
-const findCellIndexWithValue = (state, cellIndices, valueToFind) => {
-  return cellIndices.find(cellIndex => state.board[cellIndex].has(valueToFind))
+const countDeletedValue = (state, cellIndices, deletedValue) => {
+  return isValueResolvedInCellIndices(state, cellIndices, deletedValue)
+    ? countValueInCells(state, cellIndices, deletedValue)
+    : 0
 }
 
 const poeCellSearch = (state, modifiedCellIndex, deletedValue) => {
-  // row
   const rowIndices = getRowIndicesFromCellIndex(state, modifiedCellIndex)
-  const nonResolvedRowIndices = filterResolvedCells(state, rowIndices)
-  const rowDeletedValueCount = countValueInCells(
-    state,
-    nonResolvedRowIndices,
-    deletedValue
-  )
-
-  // col
   const colIndices = getColIndicesFromCellIndex(state, modifiedCellIndex)
-  const nonResolvedColIndices = filterResolvedCells(state, colIndices)
-  const colDeletedValueCount = countValueInCells(
-    state,
-    nonResolvedColIndices,
-    deletedValue
-  )
-
   const results = []
-  if (rowDeletedValueCount === 1) {
-    results.push(
-      findCellIndexWithValue(state, nonResolvedRowIndices, deletedValue)
-    )
-  }
-  if (colDeletedValueCount === 1) {
-    results.push(
-      findCellIndexWithValue(state, nonResolvedColIndices, deletedValue)
-    )
-  }
-  return results
+  ;[(rowIndices, colIndices)].forEach(cellIndices => {
+    if (countDeletedValue(state, cellIndices, deletedValue) === 1) {
+      const poeCellIndex = findCellIndexWithValue(
+        state,
+        rowIndices,
+        deletedValue
+      )
+      results.push(deletedValue)
+    }
+  })
 }
 ```
 
@@ -678,11 +666,11 @@ Here we're returning an array of cell indices which are resolvable to the `delet
 
 But here we run in to a problem. We want to run PoE search inside `constrainAndEnqueue`, the abstraction we wrapped around `Set.prototype.delete()` for our constraint lists. But PoE will need to call `constrainAndEnqueue` so that we properly draw out consequences from cells resolved through PoE, which again can put us in the position of "chasing" changes around the board with an increasingly deep call stack-- which will make debugging challenging.
 
-We need to interrupt this potential runaway chain of function calls by having our PoE functions push work to the queue. Right now `poeCellSearch` returns an array of cells to resolve; perhaps we could queue up the indices in this array as well as the values to which they need to be resolved. But this is a different _kind of thing_ than what currently lives in `state.queue`, which, right now, is a list of newly-resolved cell indices from which constraints need to be propagated.
+We need to interrupt this potential runaway chain of function calls by having our PoE functions push work to the queue. Right now `poeCellSearch` returns an array of cells to resolve; perhaps instead of a return we can push to the queue inside of `poeCellSearch`. But, here we'd be enqueueing a different kind of entity than what currently lives in `state.queue`, which right now is a list of newly-resolved cell indices from which constraints need to be propagated.
 
-That is: `state.queue` is currently used to schedule future _post-cell-mutation_ work; what we're now talking about queueing is _cell mutation_, itself. We could create separate queues for these types of work, and empty them out each in sequence in the `while` block in `propagateConstraints`, but in some cases this may lead to queued work being performed in a different than what we might expect, leading again to debugging challenges.
+That is: `state.queue` is currently used to schedule future _post-cell-mutation_ work; what we're now talking about queueing is _cell mutation_, itself. We could create separate queues for these types of work, and empty them out each in sequence in the `while` block in `propagateConstraints`, but it would make debugging easier if scheduled work executed in the order it was scheduled.
 
-Let's instead implement something like the [command pattern](https://en.wikipedia.org/wiki/Command_pattern), familiar to you if you've ever used Dan Abramov's Redux. We'll use one queue, but pass in objects which tell `propagateConstraints` what kind of work to perform. We'll start by renaming `propagateConstraints`, which now does more than this; let's call it `queueProcessor`.
+Instead of enqueueing cell IDs, let's pass the queue objects which tell `propagateConstraints` what kind of work to perform. In fact, we should start by renaming `propagateConstraints`, which now does more than this; let's call it `queueProcessor`.
 
 Next, we'll modify in `constrainAndEnqueue` pass an object into the queue with a `type` property, where previously we'd just passed in a cell index:
 
@@ -692,7 +680,7 @@ if (mutated && cell.size === 1) {
 }
 ```
 
-Now we need a switch/case-type structure in `queueProcessor`, which we'll implement with if/else so we get block scope:
+Now we need a switch/case-type structure in `queueProcessor` which we'll implement with if/else so we get block scope:
 
 ```js
 const queueProcessor = state => {
@@ -707,12 +695,47 @@ const queueProcessor = state => {
 }
 ```
 
-Finally, we can wire up `poeCellSearch` inside of `constrainAndEnqueue`:
+Next, let's set up `poeCellSearch` to push to the queue. We're probably due for a re-name, here, as well; let's call it `poeSearchAndEnqueue`:
 
 ```js
+// mutates state.queue
+const poeSearchAndEnqueue = (state, modifiedCellIndex, deletedValue) => {
+  const rowIndices = getRowIndicesFromCellIndex(state, modifiedCellIndex)
+  const colIndices = getColIndicesFromCellIndex(state, modifiedCellIndex)
+
+  ;[rowIndices, colIndices].forEach(cellIndices => {
+    if (countDeletedValue(state, cellIndices, deletedValue) === 1) {
+      const poeCellIndex = findCellIndexWithValue(
+        state,
+        rowIndices,
+        deletedValue
+      )
+      state.queue.push({
+        type: "RESOLVE_CELL_TO_VALUE",
+        cellIndex: poeCellIndex,
+        resolveToValue: deletedValue,
+      })
+    }
+  })
+}
 ```
 
-And then we can add a new case inside of `queueProcessor`:
+Then, inside of `constrainAndEnqueue`, we just need to call `poeSearchAndEnqueue` to run after we mutate a cell:
 
 ```js
+if (mutated) {
+  poeSearchAndEnqueue(state, idxToConstrain, valueToDelete)
+}
 ```
+
+Lastly, we need to add a new case inside of `queueProcessor`:
+
+```js
+if (action.type === `PROPAGATE_CONTSTRAINTS_FROM`) {
+  propagateFromResolvedCell(state, action.cellIndex)
+} else if (action.type === "RESOLVE_CELL_TO_VALUE") {
+  constrainAndEnqueue(state, action.cellIndex, null, action.resolveToValue)
+}
+```
+
+Where does this get us?
