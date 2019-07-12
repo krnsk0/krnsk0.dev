@@ -9,9 +9,9 @@ slug: "skyscraper-puzzle-1"
 offsite_link: ""
 ---
 
-A relative of Sudoku and other [Latin-Square](https://en.wikipedia.org/wiki/Latin_square)-derived puzzles, the [skyscraper](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers/rules) puzzle asks the player to place buildings of varying & unique heights on a grid in a way that satisfies clues given on the grid's edges. These "edge clues" tell the player how many buildings are visible from the standpoint of a given clue's placement along the board's edge.
+A relative of Sudoku and other [Latin-Square](https://en.wikipedia.org/wiki/Latin_square)-derived puzzles, the [skyscraper](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers/rules) puzzle asks the player to place buildings of varying & unique heights on a grid so as to satisfy clues given on the grid's edges. These "edge clues" tell the player how many buildings are visible from the standpoint of a given clue's placement along the board's edge.
 
-Taller skyscrapers block the visibility of shorter skyscrapers, but not vice versa. For example, in a 4x4 puzzle, the row 2-4-3-1 has two skyscrapers visible from its left side, and three on its right side. Both would be valid clues a puzzle author could provide, for this row-- but notably, the starting point for a skyscraper puzzle need not provide clues for every side of each row and column. Often, the fewer clues given, the harder the puzzle.
+Taller skyscrapers block the visibility of shorter skyscrapers, but not vice versa. For example, in a 4x4 puzzle, a row with heights 2-4-3-1 has two skyscrapers visible from its left side, and three on its right side. Both would be valid clues a puzzle author could provide, for this row-- but notably, the starting point for a skyscraper puzzle need not provide clues for every side of each row and column. Often, the fewer clues given, the harder the puzzle.
 
 This article walks through the use of [constraint propagation](https://en.wikipedia.org/wiki/Constraint_satisfaction), a technique dating to the era of [symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence), to model the inferential techniques employed by skyscraper enthusiasts. While building up a vocabulary of concepts to help us reason about the puzzle, we'll 'll use Javascript to also build up, first, an algorithm capable of solving _published_ puzzles of arbitrary size and difficulty without resorting to backtracking, and later build in backtracking to allow us to solve _all_ possible Skyscraper puzzles, full-stop.
 
@@ -21,11 +21,9 @@ We'll be building a solution piece by piece; if you want to refer to the finishe
 
 Why the caveat that we'll only at first be able to solve _published_ puzzles?
 
-A valid skyscraper puzzle is a collection of clues which contain enough information to permit one and only one solution. Skyscraper puzzle authors make a rule of only publishing puzzles which are not only valid, but which can be solved _without using guess-and-check_, the enthusiast's name for recursive backtracking search. Published puzzles thus ought to be solvable programmatically without backtracking provided we can imitate the way players think about the game.
+A valid skyscraper puzzle is a collection of clues which contain enough information to permit one and only one solution. Puzzle authors make a rule of only publishing puzzles which are not only valid, but which can be solved _without using guess-and-check_, the enthusiast's name for recursive backtracking search. Published puzzles thus ought to be solvable programmatically without backtracking provided we can imitate the way players think about the game.
 
-How to approach this? When solving puzzles, enthusiasts typically alternate through applying several forms of inference to reason about the board, with skilled players deciding the sequence in which to employ these forms of inference according to some higher-order heuristics.
-
-Let's begin with these forms of inference.
+When solving puzzles, enthusiasts typically alternate through applying several forms of inference to reason about the board, with skilled players deciding the sequence in which to employ these forms of inference according to some higher-order heuristics. Let's begin with these forms of inference.
 
 1. Performed at the start of a game, **edge clue initialization** allows players to derive initial information about rows and columns starting from their clues, in some cases allowing us to determine the values of cells outright and in other cases allowing us to rule out certain values.
 
@@ -37,7 +35,7 @@ Let's begin with these forms of inference.
 
 Beginner players often start by learning to apply edge clue initialization, resolved cell constraint propagation, and process of elimination. Skilled players, in addition to an acquired mastery of these inferential techniques, are marked by two further characteristics: grasp of a sizable repertoire of patterns which allow rapid application of clue elimination, and a good "feel" for the order in which to iteratively apply techniques 2-4 to quickly solve a puzzle.
 
-The code we build up won't be able to model everything a sophisticated organic neural network brings to the skyscraper puzzle, but we'll get close. We'll alternate between describing these forms of inference and implementing them in code, starting with edge clue initialization.
+The code we build up won't be able to model everything a sophisticated organic neural network brings to the skyscraper puzzle, but we'll get close. We'll alternate between describing forms of inference and implementing them, starting with edge clue initialization.
 
 ## Edge Clue Initialization: Approach
 
@@ -81,7 +79,7 @@ A 1 clue allows us to resolve only the adjacent cell:
   </tbody>
 </table>
 
-While clues between 1 and N don't let us resolve cells, they do allow us to rule out some values. For example, on a 5x5 board, a 4 clue allows us to rule out 5, 4, and 3 for the adjacent cell: a 5 would block all other buildings, making only one visible where we need four; a 4 would allow for only one taller where we need three; and a 3 would allow for only two taller where we need three. For the second cell in, a 4 clue lets us rule out 5 and 4: a 5 would mean a maximum of two buildings are visible, and while 4 would mean a maximum of three are visible. Finally, for the third cell in, a 4 clue lets us rule out a building with a height of 5.
+While clues between 1 and N don't let us resolve cells, they do allow us to rule out some values. For example, on a 5x5 board, a 4 clue allows us to rule out 5, 4, and 3 for the adjacent cell: a 5 would block all other buildings, making only one visible where we need four; a 4 would allow for only one taller where we need three; and a 3 would allow for only two taller where we need three. For the second cell, a 4 clue lets us rule out 5 and 4: a 5 in that cell would mean a maximum of two buildings are visible and a 4 would mean a maximum of three are visible. Finally, for the third cell in, a 4 clue lets us rule out a building with a height of 5.
 
 <table class="md_table small">
   <tbody>
@@ -249,23 +247,24 @@ const getCellIndicesFromClueIndex = (clueIndex, N) => {
 }
 ```
 
-To get everything moving we'll need some top-level infrastructure, starting with a `solveSkyscraper` function that accepts clues and returns a solution. But how should we store and pass around our state? It would certainly be convenient to keep our board, clues, the value of `N`, and so on as globals rather than passing them in to our functions-- or at least convenient to keep them in the scope of our "top-level" function such that they don't need to be passed around, so much.
+To get everything moving we'll need some top-level infrastructure, starting with a `solveSkyscraper` function that accepts clues and returns a solution. But how should we store and pass around our data? It would certainly be convenient to keep our board, clues, the value of `N`, and so on as globals rather than passing them in to our functions-- or at least convenient to keep them in the scope of our top-level function such that they don't need to be passed around, so much.
 
-We won't be writing concurrent or asynchronous code, and won't at least for these reasons need to bother ourselves with functional purity. But, once we get to the point where we need backtracking recursion, we'll need to avoid mutating state in the enclosing scope, as the bookkeeping to roll back mutations after a backtrack might get prohibitively complex. So we'll be writing some functions that can mutate--those not involved in backtracking recursion--and others which cannot. We'll have to pay close attention to this distinction as we proceed.
+Once we get to the point where we need backtracking recursion, we'll need to avoid mutating state in the enclosing scope, as the bookkeeping to roll back mutations after a backtrack might get prohibitively complex. So we'll be writing some functions that can mutate state--those not involved in backtracking recursion--and others which cannot. We'll have to pay close attention to this distinction as we proceed.
 
-In any case, to avoid having to pass too many extra arguments into our functions, let's condense our state into an object:
+In any case, to avoid having to pass too many extra arguments into our functions, let's condense the data into an object:
 
 ```js
 const initializeState = clues => {
   return {
-    N: Math.sqrt(clues.length),
-    board: boardFactory(Math.sqrt(clues.length)),
+    N: clues.length / 4,
+    board: boardFactory(clues.length / 4),
     clues,
+    queue: [],
   }
 }
 ```
 
-Storing `N` in our state object lets us avoid having to repeat `Math.sqrt()` all over the place. We'll be adding more to this state object later, but this is a fine starting point. We can kick things off like this:
+Storing `N` in our state object lets us avoid having to repeat `clues.length / 4` all over the place. We'll be adding more to this state object later, but this is a fine starting point. We can kick things off like this:
 
 ```js
 const solveSkyscraper = clues => {
@@ -320,7 +319,7 @@ const performEdgeClueInitialization = state => {
 }
 ```
 
-First we define a helper, then iterate all of the clues, for `1 < c < N`. Then we apply the helper function to eliminate values ruled out by the clue in question. We don't need to deep clone or return our state object, here-- it's okay to mutate objects in the enclosing scope because we'll only initialize from edge clues once, and won't need to involve this code in recursion, later.
+First we define a helper, then iterate all of the clues, for `1 < c < N`. Then we apply the helper function to eliminate values ruled out by the clue in question. We don't need to deep clone and return our state object, here-- it's okay to mutate objects in the enclosing scope because we'll only initialize from edge clues once, and won't need to involve this code in recursion, later.
 
 Now to go back and handle the special cases, `c === 1` and `c === N`, which allow us to completely resolve a cell and an entire row/column, respectively:
 
@@ -398,7 +397,7 @@ If we were to write code to pretty-print the state for our 4x4 example, we'd get
   </tbody>
 </table>
 
-Our second form of inference, constraint propagation, starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know our upper left corner above is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and first column:
+The second form of inference--constraint propagation--starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know our upper left corner above is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and first column:
 
 <table class="md_table large">
   <tbody>
@@ -429,7 +428,7 @@ Our second form of inference, constraint propagation, starts from a resolved cel
   </tbody>
 </table>
 
-How to implement crossing off these values programmatically? First we'll need a helper function that takes the index of a cell and returns the indices of all of all of the cells in its corresponding "cross."
+To implement this programmatically, we'll first need a helper function that takes the index of a cell and returns the indices of all of all of the cells in its corresponding "cross."
 
 ```js
 const getCrossIndicesFromCell = (state, cellIndex) => {
@@ -443,7 +442,7 @@ const getCrossIndicesFromCell = (state, cellIndex) => {
 }
 ```
 
-Next we'll need a function that, when called with a cell index, eliminates the resolved value from the constraint lists referenced by the results of `getCrossIndicesFromCell()`. We'll assume this function always gets called on a constraint list with just one value remaining and throw otherwise, and we'll use iterator syntax to access the remaining value in our set object:
+Next we'll need a function that, when called with a cell index, eliminates the resolved value from the constraint lists referenced by the results of `getCrossIndicesFromCell()`. We'll assume this function always gets called on a constraint list with just one value remaining (and throw otherwise), and we'll use iterator syntax to access the remaining value in our set of constraints:
 
 ```js
 const propagateFromResolvedCell = (originalState, cellIndex) => {
@@ -471,13 +470,13 @@ const propagateConstraints = state => {
 }
 ```
 
-## Towards a Constraint Propagation Queue
+## Implementing a Constraint Propagation Queue
 
-This works fine for handling any cells that were resolved by the edge clue constraints, but what if propagating constraints from a resolved cell results in new resolved cells--that is, cells with only only one value not crossed off--such that we would want to in turn propagate constraints from these cells?
+This works fine for handling any cells that were resolved by the edge clue constraints. But what if propagating constraints from a resolved cell results in new resolved cells--that is, cells with only only one value not crossed off--such that we would want to propagate constraints from these cells, in turn?
 
 We could just call `propagateConstraints` repeatedly until we notice that nothing changes from one iteration to the next, checking every cell each time for for `cell.size === 1`. But this is a lot of extra work as most cells won't have changed. Instead, let's check constraint list size right after modifying a cell in `propagateFromResolvedCell`, which ensures we only check cells that have changed.
 
-When we find that a cell which has just changed has size 1, how should we initiate constraint propagation for it? We could recursively call `propagateFromResolvedCell`, but this could in some circumstances lead to code that's very difficult to step through, as our algorithm "chases" changes around the board. It will be easier to reason about a "breadth first" approach in which each propagation operation finishes before the next starts. To do this, let's add a `queue` key to our state which holds an array and set up propagateConstraints to use this queue. Inside `propagateFromResolvedCell`:
+When we find that a cell which has just changed has `.size === 1`, how should we kick off constraint propagation? We could recursively call `propagateFromResolvedCell`, but this could in some circumstances lead to code that's very difficult to step through, as our algorithm "chases" changes around the board, initiating new rounds of constraint propagation before resolving the previous round. It will be easier to reason about a "breadth first" approach in which each propagation operation finishes before the next starts. To do this, let's add a `queue` key to our state which holds an array and set up `propagateConstraints` to use this queue. Inside `propagateFromResolvedCell`:
 
 ```js
 crossIndices.forEach(crossIndex => {
@@ -497,7 +496,7 @@ while (state.queue.length) {
 }
 ```
 
-Having established this pattern, why bother having `propagateConstraints` iterate the board at all to check for `cell.size === 1`? We could add a size check and and enqueue operation to `performEdgeClueInitialization`, and have `propagateConstraints` be driven solely by the queue. But, we'd have to perform this size check for all three cases for `c` in `performEdgeClueInitialization`, each of which use slightly different methods to alter constraint lists. We need an abstraction around all of these methods versatile enough to handle not only the ways we modify constraint lists in the edge clue functions but also, hopefully, ways we might modify constraint lists in the future-- as we'll want to make sure we propagate constraints every time they change.
+Now, having established this pattern, why bother having `propagateConstraints` iterate the board at all to check for `cell.size === 1`? We could add a size check and and enqueue operation to `performEdgeClueInitialization`, and have `propagateConstraints` be driven solely by the queue. But, we'd have to perform this size check for all three cases for `c` in `performEdgeClueInitialization`, each of which use slightly different methods to alter constraint lists. We need an abstraction around all of these methods versatile enough to handle not only the ways we modify constraint lists in the edge clue functions but also, hopefully, ways we might modify constraint lists in the future-- as we'll want to make sure we propagate constraints every time they change.
 
 How to approach this? So far, we've used `Set.prototype.delete()` to eliminate individual values from cells, but have also used `.clear()` followed by `.add()` to quickly resolve a cell with multiple values in its constraint list to just a single value. This suggests two basic use cases: deleting a value, and deleting everything but a value. Since the latter is reducible to repeated applications of the former, let's treat `.delete()` as primitive; we'll first write an abstraction around it which also checks for `cell.size === 1` and enqueues after a successful delete, and then wrap this in a secondary abstraction which transforms cell resolutions into repeated applications of our delete abstraction. Here's what it looks like:
 
@@ -505,14 +504,16 @@ How to approach this? So far, we've used `Set.prototype.delete()` to eliminate i
 // mutates state.queue
 // mutates state.board.cellIndex
 const constrainAndEnqueue = (state, cellIndex, deleteValue, resolveValue) => {
+  // XOR check to make sure we call this function with either
+  // deleteValue or resolveValue but not both
   console.assert(
     !deleteValue != !resolveValue,
     "constrainAndEnqueue called with bad arguments"
-  ) // XOR check
+  )
 
   const constrain = (idxToConstrain, valueToDelete) => {
     const cell = state.board[idxToConstrain]
-    let mutated = cell.delete(valueToDelete)
+    let mutated = cell.delete(valueToDelete) // `mutated` is a boolean
     if (mutated && cell.size === 1) {
       state.queue.push(idxToConstrain)
     } else if (cell.size === 0) {
@@ -523,6 +524,7 @@ const constrainAndEnqueue = (state, cellIndex, deleteValue, resolveValue) => {
   if (deleteValue) {
     constrain(cellIndex, deleteValue)
   } else {
+    // if resolveValue (b/c of assertion above)
     for (let value of state.board[cellIndex]) {
       if (value !== resolveValue) {
         constrain(cellIndex, value)
@@ -571,16 +573,16 @@ For instance, in the example we've been working with, the absence of a 4 in all 
   </tbody>
 </table>
 
-How to implement PoE? We don't want to replicate the design we optimized away, above, in which we iteratively searched the entire board for some pattern or criteria-- we want to call PoE function right after we mutate our data, which will make sure we run PoE all and only when necessary. Described from the top-down, we'll need a function which:
+How to implement PoE? We don't want to replicate the design we optimized away in kicking off constraint propagation in which we iteratively scan entire board for some pattern or criteria-- we want to call PoE function right after we mutate our data, which will make sure we run PoE all and only when necessary. Described from the top down, we'll need a function which:
 
-1. Takes in a value that's just been crossed off a constraint list for a given cell
-2. Gets the row indices for the cell we modified
+1. Takes in a value that has just been crossed off a constraint list for a given cell
+2. Gets the row indices for the modified cell
 3. Check to see if we've already resolved that value in this row; if so, we're done.
 4. For all other cells in that row, does the value just crossed off appear just once?
-5. If so, resolves the cell where the value appears
+5. If so, resolve the cell where the value appears to the value in question
 6. Repeats steps (2) -(5) for the column, instead of the row.
 
-Building from the inside out, let's start with some helpers to get the row/column indices for a cellIndex, sans the cellIndex.
+Let's start with some helpers to get the row/column indices for a cellIndex, sans the cellIndex.
 
 ```js
 const getRowIndicesFromCellIndex = (state, cellIndex) => {
@@ -598,26 +600,21 @@ const getColIndicesFromCellIndex = (state, cellIndex) => {
 }
 ```
 
-We're going to examine a value just deleted from a constraint list to see if we can resolve other cells to it-- which is something we _don't_ need to do if the value in question is already resolved for a row or column. If, for example, we're in the midst of propagating constraints from a resolved cell, we don't need to run PoE for that value in its row and column, and we can do an early return. Here's a helper to facilitate this:
+We're going to examine a value just deleted from a constraint list to see if we can resolve other cells to it, which is something we _don't_ need to do if the value in question is already resolved for a row or column. If, for example, we're in the midst of propagating constraints from a cell that has been resolved to `4`, we don't need to run PoE for `4` in that cell's row and column, and we can do an early return. Here's a helper to facilitate this; we'll use a for loop to allow an early return:
 
 ```js
 const isValueResolvedInCellIndices = (state, cellIndices, valueToCheck) => {
-  let found = false
-  cellIndices.forEach(cellIndex => {
-    let cell = state.board[cellIndex]
-    if (cell.size === 1 && cell.has(valueToCheck)) found = true
-  })
-  return found
+  for (let i = 0; i <= cellIndices.length - 1; i += 1) {
+    let cell = state.board[cellIndices[i]]
+    if (cell.size === 1 && cell.has(valueToCheck)) return true
+  }
+  return false
 }
 ```
 
-Next, we'll need to filter out resolved cells, and then count the number of times a given value appears in an array of cell indices:
+Next we'll need count the number of times a given value appears in the constraint lists pointed to by an array of cell indices:
 
 ```js
-const filterResolvedCells = (state, cellIndices) => {
-  return cellIndices.filter(cellIndex => state.board[cellIndex].size !== 1)
-}
-
 const countValueInCells = (state, cellIndices, valueToCount) => {
   const count = cellIndices.reduce((accum, cellIndex) => {
     if (state.board[cellIndex].has(valueToCount)) return accum + 1
