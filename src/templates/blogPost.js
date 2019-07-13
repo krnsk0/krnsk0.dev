@@ -56,7 +56,7 @@ const PostWrapper = styled.div`
     margin-top: 15px;
   }
   h2 {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     margin-top: 30px;
   }
   a {

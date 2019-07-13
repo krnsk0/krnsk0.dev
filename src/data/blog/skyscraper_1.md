@@ -3,11 +3,22 @@ type: "post"
 host: "local"
 title: "Solving Every Skyscraper Puzzle: Part One"
 date: "1561870800000"
-description: "Solving all possible valid skyscraper puzzles with constraint propagation and backtracking search, part 1. Covers approach, inferential techniques, and architecture."
-word_count: 0
+description: "Solving all possible skyscraper puzzles with constraint propagation and backtracking search, part 1. Covers approach and architecture; builds out three forms of inference."
+word_count: 4126
 slug: "skyscraper-puzzle-1"
 offsite_link: ""
 ---
+
+<style>
+td {border: none; padding: 0px; text-align: center; display: inline-block; margin: 1px; }
+.small td { width: 1.5em; height: 1.5em;}
+.large td { width: 3em; height: 3em; padding-top: 0.75em;}
+.md_table {margin: 5px auto; font-family: "IBM Plex Mono", monospace; text-align: center; width: 50%; border-collapse: separate;}
+.border {border: 1px solid #313131;}
+.dark {background-color: rgb(230, 230, 235);}
+.green {color: darkgreen;}
+.red {color: red;}
+</style>
 
 A relative of Sudoku and other [Latin-Square](https://en.wikipedia.org/wiki/Latin_square)-derived puzzles, the [skyscraper](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers/rules) puzzle asks the player to place buildings of varying & unique heights on a grid so as to satisfy clues given on the grid's edges. These "edge clues" tell the player how many buildings are visible from the standpoint of a given clue's placement along the board's edge.
 
@@ -41,16 +52,6 @@ The code we build up won't be able to model everything a sophisticated organic n
 
 In a board of size N, a clue with value N allows us to resolve an entire row or column:
 
-<style>
-td {border: none; padding: 0px; text-align: center; display: inline-block; margin: 1px; }
-.small td { width: 1.5em; height: 1.5em;}
-.large td { width: 3em; height: 3em; padding-top: 0.75em;}
-.md_table {margin: 5px auto; font-family: "IBM Plex Mono", monospace; text-align: center; width: 50%; border-collapse: separate;}
-.border {border: 1px solid #313131;}
-.dark {background-color: rgb(230, 230, 235);}
-.green {color: darkgreen;}
-.red {color: red;}
-</style>
 <table class="md_table small">
   <tbody>
     <tr>
@@ -156,15 +157,15 @@ const boardFactory = N => {
 }
 ```
 
-Let's plan on our top-level function accepting clues in the form of an array which starts from the top left and goes clockwise around the board. If we're given an array with length 16--say, `[1, 0, 0, 2, 3, 0, 0, 0, 0, 2, 0, 0, 0, 2, 3, 0]`-- we'll know we have a 4x4 board that initially looks like this:
+Let's plan on our top-level function accepting clues in the form of an array which starts from the top left and goes clockwise around the board. If we're given an array with length 16--say, `[0, 0, 1, 2, 0, 2, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0]`-- we'll know we have a 4x4 board that initially looks like this:
 
 <table class="md_table small">
   <tbody>
     <tr>
       <td></td>
+      <td></td>
+      <td></td>
       <td>1</td>
-      <td></td>
-      <td></td>
       <td>2</td>
       <td></td>
     </tr>
@@ -182,29 +183,29 @@ Let's plan on our top-level function accepting clues in the form of an array whi
       <td class="border"></td>
       <td class="border"></td>
       <td class="border"></td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td class="border"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
       <td>3</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td class="border"></td>
-      <td class="border"></td>
-      <td class="border"></td>
-      <td class="border"></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td class="border"></td>
-      <td class="border"></td>
-      <td class="border"></td>
-      <td class="border"></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>2</td>
       <td></td>
       <td></td>
     </tr>
@@ -348,81 +349,81 @@ If we were to write code to pretty-print the state for our 4x4 example, we'd get
   <tbody>
     <tr>
       <td></td>
+      <td></td>
+      <td></td>
       <td>1</td>
-      <td></td>
-      <td></td>
       <td>2</td>
       <td></td>
     </tr>
     <tr>
       <td></td>
+      <td class="border">1234</td>
+      <td class="border">1234</td>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">1234</td>
+      <td class="border">1234</td>
+      <td class="border">1234</td>
+      <td class="border">123</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
       <td class="border">4</td>
       <td class="border">1234</td>
-      <td class="border">1234</td>
       <td class="border">123</td>
+      <td class="border">1234</td>
       <td></td>
     </tr>
     <tr>
       <td></td>
       <td class="border">1234</td>
       <td class="border">1234</td>
-      <td class="border">123</td>
       <td class="border">12</td>
+      <td class="border">1234</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
       <td>3</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td class="border">12</td>
-      <td class="border">123</td>
-      <td class="border">1234</td>
-      <td class="border">1234</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td class="border">123</td>
-      <td class="border">1234</td>
-      <td class="border">123</td>
-      <td class="border">1234</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>2</td>
       <td></td>
       <td></td>
     </tr>
   </tbody>
 </table>
 
-The second form of inference--constraint propagation--starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know our upper left corner above is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and first column:
+The second form of inference--constraint propagation--starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know that third cell in the first row is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and third column.
 
 <table class="md_table large">
   <tbody>
     <tr>
+      <td class="border dark">123<span class="red">4</span></td>
+      <td class="border dark">123<span class="red">4</span></td>
       <td class="border dark">4</td>
-      <td class="border dark">123<span class="red">4</span></td>
-      <td class="border dark">123<span class="red">4</span></td>
       <td class="border dark">123</td>
     </tr>
     <tr>
-      <td class="border dark">123<span class="red">4</span></td>
       <td class="border">1234</td>
+      <td class="border">1234</td>
+      <td class="border dark">123<span class="red">4</span></td>
       <td class="border">123</td>
-      <td class="border">12</td>
     </tr>
     <tr>
+      <td class="border">4</td>
+      <td class="border">1234</td>
+      <td class="border dark">123</td>
+      <td class="border">1234</td>
+    </tr>
+    <tr>
+      <td class="border">1234</td>
+      <td class="border">1234</td>
       <td class="border dark">12</td>
-      <td class="border">123</td>
-      <td class="border">1234</td>
-      <td class="border">1234</td>
-    </tr>
-    <tr>
-      <td class="border dark">123</td>
-      <td class="border">1234</td>
-      <td class="border">123</td>
       <td class="border">1234</td>
     </tr>
   </tbody>
@@ -539,38 +540,95 @@ const constrainAndEnqueue = (state, cellIndex, deleteValue, resolveValue) => {
 
 Besides passing in state and the cell index to mutate, we can pass in either a value to eliminate from its constraint list or a value to resolve to-- but not neither and not both. The `console.assert()` ensures this. There's also a check to make sure that after a successful delete, we haven't ended up with an empty cell, in which we've ruled out all possible values, which should never happen for a set of valid Skyscraper clues.
 
-After updating `performEdgeClueInitialization` and `propagateFromResolvedCell` to use this new function, where does this leave us? The program is capable of making inferences from edge clues and repeatedly propagating constraints from cells resolved in this process, drawing out all possible consequences from these two methods in combination. And, the infrastructure we've put together is extensible to other forms of inference. Let's add another to the mix.
+After updating `performEdgeClueInitialization` and `propagateFromResolvedCell` to use this new function, where does this leave us? The program is capable of making inferences from edge clues and repeatedly propagating constraints from cells resolved in this process, drawing out all possible consequences from these two methods in combination.
+
+Where does this get us with our example? After propagating constraints from the two 4 cells resolved by the edge clues, the board looks like this:
+
+<table class="md_table large">
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">1234</td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">1234</td>
+      <td class="border">12</td>
+      <td class="border">1234</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+We can't get any farther without introducing a third form of inference.
 
 ## Process of Elimination
 
 Process of elimination allows the player to resolve a cell to a value when that value is no longer present in any other cells in either that cell's row or column. That is: if a given cell's constraint list shows a 4 as a possibility for itself, but no other cells show a four in its row or column (or both), we know that the cell in question _must_ be the 4 in its row and column.
 
-For instance, in the example we've been working with, the absence of a 4 in all cells of column three except the third allows us to resolve that cell to 4:
+For instance, in the example we've been working with, the absence of a 4 in all cells of row two except the second allows us to resolve that cell to 4:
 
 <table class="md_table large">
   <tbody>
     <tr>
+      <td class="border">123</td>
+      <td class="border">123</td>
       <td class="border">4</td>
       <td class="border">123</td>
-      <td class="border dark">123</td>
-      <td class="border">123</td>
     </tr>
     <tr>
-      <td class="border">123</td>
-      <td class="border">1234</td>
       <td class="border dark">123</td>
-      <td class="border">12</td>
-    </tr>
-    <tr>
-      <td class="border">12</td>
-      <td class="border">123</td>
       <td class="border dark">123<span class="border">4</span></td>
-      <td class="border">1234</td>
+      <td class="border dark">123</td>
+      <td class="border dark">123</td>
+    </tr>
+    <tr>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">123</td>
     </tr>
     <tr>
       <td class="border">123</td>
       <td class="border">1234</td>
-      <td class="border dark">123</td>
+      <td class="border">12</td>
       <td class="border">1234</td>
     </tr>
   </tbody>
@@ -583,7 +641,7 @@ How to implement PoE? We don't want to replicate the design we optimized away in
 3. Check to see if we've already resolved that value in this row; if so, we're done.
 4. For all other cells in that row, does the value just crossed off appear just once?
 5. If so, resolve the cell where the value appears to the value in question
-6. Repeats steps (2) -(5) for the column, instead of the row.
+6. Repeats steps (2)-(5) for the column, instead of the row.
 
 Let's start with some helpers to get the row/column indices for a cellIndex, sans the cellIndex.
 
@@ -618,7 +676,7 @@ const isValueResolvedInCellIndices = (state, cellIndices, valueToCheck) => {
 Next we'll need count the number of times a given value appears in the constraint lists pointed to by an array of cell indices:
 
 ```js
-const countValueInCells = (state, cellIndices, valueToCount) => {
+const countValueInCellIndices = (state, cellIndices, valueToCount) => {
   const count = cellIndices.reduce((accum, cellIndex) => {
     if (state.board[cellIndex].has(valueToCount)) return accum + 1
     else return accum
@@ -628,7 +686,7 @@ const countValueInCells = (state, cellIndices, valueToCount) => {
 }
 ```
 
-Whenever `countValueInCells` returns 1, we'll need to get the index of the cell where the value appears. Here's one more helper:
+Whenever `countValueInCellIndices` returns 1, we'll need to get the index of the cell where the value appears. Here's one more helper:
 
 ```js
 const findCellIndexWithValue = (state, cellIndices, valueToFind) => {
@@ -641,8 +699,8 @@ Finally, let's wire everything up:
 ```js
 const countDeletedValue = (state, cellIndices, deletedValue) => {
   return isValueResolvedInCellIndices(state, cellIndices, deletedValue)
-    ? countValueInCells(state, cellIndices, deletedValue)
-    : 0
+    ? 0
+    : countValueInCellIndices(state, cellIndices, deletedValue)
 }
 
 const poeCellSearch = (state, modifiedCellIndex, deletedValue) => {
@@ -680,7 +738,7 @@ if (mutated && cell.size === 1) {
 }
 ```
 
-Now we need a switch/case-type structure in `queueProcessor` which we'll implement with if/else so we get block scope:
+Now we need a branching structure in `queueProcessor`:
 
 ```js
 const queueProcessor = state => {
@@ -738,4 +796,65 @@ if (action.type === `PROPAGATE_CONTSTRAINTS_FROM`) {
 }
 ```
 
-Where does this get us?
+## Next Steps
+
+Where does all of this code get us? After constraining the board with clues, propagating these constraints, and applying PoE, we're already in a position to resolve all cells on some very simple puzzles, but most puzzles won't yet be solvable. Here's where we end up at with the 4x4 example we've been working with:
+
+<table class="md_table large">
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">12</td>
+      <td class="border">4</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+Skilled puzzle solvers often begin by resolving the positions of the tallest tower in each row. That our approach also ends up doing this is an early indicator that we're accurately modeling how players approach the game.
+
+An experienced player might next notice that the 2 clue on the top allows us to resolve its adjacent cell to 3, now that we know the last cell in its column is 4, as any other value would result in more than two buildings being visible from the standpoint of the clue. This is a characteristic example of an inference which incorporates information from both the clue and constraints already set on the board.
+
+In the next installment, we'll try to abstractly characterize this form of inference and translate these abstractions into javascript.
