@@ -10,6 +10,7 @@ import {
   formatTimestampToDate,
   formatNumberWithCommas,
   wordCountToMinutes,
+  wordCount,
 } from "../utils/utilityFns"
 
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
@@ -110,11 +111,12 @@ export const query = graphql`
   query {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { type: { eq: "post" } } }
+      filter: { frontmatter: { type: { eq: "post" }, published: { eq: true } } }
     ) {
       edges {
         node {
           id
+          html
           frontmatter {
             title
             host

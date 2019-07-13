@@ -3,6 +3,7 @@ type: "post"
 host: "medium"
 title: "My Medium Article"
 date: "1562691692269"
+published: false
 description: "An informative medium post"
 word_count: 800
 slug: ""

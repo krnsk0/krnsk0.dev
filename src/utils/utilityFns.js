@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 /* eslint-disable no-undef */
+
 export const formatTimestampToDate = timestamp => {
   const date = new Date(Number(timestamp))
   return date.toLocaleDateString("en-US", {
