@@ -14,7 +14,12 @@ offsite_link: ""
 td {border: none; padding: 0px; text-align: center; display: inline-block; margin: 1px; }
 .small td { width: 1.5em; height: 1.5em;}
 .large td { width: 3em; height: 3em; padding-top: 0.75em;}
-.md_table {margin: 5px auto; font-family: "IBM Plex Mono", monospace; text-align: center; width: 50%; border-collapse: separate;}
+.md_table {margin: 5px auto; font-family: "IBM Plex Mono", monospace; text-align: center; border-collapse: separate;}
+@media (max-width: 700px) {
+    .md_table {
+      font-size: 0.9em;
+    }
+}
 .border {border: 1px solid #313131;}
 .dark {background-color: rgb(230, 230, 235);}
 .green {color: darkgreen;}

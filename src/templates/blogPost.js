@@ -23,10 +23,6 @@ const PostTitle = styled.h1`
   margin-top: 15px;
   margin-bottom: 10px;
   letter-spacing: -1px;
-  /* Check for touchscreen to fix mobile webkit bug */
-  @media (hover: none) {
-    letter-spacing: -3px;
-  }
 `
 
 const InfoLine = styled.div`
@@ -40,6 +36,10 @@ const InfoLine = styled.div`
 const PostContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
+  @media (max-width: 700px) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 `
 
 const PostWrapper = styled.div`
@@ -51,14 +51,38 @@ const PostWrapper = styled.div`
     padding-left: 3px;
     padding-right: 3px;
   }
+  /* this rule targets code blocks but can be over-ridden by prism.css */
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-size: 0.93em;
+    @media (max-width: 700px) {
+      font-size: 0.9em;
+    }
+    border-radius: 5px;
+    font-family: "IBM Plex Mono";
+    white-space: pre-wrap;
+    line-height: 1.4;
+    @media (max-width: 700px) {
+      line-height: 1.2;
+    }
+  }
+  /* paragraphs in the blog post */
   p {
     margin-bottom: 15px;
     margin-top: 15px;
+    @media (max-width: 700px) {
+      font-size: 0.9em;
+    }
   }
+  /* headers in the blog post */
   h2 {
     margin-bottom: 15px;
     margin-top: 30px;
+    @media (max-width: 700px) {
+      font-size: 1.2em;
+    }
   }
+  /* links in the blog post */
   a {
     color: #313131;
     &:hover {
