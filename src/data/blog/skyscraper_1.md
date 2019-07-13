@@ -4,7 +4,7 @@ host: "local"
 title: "Solving Every Skyscraper Puzzle: Part One"
 date: "1561870800000"
 published: true
-description: "Solving all possible skyscraper puzzles with constraint propagation and backtracking search, part 1. Covers approach and architecture; builds out three forms of inference."
+description: "Puzzle-solving with constraint propagation and backtracking search. Covers approach, architecture; builds out three forms of inference."
 word_count: 4126
 slug: "skyscraper-puzzle-1"
 offsite_link: ""

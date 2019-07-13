@@ -34,10 +34,16 @@ const InfoLine = styled.div`
   color: #717171;
   margin-left: 5px;
   margin-top: 4px;
+  @media (max-width: 700px) {
+    margin-top: 10px;
+  }
 `
 
 const PostDescription = styled.div`
   margin-top: 2px;
+  @media (max-width: 700px) {
+    margin-top: 10px;
+  }
   margin-left: 5px;
   color: #313131;
   text-align: left;

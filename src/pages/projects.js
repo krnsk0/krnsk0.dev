@@ -37,6 +37,9 @@ const ProjectDetails = styled.div`
 const ProjectTitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 700px) {
+    margin-top: 10px;
+  }
 `
 
 const ProjectTitle = styled.h2`
@@ -68,6 +71,9 @@ const ProjectDescription = styled.div`
   color: #313131;
   text-align: left;
   font-size: 15px;
+  @media (max-width: 700px) {
+    margin-top: 10px;
+  }
 `
 
 const BuiltWithContainer = styled.div`
@@ -86,6 +92,9 @@ const BuiltWithItem = styled.span`
   padding: 0px 3px 0px 3px;
   margin-right: 3px;
   margin-bottom: 3px;
+  @media (max-width: 700px) {
+    margin-top: 5px;
+  }
 `
 
 const LinkWrapper = styled.a`
