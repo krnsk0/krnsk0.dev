@@ -74,3 +74,9 @@ The [last post](/writing/skyscraper-puzzle-1) in this series described three for
     </tr>
   </tbody>
 </table>
+
+In this post, we'll implement our final form of inference, Clue Elimination, giving our program the capacity to solve every valid, published Skyscraper puzzle. After this, we'll add recursive backtracking search, which lets the program solve all valid puzzles, full-stop.
+
+## Clue Elimination
+
+The last post concluded with the observation that an an experienced skyscrapers player might next notice that the 2 clue on the top allows the resolution of its adjacent cell. Given that we know the position of the 4 in the last column, the adjacent cell must be 3, as any other value would result in more than two buildings being visible from the standpoint of the clue.
