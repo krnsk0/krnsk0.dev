@@ -1,12 +1,14 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import { menuFont } from "../utils/typography"
 
 const NavLinkContainer = styled.div`
   text-align: right;
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
+  font-family: ${menuFont};
   color: #313131;
   &:hover {
     color: DeepSkyBlue;

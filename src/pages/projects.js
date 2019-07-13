@@ -49,7 +49,6 @@ const ProjectTitle = styled.h2`
   }
   margin-block-start: 3px;
   margin-block-end: 0px;
-  letter-spacing: -1px;
 `
 
 const IconLink = styled.a`

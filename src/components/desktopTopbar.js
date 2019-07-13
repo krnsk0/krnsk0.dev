@@ -3,6 +3,7 @@ import TopbarNavLink from "./topbarNavLink"
 import IconLink from "./iconLink"
 import PageTitle from "./pageTitle"
 import styled from "styled-components"
+import { headerFont } from "../utils/typography"
 
 const TopbarContainer = styled.div`
   border: 2px solid #313131;
@@ -21,7 +22,7 @@ const TopbarContainer = styled.div`
 `
 
 const LinkContainer = styled.div`
-  font-family: "IBM Plex Mono";
+  font-family: ${headerFont};
   font-size: 19.5px;
   line-height: 1.3em;
   display: flex;

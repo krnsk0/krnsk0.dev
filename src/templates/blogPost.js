@@ -10,6 +10,7 @@ import {
   formatNumberWithCommas,
   wordCountToMinutes,
 } from "../utils/utilityFns"
+import { codeFont } from "../utils/typography"
 
 const PostTitle = styled.h1`
   font-size: 30px;
@@ -22,7 +23,6 @@ const PostTitle = styled.h1`
   color: #313131;
   margin-top: 15px;
   margin-bottom: 10px;
-  letter-spacing: -1px;
 `
 
 const InfoLine = styled.div`
@@ -45,7 +45,7 @@ const PostContainer = styled.div`
 const PostWrapper = styled.div`
   /* this rule targets only inline code in the rendered md */
   & p > code {
-    font-family: "IBM Plex Mono";
+    font-family: ${codeFont};
     background-color: rgb(230, 230, 235);
     border-radius: 3px;
     padding-left: 3px;
@@ -59,7 +59,7 @@ const PostWrapper = styled.div`
       font-size: 0.9em;
     }
     border-radius: 5px;
-    font-family: "IBM Plex Mono";
+    font-family: ${codeFont};
     white-space: pre-wrap;
     line-height: 1.4;
     @media (max-width: 700px) {

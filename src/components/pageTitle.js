@@ -1,9 +1,10 @@
 import React from "react"
 import styled, { css } from "styled-components"
 import { Link } from "gatsby"
+import { pageTitleFont } from "../utils/typography"
 
 const TitleText = styled.h1`
-  font-family: "Roboto Mono";
+  font-family: ${pageTitleFont};
   font-weight: 700;
   margin: 5px;
   margin-top: ${props => (props.type === "desktop" ? "0px" : "2px")};

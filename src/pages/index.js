@@ -53,11 +53,6 @@ const TitleText = styled.h1`
   }
   color: #717171;
   margin-bottom: 8px;
-  letter-spacing: -1px;
-  /* Check for touchscreen to fix mobile webkit bug */
-  @media (hover: none) {
-    letter-spacing: -3px;
-  }
   & b {
     color: #313131;
   }

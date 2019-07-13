@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import styled, { css } from "styled-components"
+import { menuFont } from "../utils/typography"
 
 const NavLinkContainer = styled.div`
   text-align: right;
@@ -8,7 +9,7 @@ const NavLinkContainer = styled.div`
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
-  font-family: "IBM Plex Mono";
+  font-family: ${menuFont};
   font-size: 17px;
   color: #313131;
   &:hover {

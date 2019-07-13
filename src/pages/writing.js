@@ -27,7 +27,6 @@ const PostTitle = styled.h2`
   font-weight: bold;
   margin-block-start: 3px;
   margin-block-end: 0px;
-  letter-spacing: -1px;
 `
 
 const InfoLine = styled.div`

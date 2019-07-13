@@ -35,7 +35,6 @@ const Label = styled.label`
   font-size: 20px;
   color: #313131;
   margin: 5px;
-  letter-spacing: -1px;
 `
 
 const FormElement = styled.form`
