@@ -118,3 +118,15 @@ While it is not impossible to answer these questions concerning a potential "gap
 Internet guides to the game are filled with home-spun wisdom concerning heuristics like the 2-clue and gap rules. But, while experienced players may have facility in describing and applying many such heuristics, their capacity to reason about clue constraints is hardly exhausted by these. This tends to suggest we are not operating at a high enough level of generality in attempting to describe clue constraint inference as potentially exhausted by a set of rules, patterns, or heuristics, no matter how (finitely) large.
 
 What is common to all such rules and patterns? They begin from a partly resolved row and its clues and... SEQUENCES
+
+## Reasoning About Sequences
+
+So far we have considered constraining the board principally on a cell-by-cell basis, even when taking row and column information into account. In edge clue initialization, we derive information from clues which constrains single cells based on their position in a row or column. In constraint propagation, we sequentially write constraints to single cells in the same row or column as another single, resolved cell. In process of elimination, we resolve single cells based on whether values exist in collections of single cells in columns and rows.
+
+But this isn't the only way to think about what values are or are not possible for cells. Clues principally rule out _sequences_ of values for their rows or columns. If two or more cells are unknown, a clue may not tell us much about these cells in isolation, but it can rule out certain _combinations_ of values for these cells, considered together.
+
+This insight makes available to us a powerful mechanism for generalizing about clue elimination. If for every remaining possible sequence for a row or column, the clues rule out _all but_ one or more values for a cell, we can resolve the cell to these values.
+
+That is, suppose we make a list of possible sequences not yet eliminated by our constraints, for a given row or column. Then suppose we filter this list according to which sequences are permitted by clues. We may not yet be able to resolve the entire row--that is, multiple sequences might remain--but if we find that _all remaining sequences_ show just a single value, for a cell, then we know that the cell in question _must_ resolve to this value.
+
+It might be objected at this point that in generating all remaining sequences for a row and then ruling some out that we veer dangerously close to the guess-and-check methodology we swore off

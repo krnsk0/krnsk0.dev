@@ -271,7 +271,6 @@ const initializeState = clues => {
     N: clues.length / 4,
     board: boardFactory(clues.length / 4),
     clues,
-    queue: [],
   }
 }
 ```
@@ -488,7 +487,7 @@ This works for handling any cells that were resolved by the edge clue constraint
 
 We could just call `propagateConstraints` repeatedly until we notice that nothing changes from one iteration to the next, checking every cell each time for for `cell.size === 1`. But this is a lot of extra work as most cells won't have changed. Instead, let's check constraint list size right after modifying a cell in `propagateFromResolvedCell`, which ensures we only check cells that have changed.
 
-When we find that a cell which has just changed has `.size === 1`, how should we kick off constraint propagation? We could recursively call `propagateFromResolvedCell`, but this could in some circumstances lead to code that's very difficult to step through, as our algorithm "chases" changes around the board, initiating new rounds of constraint propagation before resolving the previous round. It will be easier to reason about a "breadth first" approach in which each propagation operation finishes before the next starts. To do this, let's add a `queue` key to our state which holds an array and set up `propagateConstraints` to use this queue. Inside `propagateFromResolvedCell`:
+When we find that a cell which has just changed has `size === 1`, how should we kick off constraint propagation? We could recursively call `propagateFromResolvedCell`, but this could in some circumstances lead to code that's very difficult to step through, as our algorithm "chases" changes around the board, initiating new rounds of constraint propagation before completing prior rounds. It will be easier to reason about a "breadth first" approach in which each propagation operation finishes before the next starts. To do this, let's add a `queue` key to our state which holds an array and set up `propagateConstraints` to use this queue. Inside `propagateFromResolvedCell`:
 
 ```js
 crossIndices.forEach(crossIndex => {
@@ -516,13 +515,6 @@ How to approach this? So far, we've used `Set.prototype.delete()` to eliminate i
 // mutates state.queue
 // mutates state.board.cellIndex
 const constrainAndEnqueue = (state, cellIndex, deleteValue, resolveValue) => {
-  // XOR check to make sure we call this function with either
-  // deleteValue or resolveValue but not both
-  console.assert(
-    !deleteValue != !resolveValue,
-    "constrainAndEnqueue called with bad arguments"
-  )
-
   const constrain = (idxToConstrain, valueToDelete) => {
     const cell = state.board[idxToConstrain]
     let mutated = cell.delete(valueToDelete) // `mutated` is a boolean
@@ -539,7 +531,6 @@ const constrainAndEnqueue = (state, cellIndex, deleteValue, resolveValue) => {
   if (deleteValue) {
     constrain(cellIndex, deleteValue)
   } else {
-    // if resolveValue (b/c of assertion above)
     for (let value of state.board[cellIndex]) {
       if (value !== resolveValue) {
         constrain(cellIndex, value)
@@ -549,7 +540,9 @@ const constrainAndEnqueue = (state, cellIndex, deleteValue, resolveValue) => {
 }
 ```
 
-Besides passing in state and the cell index to mutate, we can pass in either a value to eliminate from its constraint list or a value to resolve to-- but not neither and not both. The `console.assert()` ensures this. There's also a check to make sure that after a successful delete, we haven't ended up with an empty cell, in which we've ruled out all possible values, which should never happen for a set of valid Skyscraper clues.
+Besides passing in state and the cell index to mutate, we can pass in either a value to eliminate from its constraint list or a value to resolve to-- but not neither and not both.
+
+We've added a check to make sure that after a successful delete, we haven't ended up with an empty cell in which we've ruled out all possible values-- something which should never happen for a set of valid Skyscraper clues. For now, this will help us with debugging; we'll actually make use of the error much later when we implement backtracking.
 
 After updating `performEdgeClueInitialization` and `propagateFromResolvedCell` to use this new function, where does this leave us? The program is capable of making inferences from edge clues and repeatedly propagating constraints from cells resolved in this process, drawing out all possible consequences from these two methods in combination.
 
@@ -612,7 +605,7 @@ We can't get any farther without introducing a third form of inference.
 
 ## Process of Elimination
 
-**Process of elimination** allows the player to resolve a cell to a value when that value is no longer present in any other cells in either that cell's row or column. That is: if a given cell's constraint list shows a 4 as a possibility for itself, but no other cells show a four in its row or column (or both), we know that the cell in question _must_ be the 4 in its row and column.
+**Process of elimination** allows the player to resolve a cell to a value when that value is no longer present in any other cells in either that cell's row or column. That is: if a given cell's constraint list shows a 4 as a possibility for itself, but no other cells show a four in its row or column, we know that the cell in question _must_ be the 4 in its row and column.
 
 For instance, in the example we've been working with, the absence of a 4 in all cells of row two except the second allows us to resolve that cell to 4:
 
@@ -718,7 +711,7 @@ const poeCellSearch = (state, modifiedCellIndex, deletedValue) => {
   const rowIndices = getRowIndicesFromCellIndex(state, modifiedCellIndex)
   const colIndices = getColIndicesFromCellIndex(state, modifiedCellIndex)
   const results = []
-  ;[(rowIndices, colIndices)].forEach(cellIndices => {
+  ;[rowIndices, colIndices].forEach(cellIndices => {
     if (countDeletedValue(state, cellIndices, deletedValue) === 1) {
       const poeCellIndex = findCellIndexWithValue(
         state,
