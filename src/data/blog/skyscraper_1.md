@@ -4,7 +4,7 @@ host: "local"
 title: "Solving Every Skyscraper Puzzle: Part One"
 date: "1561870800000"
 published: true
-description: "Puzzle-solving with constraint propagation and backtracking search. Covers approach, architecture; builds out three forms of inference."
+description: "Puzzle-solving with constraint propagation and backtracking search. Covers approach, architecture, and builds out three forms of inference."
 word_count: 4126
 slug: "skyscraper-puzzle-1"
 offsite_link: ""
@@ -91,7 +91,7 @@ A 1 clue allows us to resolve only the adjacent cell:
   </tbody>
 </table>
 
-While clues between 1 and N don't let us resolve cells, they do allow us to rule out some values. For example, on a 5x5 board, a 4 clue allows us to rule out 5, 4, and 3 for the adjacent cell: a 5 would block all other buildings, making only one visible where we need four; a 4 would allow for only one taller where we need three; and a 3 would allow for only two taller where we need three. For the second cell, a 4 clue lets us rule out 5 and 4: a 5 in that cell would mean a maximum of two buildings are visible and a 4 would mean a maximum of three are visible. Finally, for the third cell in, a 4 clue lets us rule out a building with a height of 5.
+While clues between 1 and N don't let us resolve cells, they do allow us to rule out some values. For example, on a 5x5 board, a 5 clue allows us to rule out 5, 4, and 3 for the adjacent cell: a 5 would block all other buildings, making only one visible where we need four; a 4 would allow for only one taller where we need three; and a 3 would allow for only two taller where we need three. For the second cell, a 4 clue lets us rule out 5 and 4: a 5 in that cell would mean a maximum of two buildings are visible and a 4 would mean a maximum of three are visible. Finally, for the third cell in, a 4 clue lets us rule out a building with a height of 5.
 
 <table class="md_table small">
   <tbody>
@@ -223,7 +223,7 @@ Let's plan on our top-level function accepting clues in the form of an array whi
   </tbody>
 </table>
 
-Because we're choosing to store our board as a single-dimensional array, we'll need some helpers to allow us to access our data by row and column, where we need to. Let's have these functions take in a row or column index, counting from zero in the top left, and return an array of indices pointing to the corresponding constraint lists. The caller will also need to pass in N, the size of the board.
+Because we're choosing to store our board as a single-dimensional array, we'll need some helpers to allow us to access our data by row and column. Let's have these functions take in a row or column index, counting from zero in the top left, and return an array of indices pointing to the corresponding constraint lists. The caller will also need to pass in N, the size of the board.
 
 ```javascript
 const getCellIndicesFromRowIndex = (rowIndex, N) => {
@@ -261,7 +261,7 @@ const getCellIndicesFromClueIndex = (clueIndex, N) => {
 
 To get everything moving we'll need some top-level infrastructure, starting with a `solveSkyscraper` function that accepts clues and returns a solution. But how should we store and pass around our data? It would certainly be convenient to keep our board, clues, the value of `N`, and so on as globals rather than passing them in to our functions-- or at least convenient to keep them in the scope of our top-level function such that they don't need to be passed around, so much.
 
-Once we get to the point where we need backtracking recursion, we'll need to avoid mutating state in the enclosing scope, as the bookkeeping to roll back mutations after a backtrack might get prohibitively complex. So we'll be writing some functions that can mutate state--those not involved in backtracking recursion--and others which cannot. We'll have to pay close attention to this distinction as we proceed.
+Once we get to the point where we need backtracking recursion, we'll need to avoid mutating state in the enclosing scope, as the bookkeeping to roll back mutations after a backtrack can become prohibitively complex. So we'll be writing some functions that can mutate state--those not involved in backtracking recursion--and others which cannot. We'll have to pay close attention to this distinction as we proceed.
 
 In any case, to avoid having to pass too many extra arguments into our functions, let's condense the data into an object:
 
