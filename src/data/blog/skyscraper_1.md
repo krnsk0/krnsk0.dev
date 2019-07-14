@@ -35,7 +35,7 @@ A relative of Sudoku and other [Latin-Square](https://en.wikipedia.org/wiki/Lati
 
 Taller skyscrapers block the visibility of shorter skyscrapers, but not vice versa. For example, in a 4x4 puzzle, a row with heights 2-4-3-1 has two skyscrapers visible from its left side, and three on its right side. Both would be valid clues a puzzle author could provide, for this row-- but notably, the starting point for a skyscraper puzzle need not provide clues for every side of each row and column. Often, the fewer clues given, the harder the puzzle.
 
-This article walks through the use of [constraint propagation](https://en.wikipedia.org/wiki/Constraint_satisfaction), a technique dating to the era of [symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence), to model the inferential techniques employed by skyscraper enthusiasts. While building up a vocabulary of concepts to help us reason about the puzzle, we'll 'll use Javascript to also build up, first, an algorithm capable of solving _published_ puzzles of arbitrary size and difficulty without resorting to backtracking, and later build in backtracking to allow us to solve _all_ possible Skyscraper puzzles, full-stop.
+This post walks through the use of [constraint propagation](https://en.wikipedia.org/wiki/Constraint_satisfaction), a technique dating to the era of [symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence), to model the inferential techniques employed by skyscraper enthusiasts. While building up a vocabulary of concepts to help us reason about the puzzle, we'll 'll use Javascript to also build up, first, an algorithm capable of solving _published_ puzzles of arbitrary size and difficulty without resorting to backtracking, and later build in backtracking to allow us to solve _all_ possible Skyscraper puzzles, full-stop.
 
 We'll be building a solution piece by piece; if you want to refer to the finished product as you read, it can be found [here]().
 
@@ -57,7 +57,7 @@ When solving puzzles, enthusiasts typically alternate through applying several f
 
 Beginner players often start by learning to apply edge clue initialization, resolved cell constraint propagation, and process of elimination. Skilled players, in addition to an acquired mastery of these inferential techniques, are marked by two further characteristics: grasp of a sizable repertoire of patterns which allow rapid application of clue elimination, and a good "feel" for the order in which to iteratively apply techniques 2-4 to quickly solve a puzzle.
 
-The code we build up won't be able to model everything a sophisticated organic neural network brings to the skyscraper puzzle, but we'll get close. We'll alternate between describing forms of inference and implementing them, starting with edge clue initialization.
+The algorithm we build up won't be able to model everything a sophisticated organic neural network brings to the skyscraper puzzle, but we'll get close. We'll alternate between describing forms of inference and implementing them, starting with edge clue initialization.
 
 ## Edge Clue Initialization: Approach
 
@@ -152,7 +152,7 @@ Given the above example, let's determine what to cross off for the _second_ cell
 
 ## First Steps
 
-We'll need a data structure to represent the current state of our knowledge of possibilities for a cell. Arrays would work fine, but Javascript's Set object gets us some nice built-ins which will sweeten our syntax. Let's call this structure which represents remaining possibilities for a cell a **constraint list**.
+We'll need a data structure to represent the current state of our knowledge of possibilities for a cell. Arrays would work, but Javascript's Set object gets us some nice built-ins which will sweeten our syntax. Let's call this structure which represents remaining possibilities for a cell a **constraint list**.
 
 ```javascript
 const constraintListFactory = N => {
@@ -409,7 +409,7 @@ If we were to write code to pretty-print the state for our 4x4 example, we'd get
   </tbody>
 </table>
 
-The second form of inference--constraint propagation--starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know that third cell in the first row is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and third column.
+The second form of inference--**constraint propagation**--starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know that third cell in the first row is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and third column.
 
 <table class="md_table large">
   <tbody>
@@ -484,7 +484,7 @@ const propagateConstraints = state => {
 
 ## Implementing a Constraint Propagation Queue
 
-This works fine for handling any cells that were resolved by the edge clue constraints. But what if propagating constraints from a resolved cell results in new resolved cells--that is, cells with only only one value not crossed off--such that we would want to propagate constraints from these cells, in turn?
+This works for handling any cells that were resolved by the edge clue constraints. But what if propagating constraints from a resolved cell results in new resolved cells--that is, cells with only only one value not crossed off--such that we would want to propagate constraints from these cells, in turn?
 
 We could just call `propagateConstraints` repeatedly until we notice that nothing changes from one iteration to the next, checking every cell each time for for `cell.size === 1`. But this is a lot of extra work as most cells won't have changed. Instead, let's check constraint list size right after modifying a cell in `propagateFromResolvedCell`, which ensures we only check cells that have changed.
 
@@ -612,7 +612,7 @@ We can't get any farther without introducing a third form of inference.
 
 ## Process of Elimination
 
-Process of elimination allows the player to resolve a cell to a value when that value is no longer present in any other cells in either that cell's row or column. That is: if a given cell's constraint list shows a 4 as a possibility for itself, but no other cells show a four in its row or column (or both), we know that the cell in question _must_ be the 4 in its row and column.
+**Process of elimination** allows the player to resolve a cell to a value when that value is no longer present in any other cells in either that cell's row or column. That is: if a given cell's constraint list shows a 4 as a possibility for itself, but no other cells show a four in its row or column (or both), we know that the cell in question _must_ be the 4 in its row and column.
 
 For instance, in the example we've been working with, the absence of a 4 in all cells of row two except the second allows us to resolve that cell to 4:
 
@@ -645,16 +645,16 @@ For instance, in the example we've been working with, the absence of a 4 in all 
   </tbody>
 </table>
 
-How to implement PoE? We don't want to replicate the design we optimized away in kicking off constraint propagation in which we iteratively scan entire board for some pattern or criteria-- we want to call PoE function right after we mutate our data, which will make sure we run PoE all and only when necessary. Described from the top down, we'll need a function which:
+How to implement PoE? We don't want to replicate the design we optimized away in kicking off constraint propagation, in which we iteratively scanned the entire board for some pattern or criteria. We'll want to call PoE function right after we mutate our data, which will make sure we run PoE all and only when necessary. Described from the top down, we'll need a function which:
 
 1. Takes in a value that has just been crossed off a constraint list for a given cell
 2. Gets the row indices for the modified cell
-3. Check to see if we've already resolved that value in this row; if so, we're done.
-4. For all other cells in that row, does the value just crossed off appear just once?
-5. If so, resolve the cell where the value appears to the value in question
+3. Checks to see if we've already resolved that value in this row (if so, we're done)
+4. For all other cells in that row, checks to see if the value just crossed off appears only once
+5. If so, resolves the cell where the value appears to the value in question
 6. Repeats steps (2)-(5) for the column, instead of the row.
 
-Let's start with some helpers to get the row/column indices for a cellIndex, sans the cellIndex.
+Let's start with some helpers to get the row/column indices for a `cellIndex`, sans the `cellIndex`.
 
 ```js
 const getRowIndicesFromCellIndex = (state, cellIndex) => {
@@ -672,7 +672,7 @@ const getColIndicesFromCellIndex = (state, cellIndex) => {
 }
 ```
 
-We're going to examine a value just deleted from a constraint list to see if we can resolve other cells to it, which is something we _don't_ need to do if the value in question is already resolved for a row or column. If, for example, we're in the midst of propagating constraints from a cell that has been resolved to `4`, we don't need to run PoE for `4` in that cell's row and column, and we can do an early return. Here's a helper to facilitate this; we'll use a for loop to allow an early return:
+We're going to examine a value just deleted from a constraint list to see if we can resolve other cells to it, which is something we _don't_ need to do if the value in question is already resolved for a row or column. If, for example, we're in the midst of propagating constraints from a cell that has been resolved to `4`, we don't need to run PoE for `4` in that cell's row and column. Here's a helper to facilitate this; we'll use a for loop to allow an early return:
 
 ```js
 const isValueResolvedInCellIndices = (state, cellIndices, valueToCheck) => {
@@ -725,7 +725,7 @@ const poeCellSearch = (state, modifiedCellIndex, deletedValue) => {
         rowIndices,
         deletedValue
       )
-      results.push(deletedValue)
+      results.push(poeCellIndex)
     }
   })
 }
@@ -733,15 +733,15 @@ const poeCellSearch = (state, modifiedCellIndex, deletedValue) => {
 
 Here we're returning an array of cell indices which are resolvable to the `deletedValue` passed in to `poeCellSearch`. All we'll need to do next after calling `poeCellSearch` is iterate this array, resolving the cell pointed to by each index.
 
-But here we run in to a problem. We want to run PoE search inside `constrainAndEnqueue`, the abstraction we wrapped around `Set.prototype.delete()` for our constraint lists. But PoE will need to call `constrainAndEnqueue` so that we properly draw out consequences from cells resolved through PoE, which again can put us in the position of "chasing" changes around the board with an increasingly deep call stack-- which will make debugging challenging.
+But here we run in to a problem. We want to run `poeCellSearch` inside `constrainAndEnqueue`, the abstraction we wrapped around `Set.prototype.delete()` for our constraint lists. But PoE will need to call `constrainAndEnqueue` so that we properly draw out consequences from cells resolved through PoE, which again can put us in the position of "chasing" changes around the board with an increasingly deep call stack-- which will make debugging challenging.
 
-We need to interrupt this potential runaway chain of function calls by having our PoE functions push work to the queue. Right now `poeCellSearch` returns an array of cells to resolve; perhaps instead of a return we can push to the queue inside of `poeCellSearch`. But, here we'd be enqueueing a different kind of entity than what currently lives in `state.queue`, which right now is a list of newly-resolved cell indices from which constraints need to be propagated.
+We need to interrupt this potential runaway chain of function calls by having our PoE functions enqueue rather than perform the work they discover. Right now `poeCellSearch` returns an array of cells to resolve; perhaps instead of a return we can push to the queue inside of `poeCellSearch`. But, here we'd be enqueueing a different kind of entity than what currently lives in `state.queue`, which right now is a list of newly-resolved cell indices from which constraints need to be propagated.
 
-That is: `state.queue` is currently used to schedule future _post-cell-mutation_ work; what we're now talking about queueing is _cell mutation_, itself. We could create separate queues for these types of work, and empty them out each in sequence in the `while` block in `propagateConstraints`, but it would make debugging easier if scheduled work executed in the order it was scheduled.
+That is: `state.queue` is currently used to schedule future _post-cell-mutation_ work; what we're now talking about enqueueing is _cell mutation_, itself. We could create separate queues for these types of work and empty them out each in sequence inside `propagateConstraints`, but it would make debugging easier if scheduled work executed in exactly the order it was scheduled.
 
 Instead of enqueueing cell IDs, let's pass the queue objects which tell `propagateConstraints` what kind of work to perform. In fact, we should start by renaming `propagateConstraints`, which now does more than this; let's call it `queueProcessor`.
 
-Next, we'll modify in `constrainAndEnqueue` pass an object into the queue with a `type` property, where previously we'd just passed in a cell index:
+Next, we'll modify `constrainAndEnqueue` to pass an object into the queue with a `type` property where previously we'd just passed in a cell index:
 
 ```js
 if (mutated && cell.size === 1) {
@@ -809,7 +809,7 @@ if (action.type === `PROPAGATE_CONTSTRAINTS_FROM`) {
 
 ## Next Steps
 
-Where does all of this code get us? After constraining the board with clues, propagating these constraints, and applying PoE, we're already in a position to resolve all cells on some very simple puzzles, but most puzzles won't yet be solvable. Here's where we end up at with the 4x4 example we've been working with:
+Where does all of this code get us? After constraining the board with clues, propagating these constraints, and applying PoE, we're in a position to resolve a few cells in the 4x4 example we've been working with:
 
 <table class="md_table large">
   <tbody>
@@ -866,6 +866,6 @@ Where does all of this code get us? After constraining the board with clues, pro
 
 Skilled puzzle solvers often begin by resolving the positions of the tallest tower in each row. That our approach also ends up doing this is an early indicator that we're accurately modeling how players approach the game.
 
-An experienced player might next notice that the 2 clue on the top allows us to resolve its adjacent cell to 3, now that we know the last cell in its column is 4, as any other value would result in more than two buildings being visible from the standpoint of the clue. This is a characteristic example of an inference which incorporates information from both the clue and constraints already set on the board.
+An experienced player might next notice that the 2 clue on the top allows us to resolve its adjacent cell to 3, now that we know the last cell in its column is 4, as any other value would result in more than two buildings being visible from the standpoint of the clue. This is a characteristic example of inference which incorporates information from both the clue and from constraints already set on the board.
 
-In the next installment, we'll try to abstractly characterize this form of inference and translate these abstractions into javascript.
+In the next installment, we'll try to abstractly characterize this form of inference and translate these abstractions into Javascript.
