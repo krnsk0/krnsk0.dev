@@ -509,42 +509,45 @@ while (state.queue.length) {
 
 Now, having established this pattern, why bother having `propagateConstraints` iterate the board at all to check for `cell.size === 1`? We could add a size check and and enqueue operation to `performEdgeClueInitialization`, and have `propagateConstraints` be driven solely by the queue. But, we'd have to perform this size check for all three cases for `c` in `performEdgeClueInitialization`, each of which use slightly different methods to alter constraint lists. We need an abstraction around all of these methods versatile enough to handle not only the ways we modify constraint lists in the edge clue functions but also, hopefully, ways we might modify constraint lists in the future-- as we'll want to make sure we propagate constraints every time they change.
 
-How to approach this? So far, we've used `Set.prototype.delete()` to eliminate individual values from cells, but have also used `.clear()` followed by `.add()` to quickly resolve a cell with multiple values in its constraint list to just a single value. This suggests two basic use cases: deleting a value, and deleting everything but a value. Since the latter is reducible to repeated applications of the former, let's treat `.delete()` as primitive; we'll first write an abstraction around it which also checks for `cell.size === 1` and enqueues after a successful delete, and then wrap this in a secondary abstraction which transforms cell resolutions into repeated applications of our delete abstraction. Here's what it looks like:
+How to approach this? So far, we've used `Set.prototype.delete()` to eliminate individual values from cells, but have also used `.clear()` followed by `.add()` to quickly resolve a cell with multiple values in its constraint list to just a single value. This suggests two basic use cases: deleting a value, and deleting everything but a value. Since the latter is reducible to repeated applications of the former, let's treat `.delete()` as primitive:
 
 ```js
 // mutates state.queue
-// mutates state.board.cellIndex
-const constrainAndEnqueue = (state, cellIndex, deleteValue, resolveValue) => {
-  const constrain = (idxToConstrain, valueToDelete) => {
-    const cell = state.board[idxToConstrain]
-    let mutated = cell.delete(valueToDelete) // `mutated` is a boolean
+// mutates state.board
+const constrainAndEnqueue = (state, cellIndex, valueToDelete) => {
+  const cell = state.board[cellIndex]
+  let mutated = cell.delete(valueToDelete)
 
-    if (cell.size === 0) {
-      throw new Error(`cell ${idxToConstrain} is empty`)
-    }
-
-    if (mutated && cell.size === 1) {
-      state.queue.push(idxToConstrain)
-    }
+  if (cell.size === 0) {
+    throw new Error(`cell ${cellIndex} is empty`)
   }
 
-  if (deleteValue) {
-    constrain(cellIndex, deleteValue)
-  } else {
-    for (let value of state.board[cellIndex]) {
-      if (value !== resolveValue) {
-        constrain(cellIndex, value)
-      }
+  if (mutated && cell.size === 1) {
+    state.queue.push({
+      type: "PROPAGATE_CONTSTRAINTS_FROM",
+      cellIndex,
+    })
+  }
+
+  if (mutated) {
+    poeSearchAndEnqueue(state, cellIndex, valueToDelete)
+  }
+}
+
+// mutates state.queue
+// mutates state.board
+const resolveAndEnqueue = (state, cellIndex, valueToResolveTo) => {
+  for (let value of state.board[cellIndex]) {
+    if (value !== valueToResolveTo) {
+      constrainAndEnqueue(state, cellIndex, value)
     }
   }
 }
 ```
 
-Besides passing in state and the cell index to mutate, we can pass in either a value to eliminate from its constraint list or a value to resolve to-- but not neither and not both.
-
 We've added a check to make sure that after a successful delete, we haven't ended up with an empty cell in which we've ruled out all possible values-- something which should never happen for a set of valid Skyscraper clues. For now, this will help us with debugging; we'll actually make use of the error much later when we implement backtracking.
 
-After updating `performEdgeClueInitialization` and `propagateFromResolvedCell` to use this new function, where does this leave us? The program is capable of making inferences from edge clues and repeatedly propagating constraints from cells resolved in this process, drawing out all possible consequences from these two methods in combination.
+After updating `performEdgeClueInitialization` and `propagateFromResolvedCell` to use these new function, where does this leave us? The program is capable of making inferences from edge clues and repeatedly propagating constraints from cells resolved in this process, drawing out all possible consequences from these two methods in combination.
 
 Where does this get us with our example? After propagating constraints from the two 4 cells resolved by the edge clues, the board looks like this:
 
@@ -642,12 +645,13 @@ How to implement PoE? We don't want to replicate the design we optimized away in
 
 1. Takes in a value that has just been crossed off a constraint list for a given cell
 2. Gets the row indices for the modified cell
-3. Checks to see if we've already resolved that value in this row (if so, we're done)
-4. For all other cells in that row, checks to see if the value just crossed off appears only once
-5. If so, resolves the cell where the value appears to the value in question
-6. Repeats steps (2)-(5) for the column, instead of the row.
+3. Filters this list to just those cells which still contain the value in question
+4. If this list has just one index left, resolve the cell pointed to by the index to the value in question
+5. Repeats steps (2)-(4) for the mutated cell's column, instead of its row.
 
-Let's start with some helpers to get the row/column indices for a `cellIndex`, sans the `cellIndex`.
+We'll get some "false positives" in step four whenever we kick off PoE after resolving a cell to a single value, but as `constrainAndEnqueue` is idempotent with respect to both the board and queue, this is no problem.
+
+We'll need helpers to get row and cell indices from a cell index:
 
 ```js
 const getRowIndicesFromCellIndex = (state, cellIndex) => {
@@ -665,59 +669,20 @@ const getColIndicesFromCellIndex = (state, cellIndex) => {
 }
 ```
 
-We're going to examine a value just deleted from a constraint list to see if we can resolve other cells to it, which is something we _don't_ need to do if the value in question is already resolved for a row or column. If, for example, we're in the midst of propagating constraints from a cell that has been resolved to `4`, we don't need to run PoE for `4` in that cell's row and column. Here's a helper to facilitate this; we'll use a for loop to allow an early return:
+Now to wire things up:
 
 ```js
-const isValueResolvedInCellIndices = (state, cellIndices, valueToCheck) => {
-  for (let i = 0; i <= cellIndices.length - 1; i += 1) {
-    let cell = state.board[cellIndices[i]]
-    if (cell.size === 1 && cell.has(valueToCheck)) return true
-  }
-  return false
-}
-```
-
-Next we'll need count the number of times a given value appears in the constraint lists pointed to by an array of cell indices:
-
-```js
-const countValueInCellIndices = (state, cellIndices, valueToCount) => {
-  const count = cellIndices.reduce((accum, cellIndex) => {
-    if (state.board[cellIndex].has(valueToCount)) return accum + 1
-    else return accum
-  }, 0)
-
-  return count
-}
-```
-
-Whenever `countValueInCellIndices` returns 1, we'll need to get the index of the cell where the value appears. Here's one more helper:
-
-```js
-const findCellIndexWithValue = (state, cellIndices, valueToFind) => {
-  return cellIndices.find(cellIndex => state.board[cellIndex].has(valueToFind))
-}
-```
-
-Finally, let's wire everything up:
-
-```js
-const countDeletedValue = (state, cellIndices, deletedValue) => {
-  return isValueResolvedInCellIndices(state, cellIndices, deletedValue)
-    ? 0
-    : countValueInCellIndices(state, cellIndices, deletedValue)
-}
-
 const poeCellSearch = (state, modifiedCellIndex, deletedValue) => {
   const rowIndices = getRowIndicesFromCellIndex(state, modifiedCellIndex)
   const colIndices = getColIndicesFromCellIndex(state, modifiedCellIndex)
   const results = []
+
   ;[rowIndices, colIndices].forEach(cellIndices => {
-    if (countDeletedValue(state, cellIndices, deletedValue) === 1) {
-      const poeCellIndex = findCellIndexWithValue(
-        state,
-        rowIndices,
-        deletedValue
-      )
+    let filteredIndices = cellIndices.filter(index => {
+      return state.board[index].has(deletedValue)
+    })
+
+    if (filteredIndices.length === 1) {
       results.push(poeCellIndex)
     }
   })
@@ -766,17 +731,12 @@ const poeSearchAndEnqueue = (state, modifiedCellIndex, deletedValue) => {
   const colIndices = getColIndicesFromCellIndex(state, modifiedCellIndex)
 
   ;[rowIndices, colIndices].forEach(cellIndices => {
-    if (countDeletedValue(state, cellIndices, deletedValue) === 1) {
-      const poeCellIndex = findCellIndexWithValue(
-        state,
-        rowIndices,
-        deletedValue
-      )
-      state.queue.push({
-        type: "RESOLVE_CELL_TO_VALUE",
-        cellIndex: poeCellIndex,
-        resolveToValue: deletedValue,
-      })
+    let filteredIndices = cellIndices.filter(index => {
+      return state.board[index].has(deletedValue)
+    })
+
+    if (filteredIndices.length === 1) {
+      resolveAndEnqueue(state, filteredIndices[0], deletedValue)
     }
   })
 }
@@ -796,7 +756,7 @@ Lastly, we need to add a new case inside of `queueProcessor`:
 if (action.type === `PROPAGATE_CONTSTRAINTS_FROM`) {
   propagateFromResolvedCell(state, action.cellIndex)
 } else if (action.type === "RESOLVE_CELL_TO_VALUE") {
-  constrainAndEnqueue(state, action.cellIndex, null, action.resolveToValue)
+  resolveAndEnqueue(state, action.cellIndex, action.resolveToValue)
 }
 ```
 

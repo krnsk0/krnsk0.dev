@@ -130,3 +130,17 @@ This insight makes available to us a powerful mechanism for generalizing about c
 That is, suppose we make a list of possible sequences not yet eliminated by our constraints, for a given row or column. Then suppose we filter this list according to which sequences are permitted by clues. We may not yet be able to resolve the entire row--that is, multiple sequences might remain--but if we find that _all remaining sequences_ show just a single value, for a cell, then we know that the cell in question _must_ resolve to this value.
 
 It might be objected at this point that in generating all remaining sequences for a row and then ruling some out that we veer dangerously close to the guess-and-check methodology we swore off
+
+## CLUE ELIMINATION
+
+for a row/col:
+create all combinations
+
+## OVERALL STRUCTURE
+
+clue initialization
+queue processor
+
+while unsolved:
+clue elimination
+queue processor
