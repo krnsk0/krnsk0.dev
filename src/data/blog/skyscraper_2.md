@@ -91,3 +91,56 @@ In this post, we'll implement our final form of inference, Clue Elimination, giv
 ## Clue Elimination
 
 The last post concluded with the observation that an an experienced skyscrapers player might next notice that the 2 clue on the top allows the resolution of its adjacent cell. Given that we know the position of the 4 in the last column, the adjacent cell must be 3, as any other value would result in more than two buildings being visible from the standpoint of the clue.
+
+<table class="md_table large">
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">4</td>
+      <td class="border">3</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">3</td>
+      <td class="border">4</td>
+      <td class="border">1</td>
+      <td class="border">2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td class="border">3</td>
+      <td class="border">1</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">2</td>
+      <td class="border">4</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
