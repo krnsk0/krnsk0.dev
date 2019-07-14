@@ -13,6 +13,7 @@ const GlobalContainerDiv = styled.div`
   display: flex;
   justify-content: center;
   min-width: 320px;
+  margin-bottom: 15px;
 `
 
 const GlobalStyleDiv = styled.div`
