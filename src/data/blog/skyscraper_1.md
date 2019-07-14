@@ -152,7 +152,7 @@ Given the above example, let's determine what to cross off for the _second_ cell
 
 ## First Steps
 
-We'll need a data structure to represent the current state of our knowledge of possibilities for a cell. Arrays would work fine, but Javascript's Set object gets us some nice built-ins which will sweeten our syntax. Let's call this structure which represents remaining possibilities for a cell a **constraint list**.
+We'll need a data structure to represent the current state of our knowledge of possibilities for a cell. Arrays would work, but Javascript's Set object gets us some nice built-ins which will sweeten our syntax. Let's call this structure which represents remaining possibilities for a cell a **constraint list**.
 
 ```javascript
 const constraintListFactory = N => {
@@ -484,7 +484,7 @@ const propagateConstraints = state => {
 
 ## Implementing a Constraint Propagation Queue
 
-This works fine for handling any cells that were resolved by the edge clue constraints. But what if propagating constraints from a resolved cell results in new resolved cells--that is, cells with only only one value not crossed off--such that we would want to propagate constraints from these cells, in turn?
+This works for handling any cells that were resolved by the edge clue constraints. But what if propagating constraints from a resolved cell results in new resolved cells--that is, cells with only only one value not crossed off--such that we would want to propagate constraints from these cells, in turn?
 
 We could just call `propagateConstraints` repeatedly until we notice that nothing changes from one iteration to the next, checking every cell each time for for `cell.size === 1`. But this is a lot of extra work as most cells won't have changed. Instead, let's check constraint list size right after modifying a cell in `propagateFromResolvedCell`, which ensures we only check cells that have changed.
 
