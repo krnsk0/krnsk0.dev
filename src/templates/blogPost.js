@@ -54,7 +54,7 @@ const PostWrapper = styled.div`
   /* this rule targets code blocks but can be over-ridden by prism.css */
   code[class*="language-"],
   pre[class*="language-"] {
-    font-size: 0.93em;
+    font-size: 0.92em;
     @media (max-width: 700px) {
       font-size: 0.9em;
     }

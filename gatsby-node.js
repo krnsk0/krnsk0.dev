@@ -8,7 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
     {
       allMarkdownRemark(
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { type: { eq: "post" }, host: { eq: "local" } } }
+        filter: { frontmatter: { type: { eq: "post" }, host: { eq: "local" }, published: { eq: true } } }
       ) {
         edges {
           node {

@@ -55,7 +55,7 @@ When solving puzzles, enthusiasts typically alternate through applying several f
 
 4. Finally, **clue elimination** allows players--having applied method (1) and iterated through some successive applications of methods (2) and (3)--to look back at clues to rule out values and resolve additional cells.
 
-Beginner players often start by learning to apply edge clue initialization, resolved cell constraint propagation, and process of elimination. Skilled players, in addition to an acquired mastery of these inferential techniques, are marked by two further characteristics: grasp of a sizable repertoire of patterns which allow rapid application of clue elimination, and a good "feel" for the order in which to iteratively apply techniques 2-4 to quickly solve a puzzle.
+Beginners often start by learning to apply edge clue initialization, resolved cell constraint propagation, and process of elimination. Skilled players, in addition to an acquired mastery of these inferential techniques, are marked by two further characteristics: grasp of a sizable repertoire of patterns which allow rapid application of clue elimination, and a good "feel" for the order in which to iteratively apply techniques 2-4 to quickly solve a puzzle.
 
 The algorithm we build up won't be able to model everything a sophisticated organic neural network brings to the skyscraper puzzle, but we'll get close. We'll alternate between describing forms of inference and implementing them, starting with edge clue initialization.
 
@@ -485,7 +485,7 @@ const propagateConstraints = state => {
 
 This works for handling any cells that were resolved by the edge clue constraints. But what if propagating constraints from a resolved cell results in new resolved cells--that is, cells with only only one value not crossed off--such that we would want to propagate constraints from these cells, in turn?
 
-We could just call `propagateConstraints` repeatedly until we notice that nothing changes from one iteration to the next, checking every cell each time for for `cell.size === 1`. But this is a lot of extra work as most cells won't have changed. Instead, let's check constraint list size right after modifying a cell in `propagateFromResolvedCell`, which ensures we only check cells that have changed.
+We could just call `propagateConstraints` repeatedly until we notice that nothing changes from one iteration to the next, checking every cell each time for for `cell.size === 1`. But this is a lot of extra work as most cells won't have changed. Instead, let's check constraint list size right after modifying a cell in `propagateFromResolvedCell`, which ensures we only check cells that _have_ changed.
 
 When we find that a cell which has just changed has `size === 1`, how should we kick off constraint propagation? We could recursively call `propagateFromResolvedCell`, but this could in some circumstances lead to code that's very difficult to step through, as our algorithm "chases" changes around the board, initiating new rounds of constraint propagation before completing prior rounds. It will be easier to reason about a "breadth first" approach in which each propagation operation finishes before the next starts. To do this, let's add a `queue` key to our state which holds an array and set up `propagateConstraints` to use this queue. Inside `propagateFromResolvedCell`:
 
@@ -817,7 +817,7 @@ Where does all of this code get us? After constraining the board with clues, pro
   </tbody>
 </table>
 
-Skilled puzzle solvers often begin by resolving the positions of the tallest tower in each row. That our approach also ends up doing this is an early indicator that we're accurately modeling how players approach the game.
+Skilled puzzle solvers often begin by resolving the position of the tallest tower in each row. That our approach also ends up doing this is an early indicator that we're accurately modeling how players approach the game.
 
 An experienced player might next notice that the 2 clue on the top allows us to resolve its adjacent cell to 3, now that we know the last cell in its column is 4, as any other value would result in more than two buildings being visible from the standpoint of the clue. This is a characteristic example of inference which incorporates information from both the clue and from constraints already set on the board.
 

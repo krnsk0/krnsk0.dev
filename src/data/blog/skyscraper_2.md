@@ -144,3 +144,56 @@ queue processor
 while unsolved:
 clue elimination
 queue processor
+
+<table class="md_table large">
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">4</td>
+      <td class="border">3</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">4</td>
+      <td class="border">12</td>
+      <td class="border">2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td class="border">4</td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">12</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="border">123</td>
+      <td class="border">123</td>
+      <td class="border">12</td>
+      <td class="border">4</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
