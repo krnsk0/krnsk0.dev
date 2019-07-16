@@ -453,14 +453,11 @@ const getCrossIndicesFromCell = (state, cellIndex) => {
 }
 ```
 
-Next we'll need a function that, when called with a cell index, eliminates the resolved value from the constraint lists referenced by the results of `getCrossIndicesFromCell()`. We'll assume this function always gets called on a constraint list with just one value remaining (and throw otherwise), and we'll use iterator syntax to access the remaining value in our set of constraints:
+Next we'll need a function that, when called with a cell index, eliminates the resolved value from the constraint lists referenced by the results of `getCrossIndicesFromCell()`. We'll assume this function always gets called on a constraint list with just one value remaining and we'll use iterator syntax to access the remaining value in our set of constraints:
 
 ```js
 const propagateFromResolvedCell = (originalState, cellIndex) => {
   let list = state.board[cellIndex]
-  if (list.size > 1) {
-    throw new Error("propagate constraints called on a non-resolved cell")
-  }
   const valueToEliminate = list.values().next().value
   const crossIndices = getCrossIndicesFromCell(state, cellIndex)
   crossIndices.forEach(crossIndex => {
