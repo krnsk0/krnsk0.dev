@@ -37,7 +37,6 @@ Taller skyscrapers block the visibility of shorter skyscrapers, but not vice ver
 
 This post walks through the use of [constraint propagation](https://en.wikipedia.org/wiki/Constraint_satisfaction), a technique dating to the era of [symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence), to model the inferential techniques employed by skyscraper enthusiasts. While building a vocabulary of concepts to help us reason about the puzzle, we'll use Javascript to also build, first, an algorithm capable of solving _published_ puzzles of arbitrary size and difficulty without resorting to backtracking, and then build in backtracking to allow us to solve _all_ possible Skyscraper puzzles, full-stop.
 
-
 ## Approach
 
 Why the caveat that we'll only at first be able to solve _published_ puzzles?
