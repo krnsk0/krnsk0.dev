@@ -35,9 +35,9 @@ A relative of Sudoku and other [Latin-Square](https://en.wikipedia.org/wiki/Lati
 
 Taller skyscrapers block the visibility of shorter skyscrapers, but not vice versa. For example, in a 4x4 puzzle, a row with heights 2-4-3-1 has two skyscrapers visible from its left side, and three on its right side. Both would be valid clues a puzzle author could provide, for this row-- but notably, the starting point for a skyscraper puzzle need not provide clues for every side of each row and column. Often, the fewer clues given, the harder the puzzle.
 
-This post walks through the use of [constraint propagation](https://en.wikipedia.org/wiki/Constraint_satisfaction), a technique dating to the era of [symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence), to model the inferential techniques employed by skyscraper enthusiasts. While building up a vocabulary of concepts to help us reason about the puzzle, we'll 'll use Javascript to also build up, first, an algorithm capable of solving _published_ puzzles of arbitrary size and difficulty without resorting to backtracking, and later build in backtracking to allow us to solve _all_ possible Skyscraper puzzles, full-stop.
+This post walks through the use of [constraint propagation](https://en.wikipedia.org/wiki/Constraint_satisfaction), a technique dating to the era of [symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence), to model the inferential techniques employed by skyscraper enthusiasts. While building a vocabulary of concepts to help us reason about the puzzle, we'll use Javascript to also build, first, an algorithm capable of solving _published_ puzzles of arbitrary size and difficulty without resorting to backtracking, and then build in backtracking to allow us to solve _all_ possible Skyscraper puzzles, full-stop.
 
-We'll be building a solution piece by piece; if you want to refer to the finished product as you read, it can be found [here]().
+<!-- If you want to refer to the finished product as you read, it can be found [here](). -->
 
 ## Approach
 
@@ -484,7 +484,7 @@ This works for handling any cells that were resolved by the edge clue constraint
 
 We could just call `propagateConstraints` repeatedly until we notice that nothing changes from one iteration to the next, checking every cell each time for for `cell.size === 1`. But this is a lot of extra work as most cells won't have changed. Instead, let's check constraint list size right after modifying a cell in `propagateFromResolvedCell`, which ensures we only check cells that _have_ changed.
 
-When we find that a cell which has just changed has `size === 1`, how should we kick off constraint propagation? We could recursively call `propagateFromResolvedCell`, but this could in some circumstances lead to code that's very difficult to step through, as our algorithm "chases" changes around the board, initiating new rounds of constraint propagation before completing prior rounds. It will be easier to reason about a "breadth first" approach in which each propagation operation finishes before the next starts. To do this, let's add a `queue` key to our state which holds an array and set up `propagateConstraints` to use this queue. Inside `propagateFromResolvedCell`:
+When we find that a cell which has just changed has `size === 1`, how should we kick off constraint propagation? We could recursively call `propagateFromResolvedCell`, but this could in some circumstances lead to code that's very difficult to step through, as our algorithm "chases" changes around the board, initiating new rounds of constraint propagation before completing prior rounds. It will be easier to reason about a "breadth first" approach in which each propagation operation finishes before initiating "child" propagation operations. To do this, let's add a `queue` key to our state which holds an array and set up `propagateConstraints` to use this queue. Inside `propagateFromResolvedCell`:
 
 ```js
 crossIndices.forEach(crossIndex => {
