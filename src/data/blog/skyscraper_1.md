@@ -287,7 +287,7 @@ Now we're ready to start solving.
 
 ## Edge Clue Initialization: Code
 
-To perform edge clue initialization, we'll need to iterate our clues, get the corresponding row and column indices, and cross of values based on the general form of our edge constraint rule. Let's combine what we've written so far, starting for `1 < c < N`:
+To perform edge clue initialization, we'll need to iterate our clues, get the corresponding row and column indices, and cross off values based on the general form of our edge constraint rule. Let's combine what we've written so far, starting for `1 < c < N`:
 
 ```js
 const performEdgeClueInitialization = state => {
