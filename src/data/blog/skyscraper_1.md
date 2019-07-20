@@ -2,7 +2,7 @@
 type: "post"
 host: "local"
 title: "Solving Every Skyscraper Puzzle: Part One"
-date: "1561870800000"
+date: "1563154842000"
 published: true
 description: "Puzzle-solving with constraint propagation and backtracking search. Covers approach, architecture, and builds out three forms of inference."
 word_count: 4126
