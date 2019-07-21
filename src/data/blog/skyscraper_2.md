@@ -424,7 +424,7 @@ Calling this inside our top-level function after running edge clue initializatio
   </tbody>
 </table>
 
-## Sequence Filtration Optimization
+## Sequence Filtration: Optimization
 
 The program we've written is not particularly taxing for a puzzle as small as this. On my 2015 laptop it finishes in under 50ms. A larger puzzle can help us better understand the program's performance; here is a challenging 7x7:
 
