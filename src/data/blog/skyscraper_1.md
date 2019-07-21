@@ -33,7 +33,7 @@ td {border: none; padding: 0px; text-align: center; display: inline-block; margi
 
 A relative of Sudoku and other [Latin-Square](https://en.wikipedia.org/wiki/Latin_square)-derived puzzles, the [skyscraper](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers/rules) puzzle asks the player to place buildings of varying & unique heights on a grid so as to satisfy clues given on the grid's edges. These "edge clues" tell the player how many buildings are visible from the standpoint of a given clue's placement along the board's edge.
 
-Taller skyscrapers block the visibility of shorter skyscrapers, but not vice versa. For example, in a 4x4 puzzle, a row with heights 2-4-3-1 has two skyscrapers visible from its left side, and three on its right side. Both would be valid clues a puzzle author could provide, for this row-- but notably, the starting point for a skyscraper puzzle need not provide clues for every side of each row and column. Often, the fewer clues given, the harder the puzzle.
+Taller skyscrapers block the visibility of shorter skyscrapers, but not vice versa. For example, in a 4x4 puzzle, a row with heights 2-4-3-1 has two skyscrapers visible from its left side, and three on its right side. Both would be valid clues a puzzle author could provide, for this row— but notably, the starting point for a skyscraper puzzle need not provide clues for every side of each row and column. Often, the fewer clues given, the harder the puzzle.
 
 This post walks through the use of [constraint propagation](https://en.wikipedia.org/wiki/Constraint_satisfaction), a technique dating to the era of [symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence), to model the inferential techniques employed by skyscraper enthusiasts. While building a vocabulary of concepts to help us reason about the puzzle, we'll use Javascript to also build, first, an algorithm capable of solving _published_ puzzles of arbitrary size and difficulty without resorting to backtracking, and then build in backtracking to allow us to solve _all_ possible Skyscraper puzzles, full-stop.
 
@@ -51,7 +51,7 @@ When solving puzzles, enthusiasts typically alternate through applying several f
 
 3. **Process of elimination** resolves a cell to a value when it is the only cell in a given row or column for whom said value has not been eliminated.
 
-4. Finally, **clue elimination** allows players--having applied method (1) and iterated through some successive applications of methods (2) and (3)--to look back at clues to rule out values and resolve additional cells.
+4. Finally, **clue elimination** allows players—having applied method (1) and iterated through some successive applications of methods (2) and (3)—to look back at clues to rule out values and resolve additional cells.
 
 Beginners often start by learning to apply edge clue initialization, resolved cell constraint propagation, and process of elimination. Skilled players, in addition to an acquired mastery of these inferential techniques, are marked by two further characteristics: grasp of a sizable repertoire of patterns which allow rapid application of clue elimination, and a good "feel" for the order in which to iteratively apply techniques 2-4 to quickly solve a puzzle.
 
@@ -166,7 +166,7 @@ const boardFactory = N => {
 }
 ```
 
-Let's plan on our top-level function accepting clues in the form of an array which starts from the top left and goes clockwise around the board. If we're given an array with length 16--say, `[0, 0, 1, 2, 0, 2, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0]`-- we'll know we have a 4x4 board that initially looks like this:
+Let's plan on our top-level function accepting clues in the form of an array which starts from the top left and goes clockwise around the board. If we're given an array with length 16—say, `[0, 0, 1, 2, 0, 2, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0]`— we'll know we have a 4x4 board that initially looks like this:
 
 <table class="md_table small">
   <tbody>
@@ -257,9 +257,9 @@ const getCellIndicesFromClueIndex = (clueIndex, N) => {
 }
 ```
 
-To get everything moving we'll need some top-level infrastructure, starting with a `solveSkyscraper` function that accepts clues and returns a solution. But how should we store and pass around our data? It would certainly be convenient to keep our board, clues, the value of `N`, and so on as globals rather than passing them in to our functions-- or at least convenient to keep them in the scope of our top-level function such that they don't need to be passed around, so much.
+To get everything moving we'll need some top-level infrastructure, starting with a `solveSkyscraper` function that accepts clues and returns a solution. But how should we store and pass around our data? It would certainly be convenient to keep our board, clues, the value of `N`, and so on as globals rather than passing them in to our functions— or at least convenient to keep them in the scope of our top-level function such that they don't need to be passed around, so much.
 
-Once we get to the point where we need backtracking recursion, we'll need to avoid mutating state in the enclosing scope, as the bookkeeping to roll back mutations after a backtrack can become prohibitively complex. So we'll be writing some functions that can mutate state--those not involved in backtracking recursion--and others which cannot. We'll have to pay close attention to this distinction as we proceed.
+Once we get to the point where we need backtracking recursion, we'll need to avoid mutating state in the enclosing scope, as the bookkeeping to roll back mutations after a backtrack can become prohibitively complex. So we'll be writing some functions that can mutate state—those not involved in backtracking recursion—and others which cannot. We'll have to pay close attention to this distinction as we proceed.
 
 In any case, to avoid having to pass too many extra arguments into our functions, let's condense the data into an object:
 
@@ -328,7 +328,7 @@ const performEdgeClueInitialization = state => {
 }
 ```
 
-First we define a helper, then iterate all of the clues, for `1 < c < N`. Then we apply the helper function to eliminate values ruled out by the clue in question. We don't need to deep clone and return our state object, here-- it's okay to mutate objects in the enclosing scope because we'll only initialize from edge clues once, and won't need to involve this code in recursion, later.
+First we define a helper, then iterate all of the clues, for `1 < c < N`. Then we apply the helper function to eliminate values ruled out by the clue in question. We don't need to deep clone and return our state object, here— it's okay to mutate objects in the enclosing scope because we'll only initialize from edge clues once, and won't need to involve this code in recursion, later.
 
 Now to go back and handle the special cases, `c === 1` and `c === N`, which allow us to completely resolve a cell and an entire row/column, respectively:
 
@@ -406,7 +406,7 @@ If we were to write code to pretty-print the state for our 4x4 example, we'd get
   </tbody>
 </table>
 
-The second form of inference--**constraint propagation**--starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know that third cell in the first row is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and third column.
+The second form of inference--**constraint propagation**—starts from a resolved cell and rules out that value for all other cells in its row and column. Since we know that third cell in the first row is 4, we can eliminate of all of the remaining 4s in the "cross" formed by first row and third column.
 
 <table class="md_table large">
   <tbody>
@@ -478,7 +478,7 @@ const propagateConstraints = state => {
 
 ## Implementing a Constraint Propagation Queue
 
-This works for handling any cells that were resolved by the edge clue constraints. But what if propagating constraints from a resolved cell results in new resolved cells--that is, cells with only only one value not crossed off--such that we would want to propagate constraints from these cells, in turn?
+This works for handling any cells that were resolved by the edge clue constraints. But what if propagating constraints from a resolved cell results in new resolved cells—that is, cells with only only one value not crossed off—such that we would want to propagate constraints from these cells, in turn?
 
 We could just call `propagateConstraints` repeatedly until we notice that nothing changes from one iteration to the next, checking every cell each time for for `cell.size === 1`. But this is a lot of extra work as most cells won't have changed. Instead, let's check constraint list size right after modifying a cell in `propagateFromResolvedCell`, which ensures we only check cells that _have_ changed.
 
@@ -502,7 +502,7 @@ while (state.queue.length) {
 }
 ```
 
-Now, having established this pattern, why bother having `propagateConstraints` iterate the board at all to check for `cell.size === 1`? We could add a size check and and enqueue operation to `performEdgeClueInitialization`, and have `propagateConstraints` be driven solely by the queue. But, we'd have to perform this size check for all three cases for `c` in `performEdgeClueInitialization`, each of which use slightly different methods to alter constraint lists. We need an abstraction around all of these methods versatile enough to handle not only the ways we modify constraint lists in the edge clue functions but also, hopefully, ways we might modify constraint lists in the future-- as we'll want to make sure we propagate constraints every time they change.
+Now, having established this pattern, why bother having `propagateConstraints` iterate the board at all to check for `cell.size === 1`? We could add a size check and and enqueue operation to `performEdgeClueInitialization`, and have `propagateConstraints` be driven solely by the queue. But, we'd have to perform this size check for all three cases for `c` in `performEdgeClueInitialization`, each of which use slightly different methods to alter constraint lists. We need an abstraction around all of these methods versatile enough to handle not only the ways we modify constraint lists in the edge clue functions but also, hopefully, ways we might modify constraint lists in the future— as we'll want to make sure we propagate constraints every time they change.
 
 How to approach this? So far, we've used `Set.prototype.delete()` to eliminate individual values from cells, but have also used `.clear()` followed by `.add()` to quickly resolve a cell with multiple values in its constraint list to just a single value. This suggests two basic use cases: deleting a value, and deleting everything but a value. Since the latter is reducible to repeated applications of the former, let's treat `.delete()` as primitive:
 
@@ -540,7 +540,7 @@ const resolveAndEnqueue = (state, cellIndex, valueToResolveTo) => {
 }
 ```
 
-We've added a check to make sure that after a successful delete, we haven't ended up with an empty cell in which we've ruled out all possible values-- something which should never happen for a set of valid Skyscraper clues. For now, this will help us with debugging; we'll actually make use of the error much later when we implement backtracking.
+We've added a check to make sure that after a successful delete, we haven't ended up with an empty cell in which we've ruled out all possible values— something which should never happen for a set of valid Skyscraper clues. For now, this will help us with debugging; we'll actually make use of the error much later when we implement backtracking.
 
 After updating `performEdgeClueInitialization` and `propagateFromResolvedCell` to use these new function, where does this leave us? The program is capable of making inferences from edge clues and repeatedly propagating constraints from cells resolved in this process, drawing out all possible consequences from these two methods in combination.
 
@@ -686,7 +686,7 @@ const poeCellSearch = (state, modifiedCellIndex, deletedValue) => {
 
 Here we're returning an array of cell indices which are resolvable to the `deletedValue` passed in to `poeCellSearch`. All we'll need to do next after calling `poeCellSearch` is iterate this array, resolving the cell pointed to by each index.
 
-But here we run in to a problem. We want to run `poeCellSearch` inside `constrainAndEnqueue`, the abstraction we wrapped around `Set.prototype.delete()` for our constraint lists. But PoE will need to call `constrainAndEnqueue` so that we properly draw out consequences from cells resolved through PoE, which again can put us in the position of "chasing" changes around the board with an increasingly deep call stack-- which will make debugging challenging.
+But here we run in to a problem. We want to run `poeCellSearch` inside `constrainAndEnqueue`, the abstraction we wrapped around `Set.prototype.delete()` for our constraint lists. But PoE will need to call `constrainAndEnqueue` so that we properly draw out consequences from cells resolved through PoE, which again can put us in the position of "chasing" changes around the board with an increasingly deep call stack— which will make debugging challenging.
 
 We need to interrupt this potential runaway chain of function calls by having our PoE functions enqueue rather than perform the work they discover. Right now `poeCellSearch` returns an array of cells to resolve; perhaps instead of a return we can push to the queue inside of `poeCellSearch`. But, here we'd be enqueueing a different kind of entity than what currently lives in `state.queue`, which right now is a list of newly-resolved cell indices from which constraints need to be propagated.
 
@@ -816,4 +816,4 @@ Skilled puzzle solvers often begin by resolving the position of the tallest towe
 
 An experienced player might next notice that the 2 clue on the top allows us to resolve its adjacent cell to 3, now that we know the last cell in its column is 4, as any other value would result in more than two buildings being visible from the standpoint of the clue. This is a characteristic example of inference which incorporates information from both the clue and from constraints already set on the board.
 
-In the next installment, we'll try to abstractly characterize this form of inference and translate these abstractions into Javascript.
+In the next [installment](/writing/skyscraper-puzzle-2), we'll try to abstractly characterize this form of inference and translate these abstractions into Javascript.
