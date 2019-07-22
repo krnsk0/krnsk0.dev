@@ -129,9 +129,9 @@ We've already hinted at a way to generalize about our first case: 2-clues in row
 
 Looking at the second case, we might say: "with the first and the third cells resolved, the clue insists on a value for the second." This seems like it might generally applicable. But what if the second and fourth were resolved instead of the first and third? What if the gap between resolved cells were larger than one cell? When does the clue allow us to resolve cells in relation to the height of the cells on either side of the gap? And how to state answers to each of these questions in terms of a board with size `N`?
 
-While perhaps not impossible to answer these questions concerning a potential "gap rule", we will find that the questions compound as `N` grows— and as we consider other possible variations on the theme of inference enabled by clues on a constrained row. Every rule must be given a highly-general specification, in order to allow us to apply it to boards of any size. And, the larger the size of the board, the greater the opportunity to discover more (and more complex) patterns.
+While perhaps not impossible to answer these questions concerning a potential "gap rule", we will find that the questions compound as `N` grows-- and as we consider other possible variations on the theme of inference enabled by clues on a constrained row. Every rule must be given a highly-general specification, in order to allow us to apply it to boards of any size. And, the larger the size of the board, the greater the opportunity to discover more (and more complex) patterns.
 
-Indeed, internet guides to the game are [filled with home-spun wisdom](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers/techniques) concerning heuristics like the 2-clue and gap rules. But, while experienced players may have facility in describing and applying many such heuristics, their capacity to reason about clue constraints is hardly exhausted by such rules and heuristics, no matter how (finitely) large— since players, it seems, are also capable of **discovering** them.
+Indeed, internet guides to the game are [filled with home-spun wisdom](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers/techniques) concerning heuristics like the 2-clue and gap rules. But, while experienced players may have facility in describing and applying many such heuristics, their capacity to reason about clue constraints is hardly exhausted by such rules and heuristics, no matter how (finitely) large-- since players, it seems, are also capable of **discovering** them.
 
 This tends to suggest we are not operating at a high enough level of generality in attempting to describe clue constraint inference as potentially exhausted by a set of rules, patterns, or heuristics. We need a way to characterize or model the form of reasoning which is common to and underwrites _all_ such rules and heuristics.
 
@@ -143,7 +143,7 @@ But this isn't the only way to think about what values are or are not possible f
 
 This insight makes available to us a powerful mechanism for generalizing about clue elimination. If for every remaining possible sequence for a row or column, the clues rule out _all but_ one or more values for a cell, we can resolve the cell to these values.
 
-That is, suppose we make a list of possible sequences not yet eliminated by our constraints, for a given row or column. Then suppose we filter this list according to which sequences are permitted by clues. We may not yet be able to resolve the entire row—that is, multiple sequences might remain—but if we find that _all remaining sequences_ show just a single value, for a cell, then we know that the cell in question _must_ resolve to this value.
+That is, suppose we make a list of possible sequences not yet eliminated by our constraints, for a given row or column. Then suppose we filter this list according to which sequences are permitted by clues. We may not yet be able to resolve the entire row--that is, multiple sequences might remain--but if we find that _all remaining sequences_ show just a single value, for a cell, then we know that the cell in question _must_ resolve to this value.
 
 We'll call this technique **sequence filtration**. How does it work? Taking the example from the 4x4 board we've been working with:
 
@@ -167,7 +167,7 @@ We'll call this technique **sequence filtration**. How does it work? Taking the 
   </tbody>
 </table>
 
-First we'll need to generate a list of valid sequences for these cells— that is, sequences which don't contain repeated values and which are allowed by the clues:
+First we'll need to generate a list of valid sequences for these cells-- that is, sequences which don't contain repeated values and which are allowed by the clues:
 
 <div class="sequence-list">
 <span>1-3-2-4</span>
@@ -204,7 +204,7 @@ Though somewhat trivial, sequence filtration also captures what happens in our s
 
 Here, just two sequences are possible: 2-1-4-3 and 2-3-4-1. Only the latter satisfies the constraints, and we can resolve not one but two cells in this row.
 
-Importantly, there will be cases—especially in larger boards—where clue elimination via sequence filtration may not yet allow us to resolve cells completely but will still will allow us to pare down constraint lists. If for the first cell in a row a filtered sequence list shows only two possibilities where we had more possibilities listed, we're justified in constraining the cell to only these two possibilities, since no valid sequences for the row or column contain the other values.
+Importantly, there will be cases--especially in larger boards--where clue elimination via sequence filtration may not yet allow us to resolve cells completely but will still will allow us to pare down constraint lists. If for the first cell in a row a filtered sequence list shows only two possibilities where we had more possibilities listed, we're justified in constraining the cell to only these two possibilities, since no valid sequences for the row or column contain the other values.
 
 In this way, even where sequence filtration can't resolve cells outright, it can help whittle away at the constraint lists until we can resolve cells. Iterating through this edge constraint technique will, for valid and publishable puzzles, converge toward a solution.
 
@@ -216,7 +216,7 @@ While it is indeed the case that all single-row, single-column rules and heurist
 
 But in each an every case what we are doing is still best described as applying sequence filtration. In learning about the 3-4-5 right triangle, we might memorize a rule which allows us to fill in a missing side given the two other sides and a ninety degree angle in the correct configuration. Even if we don't know the pythagorean theorem, and even if our "experience" of reasoning about triangles does not involve the "experience" of applying the pythagorean theorem, it remains the case that we are applying the pythagorean theorem. And what holds for 3-4-5 triangle rules in relation to the pythagorean theorem holds for skyscraper heuristics, rules, and patterns, and their relationship to sequence filtration.
 
-Whatever we think of this argument by analogy, this question can in any case be left to the philosophers and psychologists, as there is another important _conceptual_ distinction which shows that sequence filtration is within the bounds of our approach. There is a difference between a guess-and-check technique which takes place _within_ a row or column and a _backtracking_ guess-and-check which involves making assumptions about one row or column and tracing out its consequences to find contradictions elsewhere on the board. And this distinction is a just a restatement of what marks off published from merely valid puzzles— which is just how we specified our problem, to start with.
+Whatever we think of this argument by analogy, this question can in any case be left to the philosophers and psychologists, as there is another important _conceptual_ distinction which shows that sequence filtration is within the bounds of our approach. There is a difference between a guess-and-check technique which takes place _within_ a row or column and a _backtracking_ guess-and-check which involves making assumptions about one row or column and tracing out its consequences to find contradictions elsewhere on the board. And this distinction is a just a restatement of what marks off published from merely valid puzzles-- which is just how we specified our problem, to start with.
 
 ## Sequence Filtration: Performance
 
@@ -278,7 +278,7 @@ const passClueCheck = (sequence, clue) => {
 }
 ```
 
-This last `passClueCheck` function can be used to filter the results of `makeAllUniqueSequences`. We'll need to filter the sequences lists twice— once for each clue. Here's a function that goes from cell indices and clue indices to unique sequences:
+This last `passClueCheck` function can be used to filter the results of `makeAllUniqueSequences`. We'll need to filter the sequences lists twice-- once for each clue. Here's a function that goes from cell indices and clue indices to unique sequences:
 
 ```js
 const generatePossibleSequences = (
@@ -532,7 +532,7 @@ The program we've written is not particularly taxing for a puzzle as small as th
 </tbody>
 </table>
 
-This one gets solved in under 100ms. Not bad— but we need some better metrics. As predicted, a flame graph shows that the program spends most of its time inside `generatePossibleSequences`.
+This one gets solved in under 100ms. Not bad-- but we need some better metrics. As predicted, a flame graph shows that the program spends most of its time inside `generatePossibleSequences`.
 
 Threading some variables through our functions, we can track some performance characteristics on the top level. As written, to solve this 7x7, the program generates and filters 3680 sequences and runs clue constraints for one or another clue 59 times.
 
@@ -584,7 +584,7 @@ const iterateEdgeConstraints = state => {
 }
 ```
 
-This gets us down to 2053 generated sequences, from 3680— something of an improvement. It turns out that a good proportion of these combinations are in fact from the program purposelessly generating combinations for rows without clues, at all. An early return in `edgeConstrainFromClue` when both clues are zero solves this:
+This gets us down to 2053 generated sequences, from 3680-- something of an improvement. It turns out that a good proportion of these combinations are in fact from the program purposelessly generating combinations for rows without clues, at all. An early return in `edgeConstrainFromClue` when both clues are zero solves this:
 
 ```js
 if (
@@ -625,15 +625,15 @@ const makeAllUniqueSequences = rowOrColumn => {
 }
 ```
 
-Now we're at 1490 generated sequences, and runtime on my laptop is back in the region of 50ms— about a 60% improvement, at least for this puzzle. We could conceivably take things much further with a smarter comparator function for sorting clue indices, but we already have a reasonable runtime for small `N` and we can always return to this question if, after implementing backtracking, we end up with problems.
+Now we're at 1490 generated sequences, and runtime on my laptop is back in the region of 50ms-- about a 60% improvement, at least for this puzzle. We could conceivably take things much further with a smarter comparator function for sorting clue indices, but we already have a reasonable runtime for small `N` and we can always return to this question if, after implementing backtracking, we end up with problems.
 
 We had mentioned that edge-clue initialization is really just a special case of clue elimination beginning from a fresh, unconstrained row. Now that we have implemented sequence filtration, we can think of edge-clue initialization as essentially a form of optimization which simply constrains the search performed via the sequence filtration technique. How much of an optimization is it?
 
-Commenting out `performEdgeClueInitialization` inside our top-level function allows us to discover an answer to this question. The puzzle is still solved, but this time some 12000 sequences had to be generated (taking well above 100ms, for me). Paradoxically, the puzzle is solved in only 38 iterations through edge clues as opposed to the 50+ iterations required to solve a puzzle with edge-clue initialization enabled; similar behavior is exhibited on other puzzles of many sizes. If you have ideas about why this happens, let me know— my best guess is that with a fresh board the spread of remaining-value counts between unsolved rows and columns is much larger than it is for an edge-clue-constrained board, which permits the sort-based optimization we performed above to do more work, despite the comparatively larger number of sequences which must be considered. But I haven't yet found a good way to test this idea.
+Commenting out `performEdgeClueInitialization` inside our top-level function allows us to discover an answer to this question. The puzzle is still solved, but this time some 12000 sequences had to be generated (taking well above 100ms, for me). Paradoxically, the puzzle is solved in only 38 iterations through edge clues as opposed to the 50+ iterations required to solve a puzzle with edge-clue initialization enabled; similar behavior is exhibited on other puzzles of many sizes. If you have ideas about why this happens, let me know-- my best guess is that with a fresh board the spread of remaining-value counts between unsolved rows and columns is much larger than it is for an edge-clue-constrained board, which permits the sort-based optimization we performed above to do more work, despite the comparatively larger number of sequences which must be considered. But I haven't yet found a good way to test this idea.
 
 ## Next Steps
 
-Our program now has the capacity to solve all valid, published skyscraper puzzles for arbitrary N using an efficient technique based on constraint propagation and search. What our program cannot yet do is solve valid but unpublishable puzzles—that is, puzzles whose clues permit one and only one unique solution, but which cannot be solved without cross-row/cross-column guess-and-check. Here is one such puzzle discovered programmatically by CodeWars user [Medved01](https://www.codewars.com/users/medved01):
+Our program now has the capacity to solve all valid, published skyscraper puzzles for arbitrary N using an efficient technique based on constraint propagation and search. What our program cannot yet do is solve valid but unpublishable puzzles--that is, puzzles whose clues permit one and only one unique solution, but which cannot be solved without cross-row/cross-column guess-and-check. Here is one such puzzle discovered programmatically by CodeWars user [Medved01](https://www.codewars.com/users/medved01):
 
 <table class="md_table small">
   <tbody>
