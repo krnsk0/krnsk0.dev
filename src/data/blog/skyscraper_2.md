@@ -47,7 +47,7 @@ td {border: none; padding: 0px; text-align: center; display: inline-block; margi
 
 </style>
 
-The [last post](/writing/skyscraper-puzzle-1) in this series described three forms of inference applicable to a [Skyscrapers](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers) puzzle board, then implementing them in Javascript. In combination, **edge clue initialization**, **resolved-cell constraint propagation**, and **process of elimination** allowed us to draw out all consequences from an initial look at a puzzle's edge clues:
+The [last post](/writing/skyscraper-puzzle-1) in this series described and implemented three forms of inference applicable to a [Skyscrapers](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers) puzzle board. In combination, **edge clue initialization**, **resolved-cell constraint propagation**, and **process of elimination** allowed us to draw out all consequences from an initial look at a puzzle's edge clues:
 
 <table class="md_table large">
   <tbody>
@@ -131,9 +131,9 @@ Looking at the second case, we might say: "with the first and the third cells re
 
 While perhaps not impossible to answer these questions concerning a potential "gap rule", we will find that the questions compound as `N` grows-- and as we consider other possible variations on the theme of inference enabled by clues on a constrained row. Every rule must be given a highly-general specification, in order to allow us to apply it to boards of any size. And, the larger the size of the board, the greater the opportunity to discover more (and more complex) patterns.
 
-Indeed, internet guides to the game are [filled with home-spun wisdom](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers/techniques) concerning heuristics like the 2-clue and gap rules. But, while experienced players may have facility in describing and applying many such heuristics, their capacity to reason about clue constraints is hardly exhausted by such rules and heuristics, no matter how (finitely) large-- since players, it seems, are also capable of _discovering_ them.
+Indeed, internet guides to the game are [filled with home-spun wisdom](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers/techniques) concerning heuristics like the 2-clue and gap rules. But, while experienced players may have great facility in describing and applying such heuristics, their capacity to reason about clue constraints is hardly exhausted such rules-- since players, it seems, are also capable of _discovering_ them.
 
-This tends to suggest we are not operating at a high enough level of generality in attempting to describe clue constraint inference as potentially exhausted by a set of rules, patterns, or heuristics. We need a way to characterize or model the form of reasoning which is common to and underwrites _all_ such rules and heuristics.
+This tends to suggest we are not operating at a high enough level of generality in attempting to describe clue constraint inference as potentially exhausted by a set of rules, patterns, or heuristics, no matter how (finitely) large. We need a way to characterize or model the form of reasoning which is common to and underwrites _all_ such rules and heuristics.
 
 ## Clue Elimination: Approach
 
@@ -216,21 +216,21 @@ While it is indeed the case that all single-row, single-column rules and heurist
 
 But in each an every case what we are doing is still best described as applying sequence filtration. In learning about the 3-4-5 right triangle, we might memorize a rule which allows us to fill in a missing side given the two other sides and a ninety degree angle in the correct configuration. Even if we don't know the pythagorean theorem, and even if our "experience" of reasoning about triangles does not involve the "experience" of applying the pythagorean theorem, it remains the case that we are applying the pythagorean theorem. And what holds for 3-4-5 triangle rules in relation to the pythagorean theorem holds for skyscraper heuristics, rules, and patterns, and their relationship to sequence filtration.
 
-Whatever we think of this argument by analogy, this question can in any case be left to the philosophers and psychologists, as there is another important _conceptual_ distinction which shows that sequence filtration is within the bounds of our approach. There is a difference between a guess-and-check technique which takes place _within_ a row or column and a _backtracking_ guess-and-check which involves making assumptions about one row or column and tracing out its consequences to find contradictions elsewhere on the board. And this distinction is a just a restatement of what marks off published from merely valid puzzles-- which is just how we specified our problem, to start with.
+Whatever we think of this argument by analogy, this question can in any case be left to philosophers and psychologists, as there is another important _conceptual_ distinction which shows that sequence filtration is within the bounds of the approach we initially delineated. There is a difference between a guess-and-check technique which takes place _within_ a row or column and a _backtracking_ guess-and-check which involves making assumptions about one row or column and tracing out its consequences to find contradictions elsewhere on the board. And this distinction is a just a restatement of what marks off published from merely valid puzzles-- which is just how we specified our problem, to start with.
 
 ## Sequence Filtration: Performance
 
-This conceptual distinction between single-row/column and board-wide techniques has substantial performance implications. Even if backtracking search were limited to only valid magic squares, the number of combinations to be tested against the clues exhibits a time complexity much worse than `O(N!)`: there are 880 valid 4x4s, 275305224 valid 5x5s, roughly 1.77 \* 10<sup>16</sup> valid 5x5s, and the number of `NxN` magic squares for arbitrary `N > 5` remains an unsolved problem in mathematics.
+This distinction between single-row/column and board-wide techniques has substantial performance implications. Even if backtracking search were limited to only valid magic squares, the number of combinations to be tested against the clues exhibits a time complexity much worse than `O(N!)`: there are 880 valid 4x4s, 275305224 valid 5x5s, roughly 1.77 \* 10<sup>16</sup> valid 5x5s, and the number of `NxN` magic squares for arbitrary `N > 5` remains an unsolved problem in mathematics.
 
-Of course, our backtracking search space will be highly constrained by edge clues, which is what will make backtracking a viable if sometimes painfully slow means of solving even unpublished puzzles. But this is still of a different order than the _merely factorial_ worst-case time complexity involved in filtering all possible sequences for a row.
+Of course, our backtracking search space will be highly constrained by edge clues, which is what will make backtracking a viable if sometimes painfully slow means of solving even unpublished puzzles. But this is of a different order than the _merely factorial_ worst-case time complexity of in filtering all possible sequences for a row.
 
-It's not often we find that factorial time complexity represents a preferable alternative to some other more time-complex approach, but that is exactly where we are. Despite being preferable to backtracking, repeated application of sequence filtration will prove to be a bottleneck, and it may be useful to think about improving its performance in the worst cases.
+It's not often we find that factorial time complexity represents a preferable alternative to some other more time-complex approach, but that is exactly where we are. Despite being preferable to backtracking, repeated application of sequence filtration will prove to be a bottleneck, and it may be useful to think about improving its performance, at least for some cases.
 
-Indeed, we've already considerably optimized sequence filtration through the _prior_ application of edge clue initialization. Edge-clue initialization is really a special case of the problem we solve with sequence filtration, albeit one in which we need no information about the constraint lists and derive information solely from edge clues.
+Indeed, we've already considerably optimized sequence filtration through the _prior_ application of edge clue initialization. Edge-clue initialization is really a special case of the problem we solve with sequence filtration, albeit one in which we begin with a completely unconstrained row or column and derive all information solely from edge clues.
 
-That is, the general rule we applied in pushing edge constraints to cells is no different from any of the other rules or heuristics which we're _avoiding_ hard-coding through the application of sequence filtration. Indeed, if we wanted to, we could replace edge clue initialization with clue elimination at some cost to performance.
+That is, the general rule we applied in pushing edge constraints to cells is no different from any of the other rules or heuristics which we're _avoiding_ having to hard-code through the application of sequence filtration. Indeed, if we wanted to, we could replace edge clue initialization with clue elimination-- but at some cost to performance.
 
-We'll demonstrate the advantages of this particular optimization later. But enough talk; let's write code.
+We'll demonstrate the advantages of this particular optimization later. But enough talk; let's write some code.
 
 ## Sequence Filtration: Code
 
@@ -257,7 +257,7 @@ const makeAllUniqueSequences = constraintLists => {
 }
 ```
 
-Next we'll need a way to filter out sequences which violate a row or column's clues. We'll write two functions. One, `countVisible`, takes in a sequence tells us how many buildings are visible, "looking" at the sequence starting from its first element. Then, we'll need another function `passClueCheck`, which is effectively just a runner for `countVisible` which checks its result against a clue, albeit with the caveat that if it is not passed a clue (that is, a clue with value zero, as we have chosen to symbolize the absence of a clue using zero in how we call our top-level function) it should always return `true`.
+Next we'll need a way to filter out sequences which violate a row or column's clues. We'll write two functions. One, `countVisible`, takes in a sequence tells us how many buildings are visible, "looking" at the sequence starting from its first element. Then, we'll need another function `passClueCheck`, which is effectively just a runner for `countVisible` which checks its result against a clue, albeit with the caveat that if it is not passed a clue (that is, a clue with value zero, as we have chosen to symbolize the absence of a clue in this way) it should always return `true`.
 
 ```js
 const countVisible = sequence => {
@@ -278,7 +278,7 @@ const passClueCheck = (sequence, clue) => {
 }
 ```
 
-This last `passClueCheck` function can be used to filter the results of `makeAllUniqueSequences`. We'll need to filter the sequences lists twice-- once for each clue. Here's a function that goes from cell indices and clue indices to unique sequences:
+This last `passClueCheck` function can be used to filter the results of `makeAllUniqueSequences`. We'll need to filter the sequence lists twice-- once for each clue. Here's a function that goes from cell indices & clue indices to unique sequences:
 
 ```js
 const generatePossibleSequences = (
@@ -355,7 +355,7 @@ const isPuzzleSolved = state => {
 }
 ```
 
-Finally, we can run edge constraints:
+Finally, we can iterate the code we've written over our clues:
 
 ```js
 const iterateEdgeConstraints = state => {
@@ -369,7 +369,7 @@ const iterateEdgeConstraints = state => {
 }
 ```
 
-Calling this inside our top-level function after running edge clue initialization is enough to solve our 4x4:
+Calling this function inside our top-level function after running edge clue initialization is enough to solve our 4x4:
 
 <table class="md_table small">
   <tbody>
@@ -532,13 +532,13 @@ The program we've written is not particularly taxing for a puzzle as small as th
 </tbody>
 </table>
 
-This one gets solved in under 100ms. Not bad-- but we need some better metrics. As predicted, a flame graph shows that the program spends most of its time inside `generatePossibleSequences`.
+This one gets solved in under 100ms. Not bad-- but we need some better metrics. A flame graph shows (as predicted) that the program spends most of its time inside `generatePossibleSequences`.
 
-Threading some variables through our functions, we can track some performance characteristics on the top level. As written, to solve this 7x7, the program generates and filters 3680 sequences and runs clue constraints for one or another clue 59 times.
+Threading some variables through our functions, we can track some performance characteristics on the top level. To solve this 7x7, the program generates and filters 3680 sequences and runs clue constraints for one or another clue 59 times.
 
-We might be able to improve these performance metrics by changing the order in which we iterate the edge clues when performing clue elimination. When players look through the board for patterns which allow cell resolution, they often apply a practiced capacity to judge which portions of a board they ought to try and resolve first in order to most quickly resolve the whole.
+We might be able to improve these metrics by changing the order in which we iterate the edge clues when performing clue elimination.
 
-It will be very difficult for us to model just how human player approach this kind of optimization. But it won't be difficult to optimize the order in we perform clue eliminations so as to minimize the number of sequences we need to consider: we simply need to iterate the clues according to which rows or columns will require us to consider the least number of sequences in hopes that doing so will let us take possibilities off of the board.
+When players look through the board for patterns which allow cell resolution, they often apply a practiced capacity to judge which portions of a board they ought to try and resolve first in order to most quickly resolve the whole. It will be very difficult for us to model just how human players approach this kind of optimization. But it won't be difficult to optimize the order in we perform clue eliminations so as to minimize the number of sequences we need to consider: we simply need to iterate the clues according to which rows or columns will require us to consider the least number of sequences in hopes that doing so will let us take possibilities off of the board.
 
 By re-sorting in this manner after we've gone through all fo the rows, we can push off or eliminate the possibility that we'll need to run a costly round of clue elimination on a row which would require consideration of hundreds or thousands of sequences. It will be possible to construct puzzles that confound this technique, especially for large values `N`, but for most cases it should improve runtime.
 
@@ -555,7 +555,7 @@ const countRemainingValues = (state, clueIndex) => {
 }
 ```
 
-Next we'll need to generate an array of clue indices sorted using this function as a comparator:
+Next we'll need to generate a sorted array of clue indices using this function as a comparator:
 
 ```js
 const getSortedClueIndices = state => {
@@ -595,7 +595,7 @@ if (
 }
 ```
 
-This brings us down to 1546 generated sequences. Further inspection reveals that we're also rechecking combinations for rows and columns which haven't changed since the last time they were checked. Some simple (if a bit hacked-together) memoization in the sequence generator helps trim off a few more sequences:
+This brings us down to 1546 generated sequences. Further inspection reveals that we're also rechecking combinations for rows and columns which haven't changed since the last time they were checked. Some simple (if a bit hacked-together) memoization in the sequence generator helps trim off a few more combinations:
 
 ```js
 const memo = {}
@@ -627,9 +627,9 @@ const makeAllUniqueSequences = rowOrColumn => {
 
 Now we're at 1490 generated sequences, and runtime on my laptop is back in the region of 50ms-- about a 60% improvement, at least for this puzzle. We could conceivably take things much further with a smarter comparator function for sorting clue indices, but we already have a reasonable runtime for small `N` and we can always return to this question if, after implementing backtracking, we end up with problems.
 
-We had mentioned that edge-clue initialization is really just a special case of clue elimination beginning from a fresh, unconstrained row. Now that we have implemented sequence filtration, we can think of edge-clue initialization as essentially a form of optimization which simply constrains the search performed via the sequence filtration technique. How much of an optimization is it?
+We had mentioned that edge-clue initialization is really just a special case of clue elimination beginning from a fresh, unconstrained row. Now that we've implemented sequence filtration, we can think of edge-clue initialization as essentially a form of optimization which simply constrains the search performed via the sequence filtration technique. But how much of an optimization is it?
 
-Commenting out `performEdgeClueInitialization` inside our top-level function allows us to discover an answer to this question. The puzzle is still solved, but this time some 12000 sequences had to be generated (taking well above 100ms, for me). Paradoxically, the puzzle is solved in only 38 iterations through edge clues as opposed to the 50+ iterations required to solve a puzzle with edge-clue initialization enabled; similar behavior is exhibited on other puzzles of many sizes. If you have ideas about why this happens, let me know-- my best guess is that with a fresh board the spread of remaining-value counts between unsolved rows and columns is much larger than it is for an edge-clue-constrained board, which permits the sort-based optimization we performed above to do more work, despite the comparatively larger number of sequences which must be considered. But I haven't yet found a good way to test this idea.
+Commenting out `performEdgeClueInitialization` inside our top-level function allows us to discover an answer to this question. The puzzle is still solved, but this time some 12000 sequences need to be generated (taking well above 100ms). Paradoxically, the 7x7 is solved in only 38 iterations through edge clues as opposed to the 50+ iterations required to solve it with edge-clue initialization enabled, and similar behavior is exhibited on other puzzles of various sizes. If you have ideas about why this happens, let me know-- my best guess is that with a fresh board the spread of remaining-value counts between unsolved rows and columns is much larger than it is for an edge-clue-constrained board, which permits the sort-based optimization we performed above to do more work, despite the comparatively larger number of sequences which must be considered. But I haven't yet found a good way to test this theory.
 
 ## Next Steps
 
@@ -845,4 +845,4 @@ The program we've written so far loops infinitely within `iterateEdgeConstraints
 </tbody>
 </table>
 
-If you try solving this puzzle by hand, you'll discover that all information which can be gleaned from the clues when examining cells, rows, and columns in isolation has already been pushed to the board. To make further progress it's necessary to make assumptions about nearly-solved cells which must then be tested through constraint propagation and process-of-elimination to see if they produce empty constraint lists elsewhere on the board. In the next installment, we'll add a recursive backtracking mechanism to the program to allow us to handle such cases.
+If you try solving this puzzle by hand beginning from this state, you'll discover that all information which can be gleaned from the clues when examining cells, rows, and columns in isolation has already been pushed to the board. To make further progress it's necessary to make assumptions about nearly-solved cells which must then be tested through constraint propagation and process-of-elimination to see if they produce empty constraint lists elsewhere on the board. In the next installment, we'll add a recursive backtracking mechanism to the program to allow us to handle such cases.
