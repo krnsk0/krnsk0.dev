@@ -37,7 +37,7 @@ export default ({ children }) => {
         site {
           siteMetadata {
             title
-            canonicalUrl
+            siteUrl
             description
           }
         }
@@ -54,8 +54,8 @@ export default ({ children }) => {
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={data.site.siteMetadata.canonicalUrl} />
         <meta property="og:title" content={data.site.siteMetadata.title} />
+        <meta property="og:url" content={data.site.siteMetadata.siteUrl} />
         <meta
           property="og:description"
           content={data.site.siteMetadata.description}
@@ -63,16 +63,12 @@ export default ({ children }) => {
         <meta property="og:image" content="" />
 
         {/* Twitter */}
-        <meta
-          property="twitter:url"
-          content={data.site.siteMetadata.canonicalUrl}
-        />
+        <meta property="twitter:url" content={data.site.siteMetadata.siteUrl} />
         <meta property="twitter:title" content={data.site.siteMetadata.title} />
         <meta
           property="twitter:description"
           content={data.site.siteMetadata.description}
         />
-        <link rel="canonical" href={data.site.siteMetadata.canonicalUrl} />
       </Helmet>
       <GlobalContainerDiv>
         <GlobalStyleDiv>
