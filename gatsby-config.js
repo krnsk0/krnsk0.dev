@@ -40,6 +40,12 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: "gatsby-remark-smartypants",
+            options: {
+              dashes: "oldschool",
+            },
+          },
+          {
             resolve: "gatsby-remark-images",
             options: {
               maxWidth: 600,
