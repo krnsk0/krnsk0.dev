@@ -4,7 +4,8 @@ module.exports = {
     title: "KRNSK0 - Fullstack Web Developer",
     canonicalUrl: "https://www.krnsk0.dev",
     description:
-      "I'm a builder of tools and a solver of problems. I believe in writing human-friendly, declarative code...",
+      "Portfolio site and technical blog for Jonathan Kurinsky, fullstack developer.",
+    siteUrl: "https://www.krnsk0.dev",
   },
   plugins: [
     {
@@ -59,6 +60,7 @@ module.exports = {
       },
     },
     "gatsby-plugin-eslint",
+    "gatsby-plugin-sitemap",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
     "gatsby-remark-copy-linked-files",
