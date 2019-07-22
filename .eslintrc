@@ -2,7 +2,13 @@
   "parser": "babel-eslint",
   "rules": {
     "react/prop-types": 0,
-    "react/display-name": 0
+    "react/display-name": 0,
+    "no-console": "off"
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"]
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }

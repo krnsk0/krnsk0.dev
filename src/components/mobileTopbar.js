@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-console */
 import React from "react"
 import styled from "styled-components"
 import IconLink from "./iconLink"

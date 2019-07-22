@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-console */
 import React from "react"
 import Layout from "../components/layout"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
@@ -7,7 +6,6 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
 import DownloadButton from "../components/downloadButton"
-// import { Link } from "gatsby"
 
 const FlexContainer = styled.div`
   display: flex;

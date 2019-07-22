@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
 /* eslint-disable no-undef */
 import React from "react"
 import DesktopTopbar from "./desktopTopbar"

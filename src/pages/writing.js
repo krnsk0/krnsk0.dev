@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import React from "react"
 import Layout from "../components/layout"

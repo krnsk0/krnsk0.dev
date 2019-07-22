@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-undef */
 const path = require(`path`)
 
@@ -8,7 +7,13 @@ exports.createPages = ({ graphql, actions }) => {
     {
       allMarkdownRemark(
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { type: { eq: "post" }, host: { eq: "local" }, published: { eq: true } } }
+        filter: {
+          frontmatter: {
+            type: { eq: "post" }
+            host: { eq: "local" }
+            published: { eq: true }
+          }
+        }
       ) {
         edges {
           node {
