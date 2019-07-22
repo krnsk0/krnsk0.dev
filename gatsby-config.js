@@ -89,5 +89,13 @@ module.exports = {
         trackingId: "UA-317656-2",
       },
     },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://www.krnsk0.dev",
+        sitemap: "https://www.krnsk0.dev/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
   ],
 }
