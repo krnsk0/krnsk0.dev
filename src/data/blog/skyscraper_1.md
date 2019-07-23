@@ -35,7 +35,7 @@ A relative of Sudoku and other [Latin-Square](https://en.wikipedia.org/wiki/Lati
 
 Taller skyscrapers block the visibility of shorter skyscrapers, but not vice versa. For example, in a 4x4 puzzle, a row with heights 2-4-3-1 has two skyscrapers visible from its left side, and three on its right side. Both would be valid clues a puzzle author could provide, for this row-- but notably, the starting point for a skyscraper puzzle need not provide clues for every side of each row and column. Often, the fewer clues given, the harder the puzzle.
 
-This post walks through the use of [constraint propagation](https://en.wikipedia.org/wiki/Constraint_satisfaction), a technique dating to the era of [symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence), to model the inferential techniques employed by skyscraper enthusiasts. While building a vocabulary of concepts to help us reason about the puzzle, we'll use Javascript to also build, first, an algorithm capable of solving _published_ puzzles of arbitrary size and difficulty without resorting to backtracking, and then build in backtracking to allow us to solve _all_ possible Skyscraper puzzles, full-stop.
+This post walks through the use of [constraint propagation](https://en.wikipedia.org/wiki/Constraint_satisfaction), a technique dating to the era of [symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence), to model the inferential reasoning employed by skyscraper enthusiasts. While building a vocabulary of concepts to help us reason about the puzzle, we'll use Javascript to also build, first, an algorithm capable of solving _published_ puzzles of arbitrary size and difficulty without resorting to backtracking, and then build in backtracking to allow us to solve _all_ possible Skyscraper puzzles, full-stop.
 
 ## Approach
 
@@ -812,7 +812,7 @@ Where does all of this code get us? After constraining the board with clues, pro
   </tbody>
 </table>
 
-Skilled puzzle solvers often begin by resolving the position of the tallest tower in each row. That our approach also ends up doing this is an early indicator that we're accurately modeling how players approach the game.
+Skilled puzzle-solvers often begin by resolving the position of the tallest tower in each row. That our approach also ends up doing this is an early indicator that we're accurately modeling how players approach the game.
 
 An experienced player might next notice that the 2 clue on the top allows us to resolve its adjacent cell to 3, now that we know the last cell in its column is 4, as any other value would result in more than two buildings being visible from the standpoint of the clue. This is a characteristic example of inference which incorporates information from both the clue and from constraints already set on the board.
 
