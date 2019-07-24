@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/layout"
+import LayoutAndSEO from "../components/layoutAndSEO"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import styled from "styled-components"
 
@@ -68,7 +68,7 @@ const Button = styled.input`
 `
 
 export default () => (
-  <Layout>
+  <LayoutAndSEO pageTitlePrefix="Contact" urlSuffix="contact/">
     <PageContentStyleWrapper>
       <FormWrapper>
         <FormTitle>
@@ -108,5 +108,5 @@ export default () => (
         </FormElement>
       </FormWrapper>
     </PageContentStyleWrapper>
-  </Layout>
+  </LayoutAndSEO>
 )

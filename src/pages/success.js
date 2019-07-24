@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/layout"
+import LayoutAndSEO from "../components/layoutAndSEO"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import { Link } from "gatsby"
 import styled from "styled-components"
@@ -11,7 +11,7 @@ const LinkWrapper = styled.span`
 `
 
 export default () => (
-  <Layout>
+  <LayoutAndSEO pageTitlePrefix="Contact" urlSuffix="contact/">
     <PageContentStyleWrapper>
       <div>
         Your message has been sent! Go{" "}
@@ -21,5 +21,5 @@ export default () => (
         .
       </div>
     </PageContentStyleWrapper>
-  </Layout>
+  </LayoutAndSEO>
 )

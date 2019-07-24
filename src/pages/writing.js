@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React from "react"
-import Layout from "../components/layout"
+import LayoutAndSEO from "../components/layoutAndSEO"
 import styled from "styled-components"
 import { graphql } from "gatsby"
 import { FaMediumM, FaDev } from "react-icons/fa"
@@ -76,7 +76,7 @@ export default props => {
   const projects = props.data.allMarkdownRemark.edges
 
   return (
-    <Layout>
+    <LayoutAndSEO pageTitlePrefix="Writing" urlSuffix="writing/">
       {projects.map((project, index) => {
         const {
           title,
@@ -107,7 +107,7 @@ export default props => {
           </PageContentStyleWrapper>
         )
       })}
-    </Layout>
+    </LayoutAndSEO>
   )
 }
 

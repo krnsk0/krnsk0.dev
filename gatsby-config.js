@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 module.exports = {
   siteMetadata: {
-    title: "KRNSK0 - Fullstack Web Developer",
+    title: "Jonathan Kurinsky | krnsk0.dev",
     description:
-      "Portfolio site and technical blog for Jonathan Kurinsky, fullstack developer.",
+      "Portfolio site and technical blog for Jonathan Kurinsky, fullstack web developer",
     siteUrl: "https://www.krnsk0.dev",
   },
   plugins: [
@@ -68,12 +68,6 @@ module.exports = {
     "gatsby-plugin-sitemap",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
-    {
-      resolve: "gatsby-plugin-react-helmet-canonical-urls",
-      options: {
-        siteUrl: "https://www.krnsk0.dev",
-      },
-    },
     "gatsby-remark-copy-linked-files",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",

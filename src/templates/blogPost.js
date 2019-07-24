@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from "react"
-import Layout from "../components/layout"
+import LayoutAndSEO from "../components/layoutAndSEO"
 import styled from "styled-components"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import { graphql } from "gatsby"
@@ -93,7 +93,11 @@ const PostWrapper = styled.div`
 export default ({ data }) => {
   const post = data.markdownRemark
   return (
-    <Layout>
+    <LayoutAndSEO
+      pageTitlePrefix={post.frontmatter.title}
+      customDescription={post.frontmatter.description}
+      urlSuffix={"writing/" + post.frontmatter.slug}
+    >
       <PageContentStyleWrapper>
         <PostContainer>
           <PostTitle>{post.frontmatter.title}</PostTitle>
@@ -114,7 +118,7 @@ export default ({ data }) => {
           ></PostWrapper>
         </PostContainer>
       </PageContentStyleWrapper>
-    </Layout>
+    </LayoutAndSEO>
   )
 }
 export const query = graphql`
@@ -126,6 +130,7 @@ export const query = graphql`
         date
         word_count
         description
+        slug
       }
     }
   }

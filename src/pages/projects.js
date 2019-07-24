@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react"
-import Layout from "../components/layout"
+import LayoutAndSEO from "../components/layoutAndSEO"
 import styled from "styled-components"
 import { graphql } from "gatsby"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
@@ -105,7 +105,7 @@ export default props => {
   const projects = props.data.allMarkdownRemark.edges
 
   return (
-    <Layout>
+    <LayoutAndSEO pageTitlePrefix="Projects" urlSuffix="projects/">
       {projects.map((project, index) => {
         const {
           title,
@@ -162,7 +162,7 @@ export default props => {
           </PageContentStyleWrapper>
         )
       })}
-    </Layout>
+    </LayoutAndSEO>
   )
 }
 

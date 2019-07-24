@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from "react"
-import Layout from "../components/layout"
+import LayoutAndSEO from "../components/layoutAndSEO"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
@@ -84,7 +84,7 @@ export default ({ data }) => {
   const body = about.html
 
   return (
-    <Layout>
+    <LayoutAndSEO pageTitlePrefix="About">
       <PageContentStyleWrapper>
         <FlexContainer>
           <Left>
@@ -109,7 +109,7 @@ export default ({ data }) => {
           <MainText dangerouslySetInnerHTML={{ __html: body }}></MainText>
         </MobileContainer>
       </PageContentStyleWrapper>
-    </Layout>
+    </LayoutAndSEO>
   )
 }
 
