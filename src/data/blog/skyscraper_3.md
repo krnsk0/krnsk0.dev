@@ -3,7 +3,7 @@ type: "post"
 host: "local"
 title: "Solving Every Skyscraper Puzzle: Part Three"
 date: "1563926400000"
-published: true
+published: false
 description: "Puzzle-solving with constraint propagation and backtracking search in Javascript. Covers recursive backtracking and its optimization."
 word_count: 0
 slug: "skyscraper-puzzle-3"
@@ -175,23 +175,20 @@ const isPuzzleSolved = state => {
 }
 ```
 
-Now we can rewrite `iterateClueConstraints` to break when we've gone through all of the clues without side effects on the board:
+Now we can rewrite `iterateClueConstraints` to break when we've gone through all of the clues without side effects on the board (which, given what we've so far specified, would always take the form of changes to the return from `countRemainingValuesOnBoard`):
 
 ```js
 const iterateEdgeConstraints = state => {
-  let sortedClueIndices = getSortedClueIndices(state)
-
   let i = 0
+  let sortedClueIndices = getSortedClueIndices(state)
   let remainingValuesOnBoard = countRemainingValuesOnBoard(state)
 
   while (!isPuzzleSolved(state)) {
     edgeConstrainFromClue(state, sortedClueIndices[i])
-
     i += 1
     if (i === state.N * 2) {
       i = 0
       sortedClueIndices = getSortedClueIndices(state)
-
       if (remainingValuesOnBoard === countRemainingValuesOnBoard(state)) {
         break
       }
