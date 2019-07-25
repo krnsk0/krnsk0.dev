@@ -512,10 +512,6 @@ How to approach this? So far, we've used `Set.prototype.delete()` to eliminate i
 const constrainAndEnqueue = (state, cellIndex, valueToDelete) => {
   const cell = state.board[cellIndex]
 
-  if (cell.size === 1 && cell.has(valueToDelete)) {
-    throw new Error(`cell ${cellIndex} is empty`)
-  }
-
   let mutated = cell.delete(valueToDelete)
 
   if (mutated && cell.size === 1) {
@@ -540,8 +536,6 @@ const resolveAndEnqueue = (state, cellIndex, valueToResolveTo) => {
   }
 }
 ```
-
-We've added a check to make sure that a delete won't result in an empty cell in which we've ruled out all possible values-- something which should never happen for a set of valid Skyscraper clues. For now, this won't do much, assuming we have a valid puzzle; we'll make use of the error much later when we implement backtracking.
 
 After updating `performEdgeClueInitialization` and `propagateFromResolvedCell` to use these new function, where does this leave us? The program is capable of making inferences from edge clues and repeatedly propagating constraints from cells resolved in this process, drawing out all possible consequences from these two methods in combination.
 

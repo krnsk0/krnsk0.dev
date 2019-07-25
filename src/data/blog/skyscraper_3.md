@@ -3,7 +3,7 @@ type: "post"
 host: "local"
 title: "Solving Every Skyscraper Puzzle: Part Three"
 date: "1563926400000"
-published: false
+published: true
 description: "Puzzle-solving with constraint propagation and backtracking search in Javascript. Covers recursive backtracking and its optimization."
 word_count: 0
 slug: "skyscraper-puzzle-3"
@@ -194,6 +194,58 @@ const iterateEdgeConstraints = state => {
       }
       remainingValuesOnBoard = countRemainingValuesOnBoard(state)
     }
+  }
+}
+```
+
+In our top-level function, we can invoke our backtracking solver after this function finishes if the puzzle is still unsolved:
+
+```js
+const solveSkyscraper = clues => {
+  let state = initializeState(clues)
+  performEdgeClueInitialization(state)
+  iterateEdgeConstraints(state)
+  if (!isPuzzleSolved(state)) {
+    state = guessAndCheck(state, 0)
+  }
+  return state
+}
+```
+
+But what will `guessAndCheck` do? We know we'll want it to iterate through possible values for an unsolved cell, testing those values to see if they produce contradictions; we also know we'll want it to use recursion to call itself on the _next_ unsolved cell to repeat this process. We also know we'll need to make deep copies of the state object within the lexical scope of each function call, passing an updated state all the way down the call stack only when we've actually solved the puzzle. This will help make sure that when we discover we've made a false assumption, the solver can backtrack and try other values for prior cells, as copies of the state will stored in the stack frames which record our recursive calls.
+
+But, before we get there, we'll need to work out what it means to _test_ an assumption about a cell. We've set things up so that constraining a cell using `constrainAndEnqueue` or `resolveAndEnqueue` will queue up the performance of constraint propagation and process-of-elimination, provided that we call `queueProcessor` on the copy of the state we'll make in the recursive function. Because we've already taken all 'illegal' values off the board, it won't even be possible for `guessAndCheck` to make assumptions about cells which would run afoul of what we're told by edge clues. Instead, we can expect that the 'contradictions' we'll encounter which reveal false assumptions will take the form of calls to `constrainAndEnqueue` originating inside `queueProcessor` _which ask to remove from the board the **last** remaining value for a cell_.
+
+We could built in some mechanism which threads a variable through several returns back from `constrainAndEnqueue` up to `guessAndCheck`, at some risk of having to rewrite every function in between these two to be aware of this side effect. Luckily, Javascript already gives us a mechanism which allows passing effects up the call stack without having to make everything in the middle "aware" of this effect: the try/catch block.
+
+We'll first need to set up `constrainAndEnqueue` to throw an error which we'll catch lower down in the stack. We'll define a custom error type so we have an error name we can use in a conditional in our try/catch block. This is a good practice while we are debugging so we don't accidentally catch and bury all errors and their stack traces, though in a production context we probably wouldn't need to do this.
+
+```js
+class EmptyCellError extends Error {
+  constructor(message) {
+    super(message)
+    this.name = "EmptyCellError"
+  }
+}
+
+const constrainAndEnqueue = (state, cellIndex, valueToDelete) => {
+  const cell = state.board[cellIndex]
+
+  if (cell.size === 1 && cell.has(valueToDelete)) {
+    throw new EmptyCellError(`cell ${cellIndex} is empty`)
+  }
+
+  let mutated = cell.delete(valueToDelete)
+
+  if (mutated && cell.size === 1) {
+    state.queue.push({
+      type: "PROPAGATE_CONTSTRAINTS_FROM",
+      cellIndex,
+    })
+  }
+
+  if (mutated) {
+    poeSearchAndEnqueue(state, cellIndex, valueToDelete)
   }
 }
 ```
