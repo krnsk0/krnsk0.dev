@@ -50,7 +50,7 @@ const TitleText = styled.h1`
     line-height: calc(12.2px + 4.35vw);
   }
   color: #717171;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   & b {
     color: #313131;
   }
