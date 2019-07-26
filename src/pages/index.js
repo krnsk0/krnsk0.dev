@@ -67,7 +67,7 @@ const MainText = styled.div`
     font-weight: 400;
   }
   & p {
-    margin-bottom: 8px;
+    margin-bottom: 15px;
   }
   & a {
     color: #313131;
