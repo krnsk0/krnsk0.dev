@@ -157,6 +157,8 @@ In this post, we'll build in a recursive backtracking mechanism that will allow 
 
 ## Approach
 
+The approach is relatively simple; the code will be concise but, as often happens with recursion, be challenging to think about. We'll need to
+
 ## Code
 
 We'll have to figure out how to switch over from a plain constraint-propagation-based approach to backtracking when we've hit an impasse. Right now, when confronted with an unpublishable puzzle, the program loops infinitely inside of `iterateClueConstraints`. In addition to checking for puzzle completion, we can check to see if the board has changed since the last iteration through the clues.
