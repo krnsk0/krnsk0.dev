@@ -20,8 +20,8 @@ const PostTitle = styled.h1`
     line-height: calc(12.2px + 4.35vw);
   }
   color: #313131;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 `
 
 const InfoLine = styled.div`
@@ -29,7 +29,7 @@ const InfoLine = styled.div`
   font-size: 0.8em;
   color: #717171;
   margin-left: 5px;
-  margin-top: 4px;
+  margin-bottom: 25px;
 `
 
 const PostContainer = styled.div`
