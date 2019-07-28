@@ -21,6 +21,7 @@ const DownloadButton = styled.div`
   }
   margin-right: 10px;
   margin-bottom: 5px;
+  margin-left: 5px;
 `
 const DownloadIcon = styled.div`
   margin-top: 5px;

@@ -38,15 +38,18 @@ const FloatContainer = styled.div`
 const ProfileImage = styled.div`
   border: 2px solid #313131;
   border-radius: 3px;
+  margin-top: 5px;
   margin-right: 10px;
   margin-bottom: 10px;
+  margin-left: 5px;
 `
 
 const TitleText = styled.h1`
+  margin-left: 5px;
   font-size: 25px;
   line-height: 29px;
   @media (max-width: 700px) {
-    font-size: calc(14px + 3.4vw);
+    font-size: calc(11px + 3.1vw);
     line-height: calc(12.2px + 4.35vw);
   }
   color: #717171;
@@ -57,6 +60,8 @@ const TitleText = styled.h1`
 `
 
 const MainText = styled.div`
+  margin-left: 5px;
+  margin-right: 25px;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.5px;
