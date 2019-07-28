@@ -5,7 +5,7 @@ title: "Solving Every Skyscraper Puzzle: Part One"
 date: "1563154842000"
 published: true
 description: "Puzzle-solving with constraint propagation and backtracking search in Javascript. Covers approach, architecture, and first three forms of inference."
-word_count: 4126
+word_count: 4441
 slug: "skyscraper-puzzle-1"
 offsite_link: ""
 ---
