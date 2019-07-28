@@ -26,6 +26,7 @@ const PostTitle = styled.h2`
   font-weight: bold;
   margin-block-start: 3px;
   margin-block-end: 0px;
+  margin-bottom: 5px;
 `
 
 const InfoLine = styled.div`
@@ -36,6 +37,7 @@ const InfoLine = styled.div`
   @media (max-width: 700px) {
     margin-top: 10px;
   }
+  margin-bottom: 5px;
 `
 
 const PostDescription = styled.div`
