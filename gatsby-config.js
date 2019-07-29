@@ -65,7 +65,12 @@ module.exports = {
       },
     },
     "gatsby-plugin-eslint",
-    "gatsby-plugin-sitemap",
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: ["/success"],
+      },
+    },
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
     "gatsby-remark-copy-linked-files",
@@ -99,7 +104,7 @@ module.exports = {
       options: {
         host: "https://www.krnsk0.dev",
         sitemap: "https://www.krnsk0.dev/sitemap.xml",
-        policy: [{ userAgent: "*", allow: "/" }],
+        policy: [{ userAgent: "*", allow: "/", disallow: "/success" }],
       },
     },
   ],
