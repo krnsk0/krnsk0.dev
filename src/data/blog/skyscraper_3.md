@@ -3,7 +3,7 @@ type: "post"
 host: "local"
 title: "Solving Every Skyscraper Puzzle: Part Three"
 date: "1563926400000"
-published: true
+published: false
 description: "Puzzle-solving with constraint propagation and backtracking search in Javascript. Covers recursive backtracking and its optimization."
 word_count: 0
 slug: "skyscraper-puzzle-3"
