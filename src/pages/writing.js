@@ -62,11 +62,10 @@ const TitleLinkWrapper = styled.a`
   }
 `
 
-const IconSVG = styled.div`
-  font-size: 1.4em;
-  margin-left: 5px;
-  margin-right: 10px;
-  margin-top: 5px;
+const IconSVG = styled.span`
+  position: relative;
+  top: 4px;
+  margin-right: 0.5em;
 `
 
 const iconHash = {
@@ -96,8 +95,10 @@ export default props => {
               <TitleLinkWrapper
                 href={host === "local" ? `/writing/${slug}` : offsite_link}
               >
-                {host !== "local" && <IconSVG as={iconHash[host]} />}
-                <PostTitle>{title}</PostTitle>
+                <PostTitle>
+                  {host !== "local" && <IconSVG as={iconHash[host]} />}
+                  {title}
+                </PostTitle>
               </TitleLinkWrapper>
               <InfoLine>
                 <span>{formatTimestampToDate(date)}</span>
