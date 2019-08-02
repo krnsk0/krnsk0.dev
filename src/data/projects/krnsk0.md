@@ -1,6 +1,6 @@
 ---
 type: "project"
-priority: 0
+priority: 50
 title: "krnsk0.dev"
 dateString: "June 2019"
 deployedSiteUrl: "https://www.krnsk0.dev"
