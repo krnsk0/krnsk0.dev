@@ -2,7 +2,7 @@
 type: "post"
 host: "local"
 title: "Solving Every Skyscraper Puzzle: Part Three"
-date: "1563926400000"
+date: "1565274177920"
 published: false
 description: "Puzzle-solving with constraint propagation and backtracking search in Javascript. Covers recursive backtracking and its optimization."
 word_count: 0
@@ -47,9 +47,9 @@ td {border: none; padding: 0px; text-align: center; display: inline-block; margi
 
 </style>
 
-The first [two](/writing/skyscraper-puzzle-1) [posts](/writing/skyscraper-puzzle-2) in this series described and implemented for forms of inference applicable to solving the [Skyscrapers](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers) puzzle. The program written so far is capable of solving all _valid_, _publishable_ puzzles of arbitrary size, where _valid_ puzzles are those whose clues permit one and only one solution, and _publishable_ puzzles are those solvable without guess-and-check, the Skycraper enthusiast's name for what we call recursive backtracking.
+The first [two](/writing/skyscraper-puzzle-1) [posts](/writing/skyscraper-puzzle-2) in this series described and implemented four forms of inference applicable to solving the [Skyscrapers](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers) puzzle. The program built up so far is capable of solving all _valid_, _publishable_ puzzles of arbitrary size, where _valid_ puzzles are those whose clues permit one and only one solution, and _publishable_ puzzles are those solvable without guess-and-check, the Skycraper enthusiast's name for what we call recursive backtracking.
 
-In this post, we'll build in a recursive backtracking mechanism that will allow the program to solve all valid puzzles, full-stop. At the end of the last post, we applied our program to one such valid but unpublishable puzzle discovered programmatically by CodeWars user [Medved01](https://www.codewars.com/users/medved01) and were able to get the board to this point:
+In this post, we'll build in a recursive backtracking mechanism that will allow the program to solve all valid puzzles, full-stop. At the end of the last post, we applied our program to one such valid but unpublishable puzzle discovered by CodeWars user [Medved01](https://www.codewars.com/users/medved01) and were able to get the board to this point:
 
 <table class="md_table large smalltext">
   <tbody>
@@ -157,7 +157,17 @@ In this post, we'll build in a recursive backtracking mechanism that will allow 
 
 ## Approach
 
-The approach is relatively simple; the code will be concise but, as often happens with recursion, be challenging to think about. We'll need to
+The approach is relatively simple. We'll need to pick a cell which is not yet resolved and make a provisional assumption about its resolved value. Then, we'll draw out the consequences of that assumption using the code we've already written for handling constraint propagation, checking to see if this assumption leads to any contradictions on the board. (What form these contradictions might take is a question to which we'll return.)
+
+If we find no such contradictions, it doesn't necessarily mean that we can resolve the cell, as it might be that a contradiction will only become apparent when trying to resolve (say) the next cell, where we might find that there are no remaining values which when tested to not themselves lead to contradictions.
+
+Thus, the need for recursion. After we make an assumption about a cell and propagate the consequences of this assumption, we'll do the same thing for the board which results from these operations, making an assumption about _another_ cell. And then again, and again-- until the puzzle is solved.
+
+The backtracking come in when we find that all possible values for a cell result in contradictions when we test them out. When this happens, we'll need to back up in the call stack and try the next value for the _prior_ cell about which we had made an assumption.
+
+If we think of possible solutions as branches of a tree whose nodes represent assumptions about cells, we can think of this approach as being, essentially,
+
+This depth-first approach will eventually test every possible remaining combination of values for a board, but with some very significant optimizations in place solely in virtue of the code we've already written. Rather than fill out the entire board and only then test against the clues to see if a solution is valid, because we can propagate constraints based on our assumptions and move on when we reach contradictions, we can quickly throw out entire branches of our solution tree before ever needing to think about generating that branch's leaves.
 
 ## Code
 
