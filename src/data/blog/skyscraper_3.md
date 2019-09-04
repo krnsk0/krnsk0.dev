@@ -47,7 +47,7 @@ td {border: none; padding: 0px; text-align: center; display: inline-block; margi
 
 </style>
 
-The first [two](/writing/skyscraper-puzzle-1) [posts](/writing/skyscraper-puzzle-2) in this series described and implemented four forms of inference applicable to solving the [Skyscrapers](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers) puzzle. The program built up so far is capable of solving all _valid_, _publishable_ puzzles of arbitrary size, where _valid_ puzzles are those whose clues permit one and only one solution, and _publishable_ puzzles are those solvable without guess-and-check, the Skycraper enthusiast's name for what we call recursive backtracking.
+The first [two](/writing/skyscraper-puzzle-1) [posts](/writing/skyscraper-puzzle-2) in this series described and implemented four forms of inference applicable to solving the [Skyscrapers](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers) puzzle. The program built up so far is capable of solving all _valid_, _publishable_ puzzles of arbitrary size, where _valid_ puzzles are those whose clues permit one and only one solution, and _publishable_ puzzles are those solvable without guess-and-check, the skycraper puzzle enthusiast's name for recursive backtracking.
 
 In this post, we'll build in a recursive backtracking mechanism that will allow the program to solve all valid puzzles, full-stop. At the end of the last post, we applied our program to one such valid but unpublishable puzzle discovered by CodeWars user [Medved01](https://www.codewars.com/users/medved01) and were able to get the board to this point:
 
