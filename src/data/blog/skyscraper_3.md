@@ -157,17 +157,17 @@ In this post, we'll build in a recursive backtracking mechanism that will allow 
 
 ## Approach
 
-The approach is relatively simple. We'll need to pick a cell which is not yet resolved and make a provisional assumption about its resolved value. Then, we'll draw out the consequences of that assumption using the code we've already written for handling constraint propagation, checking to see if this assumption leads to any contradictions on the board. (What form these contradictions might take is a question to which we'll return.)
+The approach is relatively simple. We'll need to pick a cell which is not yet resolved and make a provisional assumption about its resolved value. Then, we'll draw out the consequences of that assumption using the code we've already written for handling constraint propagation, checking to see if this assumption leads to any contradictions on the board.
 
 If we find no such contradictions, it doesn't necessarily mean that we can resolve the cell, as it might be that a contradiction will only become apparent when trying to resolve (say) the next cell, where we might find that there are no remaining values which when tested to not themselves lead to contradictions.
 
 Thus, the need for recursion. After we make an assumption about a cell and propagate the consequences of this assumption, we'll do the same thing for the board which results from these operations, making an assumption about _another_ cell. And then again, and again-- until the puzzle is solved.
 
-The backtracking come in when we find that all possible values for a cell result in contradictions when we test them out. When this happens, we'll need to back up in the call stack and try the next value for the _prior_ cell about which we had made an assumption.
+The backtracking comes in when we find that all possible values for a cell result in contradictions when tested. When this happens, we'll need to back up in the call stack and try the next value for the _prior_ cell about which we had made an assumption.
 
-If we think of possible solutions as branches of a tree whose nodes represent assumptions about cells, we can think of this approach as being, essentially,
+If we think of possible solutions as branches of a tree whose nodes represent assumptions about cells, we can think of this approach as a depth-first search.
 
-This depth-first approach will eventually test every possible remaining combination of values for a board, but with some very significant optimizations in place solely in virtue of the code we've already written. Rather than fill out the entire board and only then test against the clues to see if a solution is valid, because we can propagate constraints based on our assumptions and move on when we reach contradictions, we can quickly throw out entire branches of our solution tree before ever needing to think about generating that branch's leaves.
+This approach will eventually test every possible remaining combination of values for a board, but with some very significant optimizations in place solely in virtue of the code we've already written. Rather than fill out the entire board and only then test against the clues to see if a solution is valid, because we can propagate constraints based on our assumptions and move on when we reach contradictions, we can quickly throw out entire branches of our solution tree before ever needing to think about generating that branch's leaves.
 
 ## Code
 
