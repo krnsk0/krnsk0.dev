@@ -1,6 +1,6 @@
 ---
 type: "about"
-title: "I'm <b>Jonathan Kurinsky</b>, a Philadelphia-based software developer currently working at <b>Comcast</b>."
+title: "I'm <b>Jon Kurinsky</b>, a Philadelphia-based software developer working at <b>Comcast</b>."
 ---
 
 <p>I'm a builder of tools and a solver of problems. I believe in writing human-friendly, declarative code.</p>
