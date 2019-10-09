@@ -1,6 +1,6 @@
 ---
 type: "about"
-title: "I'm <b>Jonathan Kurinsky</b>, a Chicago-based software developer relocating to <b>Philadelphia</b>."
+title: "I'm <b>Jonathan Kurinsky</b>, a Philadelphia-based software developer currently working at <b>Comcast</b>."
 ---
 
 <p>I'm a builder of tools and a solver of problems. I believe in writing human-friendly, declarative code.</p>
@@ -9,5 +9,5 @@ title: "I'm <b>Jonathan Kurinsky</b>, a Chicago-based software developer relocat
 </p>
 <p>I enjoy the immediacy and interactivity of frontend development. Getting to know the React ecosystem and the challenges involved in writing clean, lightweight, and maintainable code for the browser has been a blast.
 </p>
-<p>But I've also been captivated by the problem space of scalable, performant server architecture, especially for real-time applications, and I'm hoping to expand my exposure to  backend development.</p>
-<p>Interested in working together? Check out my <a href="/projects/">portfolio</a>, my <a href="https://github.com/krnsk0">Github</a>, or connect with me on <a href="https://www.linkedin.com/in/krnsk0/">LinkedIn</a>.</p>
+<p>But I've also been captivated by the problem space of scalable, performant server architecture, especially for real-time applications.</p>
+<p>Want to talk? Check out my <a href="/projects/">portfolio</a>, my <a href="https://github.com/krnsk0">Github</a>, or connect with me on <a href="https://www.linkedin.com/in/krnsk0/">LinkedIn</a>.</p>
