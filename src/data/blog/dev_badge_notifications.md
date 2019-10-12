@@ -1,7 +1,7 @@
 ---
 type: "post"
 host: "dev"
-title: "Clear macOS Badge Update Notifications"
+title: "Clearing Annoying macOS Badge Update Notifications"
 date: "1570900905000"
 published: true
 description: "Clearing intrusive System Preferences update badge notifications via an alaised shell command"
