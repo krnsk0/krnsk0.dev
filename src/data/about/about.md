@@ -11,3 +11,5 @@ title: "I'm <b>Jon Kurinsky</b>, a Philadelphia-based software developer working
 </p>
 <p>But I've also been captivated by the problem space of scalable, performant server architecture, especially for real-time applications.</p>
 <p>Want to talk? Check out my <a href="/projects/">portfolio</a>, my <a href="https://github.com/krnsk0">Github</a>, or connect with me on <a href="https://www.linkedin.com/in/krnsk0/">LinkedIn</a>.</p>
+
+<p style="color: #CB4335">Recruiters: I am not currently on the job market. Thank you for understanding!</p>
