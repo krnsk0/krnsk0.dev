@@ -537,7 +537,7 @@ const resolveAndEnqueue = (state, cellIndex, valueToResolveTo) => {
 }
 ```
 
-After updating `performEdgeClueInitialization` and `propagateFromResolvedCell` to use these new function, where does this leave us? The program is capable of making inferences from edge clues and repeatedly propagating constraints from cells resolved in this process, drawing out all possible consequences from these two methods in combination.
+After updating `performEdgeClueInitialization` and `propagateFromResolvedCell` to use these new functions, where does this leave us? The program is capable of making inferences from edge clues and repeatedly propagating constraints from cells resolved in this process, drawing out all possible consequences from these two methods in combination.
 
 Where does this get us with our example? After propagating constraints from the two 4 cells resolved by the edge clues, the board looks like this:
 
