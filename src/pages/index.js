@@ -21,6 +21,8 @@ const Left = styled.div`
 
 const Right = styled.div`
   flex: 80%;
+  padding-left: 10px;
+  padding-right: 10px;
 `
 
 const MobileContainer = styled.div`
@@ -99,8 +101,8 @@ export default ({ data }) => {
             <DownloadButton />
           </Left>
           <Right>
-            <TitleText dangerouslySetInnerHTML={{ __html: title }}></TitleText>
-            <MainText dangerouslySetInnerHTML={{ __html: body }}></MainText>
+            <TitleText dangerouslySetInnerHTML={{ __html: title }} />
+            <MainText dangerouslySetInnerHTML={{ __html: body }} />
           </Right>
         </FlexContainer>
         <MobileContainer>
@@ -110,8 +112,8 @@ export default ({ data }) => {
             </ProfileImage>
             <DownloadButton />
           </FloatContainer>
-          <TitleText dangerouslySetInnerHTML={{ __html: title }}></TitleText>
-          <MainText dangerouslySetInnerHTML={{ __html: body }}></MainText>
+          <TitleText dangerouslySetInnerHTML={{ __html: title }} />
+          <MainText dangerouslySetInnerHTML={{ __html: body }} />
         </MobileContainer>
       </PageContentStyleWrapper>
     </LayoutAndSEO>
