@@ -9,7 +9,7 @@ title: "I'm <b>Jon Kurinsky</b>, a Philadelphia-based software developer working
 </p>
 <p>Since then, I've worked on business-critical frontend applications with millions of users, developer tooling to help teams magnify their productivity, and resources to help teach the Javacript and Node ecosystem.</p>
 </p>
-<p>I have a special interest in problems of <b>frontend architecture</b>-- the design of complex client-side applications that are performant, maintainable, and scalable. I have experience using <b>microfrontends</b>-based solutions which address these concerns.</p>
+<p>I have a special interest in problems of <b>frontend architecture</b>: the design of complex client-side applications that are performant, maintainable, and scalable. I have experience using <b>microfrontends</b> to solve problems in this area.</p>
 
 <p>Want to talk? Check out my <a href="/projects/">portfolio</a>, <a href="https://github.com/krnsk0">Github</a>, or connect with me on <a href="https://www.linkedin.com/in/krnsk0/">LinkedIn</a>.</p>
 
