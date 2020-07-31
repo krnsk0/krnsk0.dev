@@ -49,7 +49,7 @@ export default () => {
   const data = useStaticQuery(
     graphql`
       query {
-        file(relativePath: { eq: "Jon_Kurinsky.pdf" }) {
+        file(relativePath: { eq: "Jonathan_Kurinsky.pdf" }) {
           publicURL
         }
       }
@@ -57,7 +57,7 @@ export default () => {
   )
 
   return (
-    <LinkWrapper href={data.file.publicURL} download="Jon_Kurinsky.pdf">
+    <LinkWrapper href={data.file.publicURL} download="Jonathan_Kurinsky.pdf">
       <DownloadButton>
         <Text>Technical Résumé</Text>
         <DownloadIcon>
