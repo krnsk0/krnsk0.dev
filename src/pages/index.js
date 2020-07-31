@@ -21,6 +21,8 @@ const Left = styled.div`
 
 const Right = styled.div`
   flex: 80%;
+  padding-left: 10px;
+  padding-right: 10px;
 `
 
 const MobileContainer = styled.div`
