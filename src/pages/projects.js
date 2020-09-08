@@ -5,7 +5,12 @@ import styled from "styled-components"
 import { graphql } from "gatsby"
 import PageContentStyleWrapper from "../components/pageContentStyleWrapper"
 import Img from "gatsby-image"
-import { FaGithub, FaRegFileVideo, FaExternalLinkAlt } from "react-icons/fa"
+import {
+  FaGithub,
+  FaRegFileVideo,
+  FaExternalLinkAlt,
+  FaNpm,
+} from "react-icons/fa"
 
 const ProjectContainer = styled.div`
   display: flex;
@@ -114,6 +119,7 @@ export default props => {
           repoUrl,
           deployedSiteUrl,
           videoUrl,
+          npmUrl,
         } = project.node.frontmatter
 
         return (
@@ -131,17 +137,22 @@ export default props => {
                   </LinkWrapper>
                   <div>
                     {videoUrl && (
-                      <IconLink href={videoUrl}>
+                      <IconLink target="_blank" href={videoUrl}>
                         <IconSVG as={FaRegFileVideo} />
                       </IconLink>
                     )}
                     {deployedSiteUrl && (
-                      <IconLink href={deployedSiteUrl}>
+                      <IconLink target="_blank" href={deployedSiteUrl}>
                         <IconSVG as={FaExternalLinkAlt} />
                       </IconLink>
                     )}
+                    {npmUrl && (
+                      <IconLink target="_blank" href={npmUrl}>
+                        <IconSVG as={FaNpm} />
+                      </IconLink>
+                    )}
                     {repoUrl && (
-                      <IconLink href={repoUrl}>
+                      <IconLink target="_blank" href={repoUrl}>
                         <IconSVG as={FaGithub} />
                       </IconLink>
                     )}
@@ -181,6 +192,7 @@ export const query = graphql`
             deployedSiteUrl
             repoUrl
             videoUrl
+            npmUrl
             image {
               publicURL
               childImageSharp {

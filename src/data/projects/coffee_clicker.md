@@ -6,6 +6,7 @@ dateString: "July 2019"
 deployedSiteUrl: ""
 repoUrl: ""
 videoUrl: ""
+npmUrl: ""
 image: "./coffee_screenshot.png"
 builtWith:
   [
