@@ -103,7 +103,11 @@ export default props => {
               <InfoLine>
                 <span>{formatTimestampToDate(date)}</span>
                 <span> • {formatNumberWithCommas(word_count)} words</span>
-                <span> • {wordCountToMinutes(word_count)} minutes</span>
+                <span>
+                  {" "}
+                  • {wordCountToMinutes(word_count)} minute
+                  {wordCountToMinutes(word_count) !== "1" ? "s" : ""}
+                </span>
               </InfoLine>
               <PostDescription>{description}</PostDescription>
             </PostContainer>
