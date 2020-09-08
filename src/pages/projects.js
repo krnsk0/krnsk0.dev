@@ -12,8 +12,7 @@ const ProjectContainer = styled.div`
   flex-direction: row;
   & img {
     border: 2px solid #313131;
-    border-radius: 3px;
-    box-shadow: 2px 2px #414141;
+    border-radius: 4px;
   }
   @media (max-width: 700px) {
     flex-direction: column;
