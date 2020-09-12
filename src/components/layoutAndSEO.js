@@ -83,8 +83,8 @@ export default ({
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
 
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
       </Helmet>
       <GlobalContainerDiv>
         <GlobalStyleDiv>
