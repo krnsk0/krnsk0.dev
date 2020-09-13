@@ -107,6 +107,5 @@ module.exports = {
         policy: [{ userAgent: "*", allow: "/", disallow: "/success" }],
       },
     },
-    `gatsby-plugin-no-javascript`,
   ],
 }
