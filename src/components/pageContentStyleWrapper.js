@@ -12,7 +12,7 @@ const PageContentWrapper = styled.div`
   background-color: white;
 `
 
-export default (props) => {
+export default props => {
   const { children } = props
   return <PageContentWrapper>{children}</PageContentWrapper>
 }

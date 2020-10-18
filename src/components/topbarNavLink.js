@@ -7,7 +7,7 @@ const NavLinkContainer = styled.div`
   text-align: right;
 `
 
-const StyledLink = styled((props) => <Link {...props} />)`
+const StyledLink = styled(props => <Link {...props} />)`
   font-family: ${menuFont};
   color: #313131;
   &:hover {

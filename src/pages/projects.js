@@ -105,7 +105,7 @@ const LinkWrapper = styled.a`
   text-decoration: none;
 `
 
-export default (props) => {
+export default props => {
   const projects = props.data.allMarkdownRemark.edges
 
   return (
@@ -161,7 +161,7 @@ export default (props) => {
 
                 <ProjectDescription>{description}</ProjectDescription>
                 <BuiltWithContainer>
-                  {builtWith.map((techName) => {
+                  {builtWith.map(techName => {
                     return (
                       <BuiltWithItem key={techName}>{techName}</BuiltWithItem>
                     )

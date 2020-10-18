@@ -8,7 +8,7 @@ const NavLinkContainer = styled.div`
   margin-top: 5px;
 `
 
-const StyledLink = styled((props) => <Link {...props} />)`
+const StyledLink = styled(props => <Link {...props} />)`
   font-family: ${menuFont};
   font-size: 17px;
   color: #313131;
@@ -25,7 +25,7 @@ const StyledLink = styled((props) => <Link {...props} />)`
   margin-left: 2px;
   margin-right: 2px;
   margin-bottom: 5px;
-  ${(props) =>
+  ${props =>
     props.selected &&
     css`
       background-color: #313131;

@@ -7,12 +7,12 @@ const TitleText = styled.h1`
   font-family: ${pageTitleFont};
   font-weight: 700;
   margin: 5px;
-  margin-top: ${(props) => (props.type === "desktop" ? "0px" : "2px")};
+  margin-top: ${props => (props.type === "desktop" ? "0px" : "2px")};
   color: #313131;
   text-align: left;
-  font-size: ${(props) => (props.type === "desktop" ? "45px" : "28px")};
+  font-size: ${props => (props.type === "desktop" ? "45px" : "28px")};
   font-weight: bold;
-  ${(props) =>
+  ${props =>
     props.type === "desktop"
       ? css`
           text-shadow: 4px 4px 0px #b5b5b5, 8px 8px 0px #dbdbdb;
@@ -28,7 +28,7 @@ const TitleText = styled.h1`
         `}
 `
 
-export default (props) => (
+export default props => (
   <Link to="/" style={{ color: "inherit", textDecoration: "inherit" }}>
     <TitleText type={props.type}>KRNSK0</TitleText>
   </Link>
