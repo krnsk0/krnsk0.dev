@@ -4,9 +4,9 @@ import { FaGithub, FaLinkedin, FaMediumM, FaDev } from "react-icons/fa"
 import styled from "styled-components"
 
 const IconSVG = styled.div`
-  font-size: ${props => (props.type === "desktop" ? "1.5em" : "1.4em")};
-  margin-left: ${props => (props.type === "desktop" ? "5px" : "3px")};
-  margin-right: ${props => (props.type === "desktop" ? "5px" : "3px")};
+  font-size: ${(props) => (props.type === "desktop" ? "1.5em" : "1.4em")};
+  margin-left: ${(props) => (props.type === "desktop" ? "5px" : "3px")};
+  margin-right: ${(props) => (props.type === "desktop" ? "5px" : "3px")};
   margin-top: 5px;
 `
 
@@ -24,7 +24,7 @@ const iconHash = {
   dev: FaDev,
 }
 
-export default props => {
+export default (props) => {
   return (
     <IconLink href={props.to}>
       <IconSVG as={iconHash[props.icon]} type={props.type} />

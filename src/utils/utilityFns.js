@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-export const formatTimestampToDate = timestamp => {
+export const formatTimestampToDate = (timestamp) => {
   const date = new Date(Number(timestamp))
   return date.toLocaleDateString("en-US", {
     month: "long",
@@ -9,11 +9,11 @@ export const formatTimestampToDate = timestamp => {
   })
 }
 
-export const formatNumberWithCommas = num => {
+export const formatNumberWithCommas = (num) => {
   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
 
-export const wordCountToMinutes = count => {
+export const wordCountToMinutes = (count) => {
   const wpm = 170
   return (count / wpm).toFixed(0)
 }

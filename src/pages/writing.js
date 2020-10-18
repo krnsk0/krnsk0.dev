@@ -73,7 +73,7 @@ const iconHash = {
   dev: FaDev,
 }
 
-export default props => {
+export default (props) => {
   const projects = props.data.allMarkdownRemark.edges
 
   return (
