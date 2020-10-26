@@ -9,6 +9,4 @@ title: "I'm <b>Jon Kurinsky</b>, a Philadelphia-based software engineer."
 
 <p>Currently working on technical SEO and web performance at <b>IKEA</b>; was previously lead UI dev for a greenfield microfrontends-based project at <b>Comcast</b>. Former <b>Fullstack Academy</b> teaching fellow.</p>
 
-<p>Some current interests: DX 🤝 UX, PRPL architectures and the JAMstack, declarative paradigms and code-as-data in JS/TS, tooling as a productivity/force multiplier, and web performance optimization of microfrontends architectures.</p>
-
 <p>Want to collaborate? Check out my <a href="/projects/">portfolio</a>, <a href="https://github.com/krnsk0">Github</a>, or connect with me on <a href="https://www.linkedin.com/in/krnsk0/">LinkedIn</a>.</p>
