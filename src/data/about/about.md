@@ -3,7 +3,7 @@ type: "about"
 title: "I'm <b>Jon Kurinsky</b>, a Philadelphia-based software engineer."
 ---
 
-<p>I have substantial experience developing with and teaching <b>React</b>, <b>Redux</b>, and the surrounding ecosystem— as well as experience working on developer tooling and serverless applications in <b>Node</b>. I'm highly proficient in <b>Javascript</b> but also comfortable in <b>Typescript</b> and <b>Python</b>.</p>
+<p>I have substantial experience developing with and teaching <b>React</b>, <b>Redux</b>, and the surrounding ecosystem— as well as experience working on developer tooling, microservices, and serverless applications in <b>Node</b>. I'm highly proficient in <b>Javascript</b> but also comfortable in <b>Typescript</b> and <b>Python</b>.</p>
 
 <p>I have some specialization in frontend architecture, web performance engineering, and frontend developer tooling.</p>
 
