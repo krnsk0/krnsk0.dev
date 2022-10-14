@@ -3,7 +3,7 @@ type: "about"
 title: "I'm <b>Jon Kurinsky</b>, a Philadelphia-based software engineer."
 ---
 
-<p>After self-teaching Python to automate media post-processing workflows and business processes at a publishing company, I decided to make the move to software development as vocation. Since 2019, I've led a frontend team at a Fortune 500, worked on web performance and A/B testing at a global e-commerce giant, and helped an ed-tech video startup transform its technology stack to scale for a new period of growth.</p>
+<p>After self-teaching Python to automate media post-processing workflows and business processes at a publishing company, I decided to make the move to software development as vocation. Since 2019, I've led a frontend team at a Fortune 50, worked on web performance and A/B testing at a global e-commerce giant, and helped an ed-tech video startup transform its technology stack to scale for a new period of growth.</p>
 
 <p>A collaboration facilitator and consummate over-communicator, I believe that software development is inherently a team sport. I've often adopted a method of iteratively searching for ways to act as a force multiplier, and often this has included encouraging myself and others to embrace continuous learning. I do my best work on teams that value cross-functional, deep collaboration, and which organize their work around user outcomes alongside team output.</p>
 
