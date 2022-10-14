@@ -3,10 +3,10 @@ type: "about"
 title: "I'm <b>Jon Kurinsky</b>, a Philadelphia-based software engineer."
 ---
 
-<p>I have substantial experience developing with and teaching <b>React</b>, <b>Redux</b>, and the surrounding ecosystem— as well as experience working on developer tooling, microservices, and serverless applications in <b>Node</b>. I'm highly proficient in <b>Javascript</b> but also comfortable in <b>Typescript</b> and <b>Python</b>.</p>
+<p>After self-teaching Python to automate media post-processing workflows and business processes at a publishing company, I decided to make the move to software development as vocation. Since 2019, I've led a frontend team at a Fortune 500, worked on web performance and A/B testing at a global e-commerce giant, and helped an ed-tech video startup transform its technology stack to scale for a new period of growth.</p>
 
-<p>I have some specialization in frontend architecture, web performance engineering, and frontend developer tooling.</p>
+<p>A collaboration facilitator and consummate over-communicator, I believe that software development is inherently a team sport. I've often adopted a method of iteratively searching for ways to act as a force multiplier, and often this has included encouraging myself and others to embrace continuous learning. I do my best work on teams that value cross-functional, deep collaboration, and which organize their work around user outcomes alongside team output.</p>
 
-<p>Currently working on technical SEO and web performance at <b>IKEA</b>; was previously lead UI dev for a greenfield microfrontends-based project at <b>Comcast</b>. Former <b>Fullstack Academy</b> teaching fellow.</p>
+<p>A generalist currently most fluent in Typescript, I'll learn the right tool for the job. I have some specialization in frontend architecture, web audio and video APIs, and web performance-- as well as experience with microservice development and media processing pipelines.</p>
 
-<p>Want to collaborate? Check out my <a href="/projects/">portfolio</a>, <a href="https://github.com/krnsk0">Github</a>, or connect with me on <a href="https://www.linkedin.com/in/krnsk0/">LinkedIn</a>.</p>
+<p>Over the last two years, I've developed a special interest in problems related to media delivery and playback. I'm ready to deepen my experience with video-on-demand at scale—on the client- or server-side—through contributions to a mature team with a learning and growth mindset.</p>
