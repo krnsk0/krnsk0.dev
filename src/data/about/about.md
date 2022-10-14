@@ -9,4 +9,4 @@ title: "I'm <b>Jon Kurinsky</b>, a Philadelphia-based software engineer."
 
 <p>A generalist currently most fluent in Typescript, I'll learn the right tool for the job. I have some specialization in frontend architecture, web audio and video APIs, and web performance-- as well as experience with microservice development and media processing pipelines.</p>
 
-<p>Over the last two years, I've developed a special interest in problems related to media delivery and playback. I'm ready to deepen my experience with video-on-demand at scale—on the client- or server-side—through contributions to a mature team with a learning and growth mindset.</p>
+<p>Over the last two years, I've developed a special interest in problems related to media delivery and playback. I'm ready to deepen my experience with video-on-demand at scale—on the client- or server-side—through contributions to a mature team with a continuous-learning and growth mindset.</p>
