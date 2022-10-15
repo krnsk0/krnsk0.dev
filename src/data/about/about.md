@@ -3,10 +3,8 @@ type: "about"
 title: "I'm <b>Jon Kurinsky</b>, a Philadelphia-based software engineer."
 ---
 
-<p>After self-teaching Python to automate media post-processing workflows and business processes at a publishing company, I decided to make the move to software development as vocation. Since 2019, I've led a frontend team at a Fortune 50, worked on web performance and A/B testing at a global e-commerce giant, and helped an ed-tech video startup transform its technology stack to scale for a new period of growth.</p>
+<p>After teaching myself python on the job to automate media processing tasks, I shifted into software development. Since 2018, I've led a frontend team at a Fortune 50, worked on web performance and A/B testing at a global e-commerce giant, and helped an ed-tech video startup transform its technology stack to scale for a new period of growth.</p>
 
-<p>A collaboration facilitator and consummate over-communicator, I believe that software development is inherently a team sport. I've often adopted a method of iteratively searching for ways to act as a force multiplier, and often this has included encouraging myself and others to embrace continuous learning. I do my best work on teams that value cross-functional, deep collaboration, and which organize their work around user outcomes alongside team output.</p>
+<p>As a collaborative over-communicator who loves to act as a force multiplier, I firmly believe that software is a team sport. I'm a generalist most experienced with Typescript, React, Node, and GraphQL, but will learn the right tool for the job. I have some specialization in front-end architecture, web video and audio APIs, Node microservices, and media processing.</p>
 
-<p>A generalist currently most fluent in Typescript, I'll learn the right tool for the job. I have some specialization in frontend architecture, web audio and video APIs, and web performance-- as well as experience with microservice development and media processing pipelines.</p>
-
-<p>Over the last two years, I've developed a special interest in problems related to media delivery and playback. I'm ready to deepen my experience with video-on-demand at scale—on the client- or server-side—through contributions to a mature team with a continuous-learning and growth mindset.</p>
+<p>I'm especially interested in problems related to media delivery, media playback, and real-time collaboration-- and I'm ready to go deeper into these areas on a mature team with a growth and continuous-learning mindset.</p>
