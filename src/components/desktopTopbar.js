@@ -65,7 +65,6 @@ export default () => (
     </LeftSideContainer>
     <LinkContainer>
       <TopbarNavLink to="/">About</TopbarNavLink>
-      <TopbarNavLink to="/projects/">Projects</TopbarNavLink>
       <TopbarNavLink to="/writing/">Writing</TopbarNavLink>
       <TopbarNavLink to="/contact/">Contact</TopbarNavLink>
     </LinkContainer>

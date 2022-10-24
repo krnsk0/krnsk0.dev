@@ -69,7 +69,6 @@ export default () => {
         </TopBarTopRow>
         <TopBarBottomRow>
           <MobileTopbarNavLink to="/">About</MobileTopbarNavLink>
-          <MobileTopbarNavLink to="/projects/">Projects</MobileTopbarNavLink>
           <MobileTopbarNavLink to="/writing/">Writing</MobileTopbarNavLink>
           <MobileTopbarNavLink to="/contact/">Contact</MobileTopbarNavLink>
         </TopBarBottomRow>
